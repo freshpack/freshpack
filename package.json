@@ -1,0 +1,31 @@
+{
+  "name": "freshpack",
+  "version": "1.0.0",
+  "description": "Freshpack rocks!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://git@github.com:freshpack/freshpack.git"
+  },
+  "keywords": [
+    "scaffolding",
+    "boilerplate",
+    "react",
+    "redux",
+    "sass",
+    "eslint",
+    "test",
+    "webpack",
+    "babel",
+    "hot-reloading"
+  ],
+  "author": "Uli Preuss",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/freshpack/freshpack/issues"
+  },
+  "homepage": "http://freshpack.rocks/"
+}
