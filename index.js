@@ -1,1 +1,1 @@
-console && console.log('Freshpack rocks!');
+module.exports = () => console && console.log('Freshpack rocks!');
