@@ -1,1 +1,2 @@
-module.exports = () => console && console.log('Freshpack rocks!');
+#!/usr/bin/env node
+module.exports = () => console.log('Freshpack rocks!');
