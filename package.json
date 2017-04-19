@@ -1,6 +1,6 @@
 {
   "name": "freshpack",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Freshpack rocks!",
   "main": "index.js",
   "scripts": {
