@@ -1,7 +1,7 @@
 {
   "name": "freshpack",
-  "version": "0.0.8",
-  "description": "Freshpack rocks!",
+  "version": "0.1.0",
+  "description": "Command line scaffolding tool for react apps",
   "author": "Uli Preuss",
   "license": "MIT",
   "main": "index.js",
@@ -9,6 +9,10 @@
     "start": "node index.js --sass --lint --test",
     "lint": "eslint index.js ./src -f table || true",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
   },
   "bin": {
     "freshpack": "./index.js"
