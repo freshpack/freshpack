@@ -16,8 +16,6 @@ const chdir = main.chdir;
 const exec = main.exec;
 const exit = main.exit;
 
-console.log(process.cwd())
-
 log('FRESHPACK'.white);
 log(colors.bold('freshpack v' + pkg.version));
 log('');

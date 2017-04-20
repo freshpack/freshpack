@@ -8,6 +8,7 @@ const colors = require('colors');
 
 const spacer = '##'.hidden;
 const spinner = elegantSpinner();
+const workingDir = process.cwd();
 
 let currentPath = '';
 let start = 0;
@@ -136,7 +137,7 @@ const sequence = (actions) => {
 };
 
 const displayDependencies = (dir) => {
-  const pkg = require(path.join(__dirname, '/', dir, '/package.json'));
+  const pkg = require(path.join(workingDir, '/', dir, '/package.json'));
   const dependencies = entries(Object.assign(pkg.dependencies, pkg.devDependencies));
   dependencies.forEach((dependency) => {
     log(
@@ -147,7 +148,7 @@ const displayDependencies = (dir) => {
 };
 
 const exit = (dir) => {
-  const pkg = require(path.join(__dirname, '/', dir, '/package.json'));
+  const pkg = require(path.join(workingDir, '/', dir, '/package.json'));
   const port = pkg.scripts.start.split('--port ')[1];
 
   logUpdate(spacer + 'installed dependencies'.bold);
