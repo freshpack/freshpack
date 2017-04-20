@@ -136,7 +136,7 @@ const sequence = (actions) => {
 };
 
 const displayDependencies = (dir) => {
-  const pkg = require(`../${dir}/package.json`);
+  const pkg = require(`./${dir}/package.json`);
   const dependencies = entries(Object.assign(pkg.dependencies, pkg.devDependencies));
   dependencies.forEach((dependency) => {
     log(
