@@ -216,7 +216,7 @@ const indexHtml = `
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Blog Title</title>
+  <title>{{PROJEKT-NAME}}</title>
 </head>
 <body>
   <div id="root"></div>

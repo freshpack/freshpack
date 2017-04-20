@@ -11,3 +11,5 @@ my-project
 # NodeJS
 node_modules
 
+# NPM
+npm-debug.log

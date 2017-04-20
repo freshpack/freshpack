@@ -55,7 +55,7 @@ config((projectName, projectDesc, projectAuthor, projectPort, dir, args) => {
     [write, './' + dir + '/jest.config.json', tmpl.jestConfig],
     [write, './' + dir + '/webpack.config.js', render(tmpl.webpackConfig)],
     [write, './' + dir + '/src/index.js', tmpl.indexJs],
-    [write, './' + dir + '/src/index.html', tmpl.indexHtml],
+    [write, './' + dir + '/src/index.html', render(tmpl.indexHtml)],
     [write, './' + dir + '/src/components/App.js', tmpl.appJs],
     [write, './' + dir + '/src/components/App.spec.js', tmpl.appJsSpec],
     [write, './' + dir + '/src/components/App.' + styleExt, styleTmpl],

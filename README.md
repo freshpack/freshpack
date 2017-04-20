@@ -6,6 +6,8 @@ Command line tool for generating react apps with current stable dependencies.
 To Install (you'll need at least node v6):
 
 ```bash
+$ yarn global add freshpack
+# or
 $ npm install freshpack -g
 ```
 
@@ -45,18 +47,23 @@ $ cd my-project
 
 Test your app
 ```bash
+$ yarn test
+# or
 $ npm test
 ```
 
 Lint your app
 ```bash
+$ yarn lint
+# or
 $ npm run lint
 ```
 
 Run your app in dev mode
 ```bash
+$ yarn lint
+# or
 $ npm start
-
 ```
 
 ## License
