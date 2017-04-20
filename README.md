@@ -2,6 +2,7 @@
 
 Command line tool for generating react apps with current stable dependencies.
 
+## Install
 To Install (you'll need at least node v6):
 
 ```bash
@@ -11,8 +12,8 @@ $ npm install freshpack -g
 Using freshpack will scaffold out a project and generate additional files.
 It also generates common scripts you can use to lint, test or start the dev server with hot reloding.
 
-Generate a new project folder,
-comes with package.json, readme, and recommended structure
+## Usage
+Generate a new project folder, comes with package.json, readme, and minimal recommended structure and configuration
 ```bash
 $ freshpack
 ```
