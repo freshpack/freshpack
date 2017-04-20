@@ -61,7 +61,7 @@ $ npm run lint
 
 Run your app in dev mode
 ```bash
-$ yarn lint
+$ yarn start
 # or
 $ npm start
 ```
