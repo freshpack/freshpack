@@ -156,7 +156,9 @@ const exit = (dir) => {
   log('');
   log(colors.bold('finished in ~' + Math.round(getTimer(start) / 1000) + ' s'));
   log('');
-  log('$ cd ' + dir + '');
+  log('Usage:');
+  log('');
+  log('$ cd ' + dir);
   log('');
   log('$ npm start');
   log('open http://localhost:' + port + '/');
@@ -165,7 +167,7 @@ const exit = (dir) => {
     log('$ npm run lint');
   }
   if (cmdLineArgs.lint) {
-    log('// test scripts');
+    log('');
     log('$ npm test');
   }
   log('');
