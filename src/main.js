@@ -147,7 +147,7 @@ const displayDependencies = (dir) => {
 };
 
 const exit = (dir) => {
-  const pkg = require('../' + dir + '/package.json');
+  const pkg = require('./' + dir + '/package.json');
   const port = pkg.scripts.start.split('--port ')[1];
 
   logUpdate(spacer + 'installed dependencies'.bold);
