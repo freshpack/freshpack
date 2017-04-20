@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node index.js --sass --lint --test",
     "lint": "eslint index.js ./src -f table || true",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/test.js"
   },
   "engines": {
     "node": ">=6",
@@ -51,6 +51,7 @@
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.3"
+    "eslint-plugin-react": "^6.10.3",
+    "tape": "^4.6.3"
   }
 }
