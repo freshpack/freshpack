@@ -1,6 +1,6 @@
 {
   "name": "freshpack",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Command line scaffolding tool for react apps",
   "author": "Uli Preuss",
   "license": "MIT",
