@@ -1,4 +1,6 @@
 language: node_js
-node_js: '6'
-iojs: '6'
+node_js:
+  - '0.12'
+  - '4'
+  - '6'
 cache: yarn
