@@ -38,6 +38,8 @@ $ freshpack --test
 Combine options
 ```bash
 $ freshpack --sass --lint --test
+# or
+$ freshpack -slt
 ```
 
 Change to build dir
