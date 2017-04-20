@@ -41,7 +41,7 @@
     "colors": "^1.1.2",
     "command-line-args": "^4.0.2",
     "elegant-spinner": "^1.0.1",
-    "log-update": "^1.0.2",
+    "log-update": "^2.0.0",
     "object.entries": "^1.0.4",
     "prompt": "^1.0.0"
   },
