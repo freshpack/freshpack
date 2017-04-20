@@ -3,7 +3,7 @@
 Command line tool for generating react apps with current stable dependencies.
 
 ## Install
-To Install (you'll need at least node v6):
+(you'll need at least node v6)
 
 ```bash
 $ yarn global add freshpack
