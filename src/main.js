@@ -160,15 +160,22 @@ const exit = (dir) => {
   log('');
   log('$ cd ' + dir);
   log('');
+  log('$ yarn start');
+  log('# or');
   log('$ npm start');
-  log('open http://localhost:' + port + '/');
+  log('');
+  log('$ open http://localhost:' + port + '/');
   if (cmdLineArgs.lint) {
     log('');
-    log('$ npm run lint');
+    log('$ yarn lint');
+    log('# or');
+    log('$ npm run start');
   }
   if (cmdLineArgs.lint) {
     log('');
-    log('$ npm test');
+    log('$ yarn test');
+    log('# or');
+    log('$ npm start');
   }
   log('');
 
