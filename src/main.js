@@ -28,20 +28,32 @@ const getTimer = startx => Date.now() - startx;
 
 const startSpinner = () => {
   clearInterval(ivalSpinner);
+
+  let text = '';
+  if (!cmdLineArgs.quite) {
+    text = colors.bold('installing dependencies ');
+  } else {
+    text = colors.white('creating "' + cmdLineArgs.dir + '" ');
+  }
+
   ivalSpinner = setInterval(() => {
+    let counterText = '';
+    if (!cmdLineArgs.quite) {
+      counterText = colors.dim(' (' + getTimer(start) + ' ms)');
+    }
     logUpdate(
       spacer +
-      colors.bold('installing dependencies ') +
+      text +
       colors.yellow(spinner()) +
-      colors.dim(' (') +
-      colors.dim(getTimer(start)) +
-      colors.dim(' ms)')
+      counterText
     );
   }, 50);
 };
 
 const log = (msg) => {
-  console.log(spacer + msg);
+  if (!cmdLineArgs.quite) {
+    console.log(spacer + msg);
+  }
   next();
 };
 
@@ -78,7 +90,8 @@ const createFolders = (dirPath) => {
 const writeFile = (filePath, content) => {
   if (
     (filePath.includes('eslint') && !cmdLineArgs.lint) ||
-    (filePath.includes('jest') && !cmdLineArgs.test)
+    (filePath.includes('jest') && !cmdLineArgs.test) ||
+    (filePath.includes('spec') && !cmdLineArgs.test)
   ) {
     next();
     return;
@@ -150,12 +163,18 @@ const displayDependencies = (dir) => {
 const exit = (dir) => {
   const pkg = require(path.join(workingDir, '/', dir, '/package.json'));
   const port = pkg.scripts.start.split('--port ')[1];
+  const finishedMsg = 'finished in ~' + Math.round(getTimer(start) / 1000) + ' s';
 
-  logUpdate(spacer + 'installed dependencies'.bold);
-  displayDependencies(dir);
-  log('');
-  log(colors.bold('finished in ~' + Math.round(getTimer(start) / 1000) + ' s'));
-  log('');
+  if (!cmdLineArgs.quite) {
+    logUpdate(spacer + 'installed dependencies'.bold);
+    displayDependencies(dir);
+    log('');
+    log(colors.bold(finishedMsg));
+    log('');
+  } else {
+    logUpdate(spacer + finishedMsg + ' \n');
+  }
+
   log('Usage:');
   log('');
   log('$ cd ' + dir);
@@ -165,19 +184,21 @@ const exit = (dir) => {
   log('$ npm start');
   log('');
   log('$ open http://localhost:' + port + '/');
+  log('');
+
   if (cmdLineArgs.lint) {
-    log('');
     log('$ yarn lint');
     log('# or');
     log('$ npm run start');
-  }
-  if (cmdLineArgs.lint) {
     log('');
+  }
+
+  if (cmdLineArgs.lint) {
     log('$ yarn test');
     log('# or');
     log('$ npm start');
+    log('');
   }
-  log('');
 
   clearInterval(ivalMain);
   clearInterval(ivalSpinner);
@@ -191,6 +212,7 @@ const sleep = (delay) => {
 
 const starting = (headertext) => {
   start = getTimestamp();
+  log('');
   log(colors.bold(headertext));
   next();
 };

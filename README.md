@@ -11,61 +11,66 @@ $ yarn global add freshpack
 $ npm install freshpack -g
 ```
 
-Using freshpack will scaffold out a project and generate additional files.
-It also generates common scripts you can use to lint, test or start the dev server with hot reloding.
-
-## Usage
-Generate a new project folder, comes with package.json, readme, and minimal recommended structure and configuration
+Display help screen
 ```bash
-$ freshpack
+$ freshpack --help
+```
+
+## Generate project
+Using freshpack will scaffold out a project and generate additional files.
+
+Create minimal project (react, css)
+```bash
+$ freshpack <project-directory>
+```
+
+Disable verbose logging
+```bash
+$ freshpack <project-directory> --quite
 ```
 
 Add sass files and configuration
 ```bash
-$ freshpack --sass
+$ freshpack <project-directory> --sass
 ```
 
 Add lint files and configuration
 ```bash
-$ freshpack --lint
+$ freshpack <project-directory> --lint
 ```
 
 Add jest/enzyme files and configuration
 ```bash
-$ freshpack --test
+$ freshpack <project-directory> --test
 ```
 
 Combine options
 ```bash
-$ freshpack --sass --lint --test
+$ freshpack <project-directory> --sass --lint --test
 # or
-$ freshpack -slt
+$ freshpack <project-directory> -all
 ```
+
+## Project scripts
 
 Change to build dir
 ```bash
-$ cd my-project
+$ cd <project-directory>
 ```
 
 Test your app
 ```bash
 $ yarn test
-# or
-$ npm test
 ```
 
 Lint your app
 ```bash
 $ yarn lint
-# or
-$ npm run lint
 ```
 
 Run your app in dev mode
 ```bash
 $ yarn start
-# or
-$ npm start
 ```
 
 ## License

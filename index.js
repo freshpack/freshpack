@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-const colors = require('colors');
-const pkg = require('./package.json');
 const config = require('./src/config');
 const tmpl = require('./src/templates');
 const main = require('./src/main');
@@ -16,23 +14,12 @@ const chdir = main.chdir;
 const exec = main.exec;
 const exit = main.exit;
 
-log('');
-log('FRESHPACK'.white);
-log(colors.bold('freshpack v' + pkg.version));
-log('');
-log('create minimal boilerplate'.white);
-log('using "yarn" to get the current stable versions'.white);
-log('of "react", "redux", "webpack", "babel", "sass",'.white);
-log('"esLint", "jest", "enzyme", "autoprefixer"'.white);
-log('and "hot reloading".'.white);
-log('');
-
 config((projectName, projectDesc, projectAuthor, projectPort, dir, args) => {
   const render = template => template
     .replace('{{PROJEKT-NAME}}', projectName)
     .replace('{{PROJEKT-DESCRIPTION}}', projectDesc)
     .replace('{{PROJEKT-AUTHOR}}', projectAuthor)
-    .replace('{{PORT}}', projectPort);
+    .replace('{{PORT}}', (args.port || projectPort));
 
   const dependencies = tmpl.dependencies;
   const devDependencies = tmpl.devDependencies;
@@ -43,6 +30,7 @@ config((projectName, projectDesc, projectAuthor, projectPort, dir, args) => {
   const styleExt = args.sass ? 'scss' : 'css';
   const styleTmpl = args.sass ? tmpl.appScss : tmpl.appCss;
   tmpl.appJs = args.sass ? tmpl.appJs.replace('App.css', 'App.scss') : tmpl.appJs;
+
 
   sequence([
     [init, args],
