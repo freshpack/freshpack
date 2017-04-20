@@ -4,7 +4,9 @@ node_js:
   - "0.11"
   - "0.10"
   - "4.2.0"
+  - "6.9.1"
   - "iojs-v2"
+cache: yarn
 sudo: false
 branches:
   only:
