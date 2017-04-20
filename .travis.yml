@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - "6.9.1"
-  - "iojs-v2"
+  - "iojs-v4"
 sudo: false
 cache: yarn
 before_install: if [[ `npm -v` != 4* ]]; then npm i -g npm@4; fi
