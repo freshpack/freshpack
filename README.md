@@ -1,4 +1,4 @@
-# freshpack [![npm](https://img.shields.io/npm/v/freshpack.svg?maxAge=3600)](https://www.npmjs.com/package/freshpack) [![Build Status](https://travis-ci.org/freshpack/freshpack.svg?branch=master)](https://travis-ci.org/freshpack/freshpack) ![MIT Licensed](https://img.shields.io/npm/l/freshpack.svg) ![dependencies](https://img.shields.io/versioneye/d/freshpack/freshpack.svg)
+# freshpack [![npm](https://img.shields.io/npm/v/freshpack.svg?maxAge=3600)](https://www.npmjs.com/package/freshpack) [![Build Status](https://travis-ci.org/freshpack/freshpack.svg?branch=master)](https://travis-ci.org/freshpack/freshpack) ![MIT Licensed](https://img.shields.io/npm/l/freshpack.svg) ![dependencies](https://img.shields.io/librariesio/github/freshpack/freshpack.svg)
 
 Command line tool for generating react apps with current stable dependencies.
 
