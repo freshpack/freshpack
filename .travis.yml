@@ -4,6 +4,5 @@ node_js:
   - "iojs-v2"
 sudo: false
 cache: yarn
-before_install:
-  - nvm install "$(jq -r '.engines.node' package.json)"
+before_install: if [[ `npm -v` != 4* ]]; then npm i -g npm@4; fi
 install: true
