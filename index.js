@@ -16,22 +16,24 @@ const chdir = main.chdir;
 const exec = main.exec;
 const exit = main.exit;
 
+console.log(process.cwd())
+
+log('FRESHPACK'.white);
+log(colors.bold('freshpack v' + pkg.version));
+log('');
+log('create minimal boilerplate'.white);
+log('using "yarn" to get the current stable versions'.white);
+log('of "react", "redux", "webpack", "babel", "sass",'.white);
+log('"esLint", "jest", "enzyme", "autoprefixer"'.white);
+log('and "hot reloading".'.white);
+log('');
+
 config((projectName, projectDesc, projectAuthor, projectPort, dir, args) => {
   const render = template => template
     .replace('{{PROJEKT-NAME}}', projectName)
     .replace('{{PROJEKT-DESCRIPTION}}', projectDesc)
     .replace('{{PROJEKT-AUTHOR}}', projectAuthor)
     .replace('{{PORT}}', projectPort);
-
-  log('FRESHPACK'.white);
-  log(colors.bold('freshpack v' + pkg.version));
-  log('');
-  log('create minimal boilerplate'.white);
-  log('using "yarn" to get the current stable versions'.white);
-  log('of "react", "redux", "webpack", "babel", "sass",'.white);
-  log('"esLint", "jest", "enzyme", "autoprefixer"'.white);
-  log('and "hot reloading".'.white);
-  log('');
 
   const dependencies = tmpl.dependencies;
   const devDependencies = tmpl.devDependencies;
