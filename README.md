@@ -5,60 +5,57 @@ Tool for generating react apps with current stable dependencies.
 To Install (you'll need at least node v6):
 
 ```bash
-# install global
-npm install freshpack -g
+$ npm install freshpack -g
 ```
 
 Using freshpack will scaffold out a project and generate additional files.
 It also generates common scripts you can use to lint, test or start the dev server with hot reloding.
 
+generate a new project folder, comes with package.json, readme, and recommended structure
 ```bash
-# generate a new project folder,
-# comes with package.json, readme, and recommended structure
-freshpack
+$ freshpack
 ```
 
+added sass files and configuration
 ```bash
-# added sass files and configuration
-freshpack --sass
+$ freshpack --sass
 ```
 
+added lint files and configuration
 ```bash
-# added lint files and configuration
-freshpack --lint
+$ freshpack --lint
 ```
 
+added jest/enzyme files and configuration
 ```bash
-# added jest/enzyme files and configuration
-freshpack --test
+$ freshpack --test
 ```
 
+combine options
 ```bash
-# combine options
-freshpack --sass --lint --test
+$ freshpack --sass --lint --test
 ```
 
+change to build dir
 ```bash
-# change to build dir
-cd my-project
+$ cd my-project
 ```
 
+test your app
 ```bash
-# test your app
-npm test
+$ npm test
 ```
 
+lint your app
 ```bash
-# lint your app
-npm run lint
+$ npm run lint
 ```
 
+run your app in dev mode
 ```bash
-# run your app in dev mode
-npm start
+$ npm start
 
 ```
-
 
 ## License
 MIT &copy;
