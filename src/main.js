@@ -156,16 +156,20 @@ const exit = (dir) => {
   log('');
   log(colors.bold('finished in ~' + Math.round(getTimer(start) / 1000) + ' s'));
   log('');
-  log('npm commands:');
   log('$ cd ' + dir + '');
-  log('//start dev env');
+  log('');
   log('$ npm start');
   log('open http://localhost:' + port + '/');
-  log('// lint scripts');
-  log('$ npm lint');
-  log('// test scripts');
-  log('$ npm test');
+  if (cmdLineArgs.lint) {
+    log('');
+    log('$ npm run lint');
+  }
+  if (cmdLineArgs.lint) {
+    log('// test scripts');
+    log('$ npm test');
+  }
   log('');
+
   clearInterval(ivalMain);
   clearInterval(ivalSpinner);
 };
