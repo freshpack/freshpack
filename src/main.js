@@ -136,7 +136,7 @@ const sequence = (actions) => {
 };
 
 const displayDependencies = (dir) => {
-  const pkg = require(`./${dir}/package.json`);
+  const pkg = require(path.join(__dirname, '/', dir, '/package.json'));
   const dependencies = entries(Object.assign(pkg.dependencies, pkg.devDependencies));
   dependencies.forEach((dependency) => {
     log(
@@ -147,7 +147,7 @@ const displayDependencies = (dir) => {
 };
 
 const exit = (dir) => {
-  const pkg = require('./' + dir + '/package.json');
+  const pkg = require(path.join(__dirname, '/', dir, '/package.json'));
   const port = pkg.scripts.start.split('--port ')[1];
 
   logUpdate(spacer + 'installed dependencies'.bold);

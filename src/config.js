@@ -21,6 +21,8 @@ const args = commandLineArgs(optionDefinitions);
 
 module.exports = (callback) => {
   log('');
+  log('configuration'.bold);
+
   prompt.start();
   prompt.message = 'X '.hidden;
   prompt.delimiter = '';

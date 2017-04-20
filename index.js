@@ -32,7 +32,6 @@ config((projectName, projectDesc, projectAuthor, projectPort, dir, args) => {
   log('"esLint", "jest", "enzyme", "autoprefixer"'.white);
   log('and "hot reloading".'.white);
   log('');
-  log('configuration'.bold);
 
   const dependencies = tmpl.dependencies;
   const devDependencies = tmpl.devDependencies;
