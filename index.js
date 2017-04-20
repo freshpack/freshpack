@@ -46,7 +46,7 @@ config((projectName, projectDesc, projectAuthor, projectPort, dir, args) => {
 
   sequence([
     [init, args],
-    [start, 'new files and folders:'],
+    [start, 'new files and folders'],
     [paths, './' + dir + '/src/components'],
     [write, './' + dir + '/package.json', render(tmpl.package)],
     [write, './' + dir + '/.babelrc', tmpl.babelrc],
