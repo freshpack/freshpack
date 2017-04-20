@@ -1,0 +1,13 @@
+# OS Generated Files
+.DS_Store
+
+# Local Development (Files and Folders)
+# starting with an unterscore
+\_*
+
+# Default build dir
+my-project
+
+# NodeJS
+node_modules
+
