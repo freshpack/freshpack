@@ -18,7 +18,7 @@ Usage: freshpack <project-directory> [options]
   Options:
     -h, --help      output usage information
     -v, --version   output the version number
-    -q, --quite     disable verbose logging
+    -q, --quiet     disable verbose logging
     -c, --conf      show prompt for advanced configuration
 
     -p, --port      set port (default is 8084)
@@ -35,7 +35,7 @@ const optionDefinitions = [
   { name: 'lint', alias: 'l', type: Boolean },
   { name: 'test', alias: 't', type: Boolean },
   { name: 'sass', alias: 's', type: Boolean },
-  { name: 'quite', alias: 'q', type: Boolean },
+  { name: 'quiet', alias: 'q', type: Boolean },
   { name: 'conf', alias: 'c', type: Boolean },
   { name: 'port', alias: 'p', type: String },
   { name: 'all', alias: 'a', type: Boolean },

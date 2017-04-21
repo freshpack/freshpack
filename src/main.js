@@ -30,7 +30,7 @@ const startSpinner = () => {
   clearInterval(ivalSpinner);
 
   let text = '';
-  if (!cmdLineArgs.quite) {
+  if (!cmdLineArgs.quiet) {
     text = colors.bold('installing dependencies ');
   } else {
     text = colors.white('creating "' + cmdLineArgs.dir + '" ');
@@ -38,7 +38,7 @@ const startSpinner = () => {
 
   ivalSpinner = setInterval(() => {
     let counterText = '';
-    if (!cmdLineArgs.quite) {
+    if (!cmdLineArgs.quiet) {
       counterText = colors.dim(' (' + getTimer(start) + ' ms)');
     }
     logUpdate(
@@ -51,7 +51,7 @@ const startSpinner = () => {
 };
 
 const log = (msg) => {
-  if (!cmdLineArgs.quite) {
+  if (!cmdLineArgs.quiet) {
     console.log(spacer + msg);
   }
   next();
@@ -165,7 +165,7 @@ const exit = (dir) => {
   const port = pkg.scripts.start.split('--port ')[1];
   const finishedMsg = 'finished in ~' + Math.round(getTimer(start) / 1000) + ' s';
 
-  if (!cmdLineArgs.quite) {
+  if (!cmdLineArgs.quiet) {
     logUpdate(spacer + 'installed dependencies'.bold);
     displayDependencies(dir);
     log('');

@@ -26,7 +26,7 @@ $ freshpack <project-directory>
 
 Disable verbose logging
 ```bash
-$ freshpack <project-directory> --quite
+$ freshpack <project-directory> --quiet
 ```
 
 Add sass files and configuration
