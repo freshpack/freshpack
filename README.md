@@ -7,7 +7,6 @@ Installs _**automatically**_ all required dependencies in _**current stable vers
 
 **Note**: 'yarn' must be installed! See [yarn installation guide](https://yarnpkg.com/lang/en/docs/install/)
 
-
 ## Features
 
 ### Basic
@@ -47,9 +46,15 @@ Installs _**automatically**_ all required dependencies in _**current stable vers
 $ yarn global add freshpack
 ```
 ### Installation test
-Display help screen
+Display help screen [--help, -h]
 ```bash
 $ freshpack --help
+```
+
+### Version info
+Display help screen [--version, -v]
+```bash
+$ freshpack --version
 ```
 
 ## Generating project
@@ -60,27 +65,27 @@ Create minimal project (react, css)
 $ freshpack <project-directory>
 ```
 
-Disable verbose logging
+Disable verbose logging [--quiet, -q]
 ```bash
 $ freshpack <project-directory> --quiet
 ```
 
-Add sass files and configuration
+Add sass files, configuration and dependencies [--sass, -s]
 ```bash
 $ freshpack <project-directory> --sass
 ```
 
-Add lint files and configuration
+Add lint files, configuration and dependencies [--lint, -l]
 ```bash
 $ freshpack <project-directory> --lint
 ```
 
-Add jest/enzyme files and configuration
+Add jest/enzyme files, configuration and dependencies [--test, -t]
 ```bash
 $ freshpack <project-directory> --test
 ```
 
-Combine options
+Combine all addon options [--all, -a]
 ```bash
 $ freshpack <project-directory> --sass --lint --test
 # or
