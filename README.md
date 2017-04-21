@@ -108,5 +108,8 @@ Run your app in dev mode
 $ yarn start
 ```
 
-## License / copyright
-MIT &copy; 2017, Uli Preuss
+## License
+MIT
+
+## Copyright
+&copy; 2017 Uli Preuss
