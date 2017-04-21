@@ -1,7 +1,7 @@
 # freshpack [![npm](https://img.shields.io/npm/v/freshpack.svg)](https://www.npmjs.com/package/freshpack) [![Build Status](https://travis-ci.org/freshpack/freshpack.svg?branch=master)](https://travis-ci.org/freshpack/freshpack) ![dependencies](https://img.shields.io/david/freshpack/freshpack.svg) ![MIT Licensed](https://img.shields.io/npm/l/freshpack.svg)
 
 Command line tool for a quick and easy start of development of 'React' apps.
-Installs all required dependencies in current stable versions with 'yarn'.
+Installs automatically all required dependencies in current stable versions with 'yarn'.
 
 ## Features
 
