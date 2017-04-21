@@ -5,9 +5,7 @@
 Command line tool for a quick and easy start of development of 'React' apps.
 Installs _**automatically**_ all required dependencies in _**current stable versions**_ with 'yarn'.
 
-**Note**: 'yarn' must be installed!
-
-See [yarn installation guide](https://yarnpkg.com/lang/en/docs/install/)
+**Note**: 'yarn' must be installed! See [yarn installation guide](https://yarnpkg.com/lang/en/docs/install/)
 
 
 ## Features
