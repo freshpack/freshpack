@@ -12,25 +12,25 @@ Installs automatically all required dependencies in current stable versions with
 * Generates editor configuration file (.editorConfig)
 * Generates package.json file
 * Adds 'start' script for development ('yarn start')
-* Installs required dependencies
+* Installs all required dependencies
 * Enable hot reloading
 
 ### Option 'sass'
 * Generates App-Skeleton with example 'App.sass' file instead of css
-* Installs current versions of required 'sass' dependencies
+* Installs all required 'sass' dependencies
 * Adds 'sass-loader' to webpack configuration
 
 ### Option 'lint'
 * Generates 'eslint' configuration (.eslintrc.yaml)
 * Adds 'lint' script ('yarn lint')
-* Installs current versions of required 'eslint' dependencies
-* Installs current version of 'airbnb code style' configuration
+* Installs all required 'eslint' dependencies
+* Installs 'airbnb code style' configuration
 
 ### Option 'test'
 * Generates example 'App.spec.js' file
 * Generates 'jest' configuration
 * Adds 'test' script ('yarn test')
-* Installs current versions of 'jest' and 'enzyme' dependencies
+* Installs all required 'jest' and 'enzyme' dependencies
 
 
 ## Install
