@@ -40,19 +40,19 @@ Installs _**automatically**_ all required dependencies in _**current stable vers
 
 **More options like 'redux', 'postcss' or 'stylelint' are coming soon ..**
 
-## Install
+## Installation
 (you'll need at least node v6)
 
 ```bash
 $ yarn global add freshpack
 ```
-
+### Installation test
 Display help screen
 ```bash
 $ freshpack --help
 ```
 
-## Generate project
+## Generating project
 Using freshpack will scaffold out a project and generate additional files.
 
 Create minimal project (react, css)
