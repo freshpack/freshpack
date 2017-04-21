@@ -1,6 +1,7 @@
 # freshpack [![npm](https://img.shields.io/npm/v/freshpack.svg)](https://www.npmjs.com/package/freshpack) [![Build Status](https://travis-ci.org/freshpack/freshpack.svg?branch=master)](https://travis-ci.org/freshpack/freshpack) ![dependencies](https://img.shields.io/david/freshpack/freshpack.svg) ![MIT Licensed](https://img.shields.io/npm/l/freshpack.svg)
 
-Command line tool for a quick and easy start of development of 'React' apps with current stable dependencies.
+Command line tool for a quick and easy start of development of 'React' apps.
+Installs all required dependencies in current stable versions with 'yarn'.
 
 ## Features
 
@@ -11,7 +12,7 @@ Command line tool for a quick and easy start of development of 'React' apps with
 * Generates editor configuration file (.editorConfig)
 * Generates package.json file
 * Adds 'start' script for development ('yarn start')
-* Installs current versions of required dependencies
+* Installs required dependencies
 * Enable hot reloading
 
 ### Option 'sass'
