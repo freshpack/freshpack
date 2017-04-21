@@ -52,6 +52,7 @@ config((projectName, projectDesc, projectAuthor, projectPort, dir, args) => {
     [exec, 'yarn add ' + dependencies.join(' ')],
     [exec, 'yarn add -D ' + devDependencies.join(' ')],
     [chdir, '../'],
+    [exec, 'npm view freshpack version', { version: true }],
     [exit, dir]
   ]);
 });

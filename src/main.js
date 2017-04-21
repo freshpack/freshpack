@@ -5,6 +5,7 @@ const entries = require('object.entries');
 const elegantSpinner = require('elegant-spinner');
 const logUpdate = require('log-update');
 const colors = require('colors');
+const pkg = require('../package.json');
 
 const spacer = '##'.hidden;
 const spinner = elegantSpinner();
@@ -17,6 +18,7 @@ let finished = 0;
 let ivalMain = null;
 let ivalSpinner = null;
 let cmdLineArgs = {};
+let latestPackageVersion = null;
 
 const next = () => {
   finished = started;
@@ -55,6 +57,21 @@ const log = (msg) => {
     console.log(spacer + msg);
   }
   next();
+};
+
+const setLatestVersion = (str) => {
+  latestPackageVersion = str.trim();
+  next();
+};
+
+const logVersionWarning = () => {
+  if (latestPackageVersion && latestPackageVersion !== pkg.version) {
+    console.log(spacer + colors.magenta('Note: please update to ' + latestPackageVersion + '!'));
+    console.log(spacer + colors.white('$ yarn global add freshpack'));
+    console.log(spacer + colors.white('# or'));
+    console.log(spacer + colors.white('$ npm install -g freshpack'));
+    console.log(spacer + '');
+  }
 };
 
 const chdir = (dir) => {
@@ -106,7 +123,7 @@ const writeFile = (filePath, content) => {
   });
 };
 
-const execCommand = (cmdString) => {
+const execCommand = (cmdString, options= {}) => {
   startSpinner();
 
   const cmd = cmdString.split(' ').slice(0, 1)[0];
@@ -116,6 +133,9 @@ const execCommand = (cmdString) => {
   prc.stdout.setEncoding('utf8');
   prc.stdout.on('data', (data) => {
     const str = data.toString();
+    if (options.version) {
+      setLatestVersion(str);
+    }
     const lines = str.split(/(\r?\n)/g);
     lines.forEach((line) => {
       if (line.trim() !== '') {
@@ -171,6 +191,8 @@ const exit = (dir) => {
     log('');
     log(colors.bold(finishedMsg));
     log('');
+    logVersionWarning();
+
   } else {
     logUpdate(spacer + finishedMsg + ' \n');
   }
