@@ -31,7 +31,6 @@ config((projectName, projectDesc, projectAuthor, projectPort, dir, args) => {
   const styleTmpl = args.sass ? tmpl.appScss : tmpl.appCss;
   tmpl.appJs = args.sass ? tmpl.appJs.replace('App.css', 'App.scss') : tmpl.appJs;
 
-
   sequence([
     [init, args],
     [start, 'new files and folders'],
