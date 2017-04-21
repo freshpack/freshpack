@@ -202,23 +202,17 @@ const exit = (dir) => {
   log('$ cd ' + dir);
   log('');
   log('$ yarn start');
-  log('# or');
-  log('$ npm start');
   log('');
   log('$ open http://localhost:' + port + '/');
   log('');
 
   if (cmdLineArgs.lint) {
     log('$ yarn lint');
-    log('# or');
-    log('$ npm run start');
     log('');
   }
 
   if (cmdLineArgs.lint) {
     log('$ yarn test');
-    log('# or');
-    log('$ npm start');
     log('');
   }
 

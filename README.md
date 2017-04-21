@@ -44,8 +44,6 @@ See [yarn installation guide](https://yarnpkg.com/lang/en/docs/install/)
 
 ```bash
 $ yarn global add freshpack
-# or
-$ npm install freshpack -g
 ```
 
 Display help screen
