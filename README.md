@@ -32,6 +32,8 @@ Installs automatically all required dependencies in current stable versions with
 * Adds 'test' script ('yarn test')
 * Installs all required 'jest' and 'enzyme' dependencies
 
+### More options like 'redux', 'postcss', 'stylelint'
+* Comming soon ..
 
 ## Install
 (you'll need at least node v6)
