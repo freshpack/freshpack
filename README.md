@@ -128,39 +128,39 @@ $ yarn start
 
 ### Minimal
 ```bash
-├─ .babelrc
-├─ .editorconfig
-├─ package.json
-├─ src
-│  ├─ components
-│  │  └─ app
-│  │    ├─ App.js
-│  │    └─ style.css
-│  ├─ index.html
-│  └─ index.js
-├─ webpack.config.js
-└─ yarn.lock
+├── .babelrc
+├── .editorconfig
+├── package.json
+├── src
+│   ├── components
+│   │   └── app
+│   │       ├── App.js
+│   │       └── style.css
+│   ├── index.html
+│   └── index.js
+├── webpack.config.js
+└── yarn.lock
 ```
 
 ### All
 ```bash
-├─ .babelrc
-├─ .editorconfig
-├─ .eslintrc.yaml
-├─ jest.config.json
-├─ package.json
-├─ src
-│  ├─ components
-│  │  └─ app
-│  │     ├─ App.js
-│  │     ├─ spec.js
-│  │     ├─ state.js
-│  │     └─ style.scss
-│  ├─ index.html
-│  ├─ index.js
-│  └─ store.js
-├─ webpack.config.js
-└─ yarn.lock
+├── .babelrc
+├── .editorconfig
+├── .eslintrc.yaml
+├── jest.config.json
+├── package.json
+├── src
+│   ├── components
+│   │   └── app
+│   │       ├── App.js
+│   │       ├── spec.js
+│   │       ├── state.js
+│   │       └── style.scss
+│   ├── index.html
+│   ├── index.js
+│   └── store.js
+├── webpack.config.js
+└── yarn.lock
 ```
 
 ## License
