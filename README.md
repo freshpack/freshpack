@@ -112,17 +112,19 @@ $ freshpack <project-directory> --redux --sass --lint --test
 
 ## Available yarn scripts
 
-Note: Do not forget to change the directory.
+Note: Do not forget to change the directory
 ```bash
 $ cd <project-directory>
 ```
 
 ### Test app
+Note: Only usable after previous use of option --test
 ```bash
 $ yarn test
 ```
 
 ### Lint app
+Note: Only usable after previous use of option --lint
 ```bash
 $ yarn lint
 ```
