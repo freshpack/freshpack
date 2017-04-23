@@ -10,35 +10,35 @@ Installs _automatically_ all required dependencies in _latest versions_ with 'ya
 ## Features
 
 ### Basic
-* Generates minimal App-Skeleton
+* Generates a minimal React app skeleton
 * Generates minimal webpack configuration file (webpack.config.js)
 * Generates babel configuration file (.babelrc)
 * Generates editor configuration file (.editorConfig)
 * Generates package.json file
-* Adds 'start' script for development ('yarn start')
+* Adds start script for development ('yarn start')
 * Installs all required dependencies
-* Enable hot reloading
+* Enables hot reloading
 * Displays info if new version of freshpack is available
 
 ### Option 'sass'
-* Generates App-Skeleton with example 'App.sass' file instead of css
+* Generates skeleton with example 'App.sass' file (instead of css)
 * Installs all required 'sass' dependencies
 * Adds 'sass-loader' to webpack configuration
 
 ### Option 'lint'
 * Generates 'eslint' configuration (.eslintrc.yaml)
-* Adds 'lint' script ('yarn lint')
+* Adds lint script ('yarn lint')
 * Installs all required 'eslint' dependencies
 * Installs 'airbnb code style' configuration
 
 ### Option 'test'
 * Generates example 'App.spec.js' file
-* Generates 'jest' configuration
-* Adds 'test' script ('yarn test')
+* Generates jest configuration
+* Adds test script ('yarn test')
 * Installs all required 'jest' and 'enzyme' dependencies
 
 ### Option 'redux' **[NEW]**
-* Generates App-Skeleton with redux example 'App.js' file
+* Generates skeleton with redux example
 * Installs all required 'redux' dependencies
 * Adds redux tests
 
