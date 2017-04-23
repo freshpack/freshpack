@@ -16,7 +16,7 @@ const exit = main.exit;
 
 config((projectName, projectDesc, projectAuthor, projectPort, dir, args) => {
   const render = template => template
-    .replace('{{PROJEKT-NAME}}', projectName)
+    .replace('{{PROJEKT-NAME}}', dir)
     .replace('{{PROJEKT-DESCRIPTION}}', projectDesc)
     .replace('{{PROJEKT-AUTHOR}}', projectAuthor)
     .replace('{{PORT}}', (args.port || projectPort));
