@@ -11,9 +11,13 @@ Table of Contents
 -----------------
 
 [**Features**](#features)
+
 [**Installation**](#installation)
+
 [**Generating project**](#generating-project)
+
 [**Available yarn scripts**](#available-yarn-scripts)
+
 [**Generated file structure**](#generated-file-structure)
 
 ## Features
