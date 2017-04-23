@@ -128,6 +128,8 @@ $ yarn start
 
 ### Minimal
 ```bash
+freshpack <project-directory>
+
 ├── .babelrc
 ├── .editorconfig
 ├── package.json
@@ -142,8 +144,10 @@ $ yarn start
 └── yarn.lock
 ```
 
-### All
+### Complete
 ```bash
+freshpack <project-directory> -a
+
 ├── .babelrc
 ├── .editorconfig
 ├── .eslintrc.yaml
