@@ -94,11 +94,12 @@ Add jest/enzyme files, configuration and dependencies [--test, -t]
 $ freshpack <project-directory> --test
 ```
 
-Combine all addon options [--all, -a]
+Combine options [--all, -a]
 ```bash
-$ freshpack <project-directory> --redux --sass --lint --test
-# or
 $ freshpack <project-directory> -all
+# .. shorthand for
+$ freshpack <project-directory> --redux --sass --lint --test
+
 ```
 
 ## Project scripts
