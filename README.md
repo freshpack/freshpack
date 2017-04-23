@@ -19,6 +19,18 @@ Table of Contents
 
 [**Installation**](#installation)
 * [**Installation test**](#installation-test)
+* [**Version info**](#version-info)
+
+[**Generating project**](#generating-project)
+
+[**Available yarn scripts**](#available-yarn-scripts)
+* [**Test app**](#test-app)
+* [**Lint app**](#lint-app)
+* [**Run app in dev mode**](#run-app-in-dev-mode)
+
+[**Generated file structure**](#generated-file-structure)
+* [**Minimal**](#minimal)
+* [**Complete**](#complete)
 
 ## Features
 
@@ -122,17 +134,17 @@ Note: Do not forget to change the directory.
 $ cd <project-directory>
 ```
 
-Test app
+### Test app
 ```bash
 $ yarn test
 ```
 
-Lint app
+### Lint app
 ```bash
 $ yarn lint
 ```
 
-Run app in dev mode
+### Run app in dev mode
 ```bash
 $ yarn start
 ```
