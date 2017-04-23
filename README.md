@@ -124,6 +124,24 @@ Run app in dev mode
 $ yarn start
 ```
 
+## File structure
+
+### Minimal
+```bash
+├── .babelrc
+├── .editorconfig
+├── package.json
+├── src
+│   ├── components
+│   │   └── app
+│   │       ├── App.js
+│   │       └── style.css
+│   ├── index.html
+│   └── index.js
+├── webpack.config.js
+└── yarn.lock
+```
+
 ## License
 MIT
 
