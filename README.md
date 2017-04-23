@@ -7,6 +7,19 @@ Installs _automatically_ all required dependencies in _latest versions_ with 'ya
 
 **Note**: 'yarn' must be installed! See [yarn installation guide](https://yarnpkg.com/lang/en/docs/install/)
 
+Table of Contents
+-----------------
+
+[**Features**](#features)
+* [**Basic**](#basic)
+* [**Option 'sass'**](#option-sass)
+* [**Option 'lint'**](#option-lint)
+* [**Option 'test'**](#option-test)
+* [**Option 'redux'**](#option-redux)
+
+[**Installation**](#installation)
+* [**Installation test**](#installation-test)
+
 ## Features
 
 ### Basic
