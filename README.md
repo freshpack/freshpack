@@ -18,11 +18,7 @@ Installs _**automatically**_ all required dependencies in _**current stable vers
 * Adds 'start' script for development ('yarn start')
 * Installs all required dependencies
 * Enable hot reloading
-* Displays info if new version of freshpack is available **[NEW]**
-
-### Option 'redux' **[NEW]**
-* Generates App-Skeleton with redux example 'App.js' file
-* Installs all required 'redux' dependencies
+* Displays info if new version of freshpack is available
 
 ### Option 'sass'
 * Generates App-Skeleton with example 'App.sass' file instead of css
@@ -41,7 +37,11 @@ Installs _**automatically**_ all required dependencies in _**current stable vers
 * Adds 'test' script ('yarn test')
 * Installs all required 'jest' and 'enzyme' dependencies
 
-**More options like 'redux', 'postcss' or 'stylelint' are coming soon ..**
+### Option 'redux' **[NEW]**
+* Generates App-Skeleton with redux example 'App.js' file
+* Installs all required 'redux' dependencies
+* Adds redux tests
+
 
 ## Installation
 (you'll need at least node v6)
@@ -96,7 +96,7 @@ $ freshpack <project-directory> --test
 
 Combine all addon options [--all, -a]
 ```bash
-$ freshpack <project-directory> --sass --lint --test
+$ freshpack <project-directory> --redux --sass --lint --test
 # or
 $ freshpack <project-directory> -all
 ```
