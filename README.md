@@ -104,7 +104,7 @@ $ freshpack <project-directory> --redux --sass --lint --test
 
 ## Available yarn scripts
 
-Note: Don't forgot change to build directory. :wink:
+Note: Don't forget change to build directory.
 ```bash
 $ cd <project-directory>
 ```
