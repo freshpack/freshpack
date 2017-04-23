@@ -24,6 +24,7 @@ Usage: freshpack <project-directory> [options]
     -p, --port      set port (default is 8084)
     -d, --dir       set <project-directory> via option
 
+    -r, --redux     enable redux
     -s, --sass      enable sass
     -t, --test      enable tests with jest
     -l, --lint      enable linting with eslint
@@ -34,6 +35,7 @@ const optionDefinitions = [
   { name: 'help', alias: 'h', type: Boolean },
   { name: 'lint', alias: 'l', type: Boolean },
   { name: 'test', alias: 't', type: Boolean },
+  { name: 'redux', alias: 'r', type: Boolean },
   { name: 'sass', alias: 's', type: Boolean },
   { name: 'quiet', alias: 'q', type: Boolean },
   { name: 'conf', alias: 'c', type: Boolean },
@@ -107,6 +109,7 @@ module.exports = (callback) => {
       args.sass = true;
       args.lint = true;
       args.test = true;
+      args.redux = true;
     }
     start(callback);
   }

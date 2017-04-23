@@ -7,7 +7,7 @@ const logUpdate = require('log-update');
 const colors = require('colors');
 const pkg = require('../package.json');
 
-const spacer = '##'.hidden;
+const spacer = ''.hidden;
 const spinner = elegantSpinner();
 const workingDir = process.cwd();
 
@@ -25,7 +25,6 @@ const next = () => {
 };
 
 const getTimestamp = () => Date.now();
-
 const getTimer = startx => Date.now() - startx;
 
 const startSpinner = () => {
@@ -33,7 +32,7 @@ const startSpinner = () => {
 
   let text = '';
   if (!cmdLineArgs.quiet) {
-    text = colors.bold('installing dependencies ');
+    text = colors.bold('installing packages ');
   } else {
     text = colors.white('creating "' + cmdLineArgs.dir + '" ');
   }
@@ -66,10 +65,8 @@ const setLatestVersion = (str) => {
 
 const logVersionWarning = () => {
   if (latestPackageVersion && latestPackageVersion !== pkg.version) {
-    console.log(spacer + colors.magenta('Note: please update to ' + latestPackageVersion + '!'));
+    console.log(spacer + colors.magenta('Note: please update to v' + latestPackageVersion + '!'));
     console.log(spacer + colors.white('$ yarn global add freshpack'));
-    console.log(spacer + colors.white('# or'));
-    console.log(spacer + colors.white('$ npm install -g freshpack'));
     console.log(spacer + '');
   }
 };
@@ -86,7 +83,8 @@ const chdir = (dir) => {
 const createFolder = (parts, i) => {
   if (typeof parts[i] !== 'undefined') {
     currentPath += '/' + parts[i];
-    log(colors.white(currentPath));
+    // log(colors.white(currentPath));
+    next();
   }
   const dir = path.join.apply(null, parts.slice(0, i));
   fs.existsSync(dir) || fs.mkdirSync(dir);
@@ -108,11 +106,14 @@ const writeFile = (filePath, content) => {
   if (
     (filePath.includes('eslint') && !cmdLineArgs.lint) ||
     (filePath.includes('jest') && !cmdLineArgs.test) ||
-    (filePath.includes('spec') && !cmdLineArgs.test)
+    (filePath.includes('spec') && !cmdLineArgs.test)  ||
+    (filePath.includes('state') && !cmdLineArgs.redux) ||
+    (filePath.includes('store') && !cmdLineArgs.redux)
   ) {
     next();
     return;
   }
+
   fs.writeFile(filePath, content, (err) => {
     if (err) return log(err);
     const fileName = filePath.substring(filePath.lastIndexOf('/') + 1);
@@ -123,7 +124,7 @@ const writeFile = (filePath, content) => {
   });
 };
 
-const execCommand = (cmdString, options= {}) => {
+const execCommand = (cmdString, options = {}) => {
   startSpinner();
 
   const cmd = cmdString.split(' ').slice(0, 1)[0];
@@ -151,7 +152,6 @@ const execCommand = (cmdString, options= {}) => {
 const sequence = (actions) => {
   started -= 1;
   ivalMain = setInterval(() => {
-    // console.log(actions.length, started, finished);
     if (actions.length !== finished && (started === finished || started === -1)) {
       clearInterval(ivalSpinner);
       started += 1;
@@ -170,23 +170,23 @@ const sequence = (actions) => {
 };
 
 const displayDependencies = (dir) => {
-  const pkg = require(path.join(workingDir, '/', dir, '/package.json'));
-  const dependencies = entries(Object.assign(pkg.dependencies, pkg.devDependencies));
+  const pkgApp = require(path.join(workingDir, '/', dir, '/package.json'));
+  const dependencies = entries(Object.assign(pkgApp.dependencies, pkgApp.devDependencies));
   dependencies.forEach((dependency) => {
     log(
-      colors.white(dependency[0]) +
-      ': '.white + colors.yellow(dependency[1])
+      colors.white(dependency[0]) + ': '.white +
+      colors.yellow(dependency[1])
     );
   });
 };
 
 const exit = (dir) => {
-  const pkg = require(path.join(workingDir, '/', dir, '/package.json'));
-  const port = pkg.scripts.start.split('--port ')[1];
+  const pkgApp = require(path.join(workingDir, '/', dir, '/package.json'));
+  const port = pkgApp.scripts.start.split('--port ')[1];
   const finishedMsg = 'finished in ~' + Math.round(getTimer(start) / 1000) + ' s';
 
   if (!cmdLineArgs.quiet) {
-    logUpdate(spacer + 'installed dependencies'.bold);
+    logUpdate(spacer + 'installed packages'.bold);
     displayDependencies(dir);
     log('');
     log(colors.bold(finishedMsg));
@@ -197,24 +197,19 @@ const exit = (dir) => {
     logUpdate(spacer + finishedMsg + ' \n');
   }
 
-  log('Usage:');
-  log('');
-  log('$ cd ' + dir);
-  log('');
-  log('$ yarn start');
-  log('');
-  log('$ open http://localhost:' + port + '/');
-  log('');
+  log('available Scripts');
 
   if (cmdLineArgs.lint) {
-    log('$ yarn lint');
-    log('');
+    log(colors.white('cd ' + dir + ' && yarn lint'));
   }
 
-  if (cmdLineArgs.lint) {
-    log('$ yarn test');
-    log('');
+  if (cmdLineArgs.test) {
+    log(colors.white('cd ' + dir + ' && yarn test'));
   }
+
+  log(colors.white('cd ' + dir + ' && yarn start'));
+  log(colors.white('open http://localhost:' + port + '/'));
+  log('');
 
   clearInterval(ivalMain);
   clearInterval(ivalSpinner);
@@ -253,4 +248,3 @@ module.exports = {
   starting,
   writeFile
 };
-

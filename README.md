@@ -20,6 +20,10 @@ Installs _**automatically**_ all required dependencies in _**current stable vers
 * Enable hot reloading
 * Displays info if new version of freshpack is available **[NEW]**
 
+### Option 'redux' **[NEW]**
+* Generates App-Skeleton with redux example 'App.js' file
+* Installs all required 'redux' dependencies
+
 ### Option 'sass'
 * Generates App-Skeleton with example 'App.sass' file instead of css
 * Installs all required 'sass' dependencies
@@ -68,6 +72,11 @@ $ freshpack <project-directory>
 Disable verbose logging [--quiet, -q]
 ```bash
 $ freshpack <project-directory> --quiet
+```
+
+Add redux files, configuration and dependencies [--redux, -r]
+```bash
+$ freshpack <project-directory> --redux
 ```
 
 Add sass files, configuration and dependencies [--sass, -s]

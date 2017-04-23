@@ -11,10 +11,17 @@ const dependencies = [
   'react-dom'
 ];
 
+const dependenciesRedux = [
+  'redux',
+  'react-redux',
+  'redux-thunk'
+];
+
 const devDependencies = [
   'babel-core',
   'babel-loader',
   'babel-plugin-transform-class-properties',
+  'babel-plugin-transform-object-rest-spread',
   'babel-plugin-transform-runtime',
   'babel-preset-es2015',
   'babel-preset-react',
@@ -46,6 +53,10 @@ const devDependenciesTest = [
   'regenerator-runtime'
 ];
 
+const devDependenciesTestRedux = [
+  'redux-mock-store'
+];
+
 const devDependenciesLint = [
   'babel-eslint',
   'eslint',
@@ -67,7 +78,7 @@ const packageJson = `{
   "scripts": {
     "start": "webpack-dev-server --hot --inline --host 0.0.0.0 --port {{PORT}}",
     "lint": "eslint index.js ./src -f table || true",
-    "test": "jest src --config=jest.config.json"
+    "test": "jest src --config=jest.config.json --coverage"
   }
 }
 `;
@@ -85,7 +96,8 @@ insert_final_newline = true
 `;
 
 const babelrc = `{
-  "presets": ["es2015", "react"]
+  "presets": ["es2015", "react"],
+  "plugins": ["transform-object-rest-spread"]
 }
 `;
 
@@ -198,7 +210,8 @@ const jestConfig = `{
   "testRegex": "spec.js$",
   "transformIgnorePatterns": ["/node_modules/"],
   "moduleNameMapper": {
-    ".(css|less)$": "identity-obj-proxy"
+    ".(css|less)$": "identity-obj-proxy",
+    "App": "<rootDir>/src/components/app/App.js"
   }
 }
 `;
@@ -206,9 +219,60 @@ const jestConfig = `{
 const indexJs = `
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.js';
+import App from './components/app/App.js';
 
 ReactDOM.render(<App />, document.getElementById('root'));
+`;
+
+const indexJsReact = `
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import App from './components/app/App';
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+`;
+
+const appStateJs = `
+import { combineReducers } from 'redux';
+
+// TYPES
+const INCREMENT = "INCREMENT";
+const DECREMENT = "DECREMENT";
+const DUPLICATION = "DUPLICATION";
+
+// ACTIONS
+export const increase = () => ({ type: INCREMENT });
+export const decrease = () => ({ type: DECREMENT });
+export const double = () => ({ type: DUPLICATION });
+
+// REDUCERS
+const initialState = { value: 0 };
+export const counter = (state = initialState, action) => {
+  switch (action.type) {
+    case INCREMENT: return { ...state, value: state.value + 1 };
+    case DECREMENT: return { ...state, value: state.value - 1 };
+    case DUPLICATION: return { ...state, value: state.value * 2 };
+    default: return state;
+  }
+};
+
+export const reducers = combineReducers({ counter });
+`;
+
+const storeJs = `
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
+import { reducers as app } from './components/app/state';
+
+export const store = createStore(combineReducers({ app }), {}, applyMiddleware(thunk) );
 `;
 
 const indexHtml = `
@@ -226,7 +290,7 @@ const indexHtml = `
 
 const appJs = `
 import React from 'react';
-import './App.css';
+import './style.css';
 
 export default class App extends React.Component {
   render() {
@@ -239,12 +303,36 @@ export default class App extends React.Component {
 }
 `;
 
+const appJsReact = `
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { increase, decrease, double } from './state';
+import './style.css';
+
+export class App extends Component {
+
+  render() {
+    return (
+      <div className="app" style={{ textAlign: 'center' }}>
+        <h2>{ this.props.counter.value }</h2>
+        <button onClick={ this.props.increase }>+</button>{' '}
+        <button onClick={ this.props.decrease }>-</button>{' '}
+        <button onClick={ this.props.double }>double</button>
+      </div>
+    );
+  }
+}
+
+export default connect(
+  (state) => ({ counter: state.app.counter }),
+  { increase, decrease, double }
+)(App);
+`;
+
 const appJsSpec = `
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-
-jest.dontMock('./App');
-const App = require('./App').default;
+import App from 'App';
 
 describe('<App />', () => {
   it('should be selectable by class "app"', () => {
@@ -266,26 +354,95 @@ describe('<App />', () => {
   });
 });
 `;
+
+const appJsSpecRedux = `
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store'
+import { mount } from 'enzyme';
+import App from 'App';
+import { increase, decrease, double, counter } from './state';
+
+const mockStore = configureStore([])
+const store = mockStore({ app: { counter: { value: 0 } } })
+
+describe('<App />', () => {
+  it('renders without crashing', () => {
+      mount(<App store={store}/>);
+  });
+  it('should be selectable by class "app"', () => {
+     expect(mount(<Provider store={store}><App /></Provider>).find('.app').length).toBe(1);
+  });
+  it('should contain one "H2" element', () => {
+    expect(mount(<Provider store={store}><App /></Provider>).find('h2').length).toBe(1);
+  });
+  it('should contain three "button" elements', () => {
+    expect(mount(<Provider store={store}><App /></Provider>).find('button').length).toBe(3);
+  });
+  it('should dispatch increase action', () => {
+    store.dispatch(increase());
+    expect(store.getActions()).toEqual([{ type: 'INCREMENT' }])
+  });
+  it('should dispatch decrease action', () => {
+    store.clearActions();
+    store.dispatch(decrease());
+    expect(store.getActions()).toEqual([{ type: 'DECREMENT' }])
+  });
+  it('should dispatch double action', () => {
+    store.clearActions();
+    store.dispatch(double());
+    expect(store.getActions()).toEqual([{ type: 'DUPLICATION' }])
+  });
+  it('should increase counter', () => {
+    expect(counter({ value: 1 }, { type: 'INCREMENT' })).toEqual({ value: 2 });
+  });
+  it('should decrease counter', () => {
+    expect(counter({ value: 1 }, { type: 'DECREMENT' })).toEqual({ value: 0 });
+  });
+  it('should double counter', () => {
+    expect(counter({ value: 3 }, { type: 'DUPLICATION' })).toEqual({ value: 6 });
+  });
+});
+`;
+
 const appCss = `
 h1 { color: red }
 h1 span { color: blue }
+
+h2 {
+  font-size: 9rem;
+  margin-bottom: 0px;
+}
+
+button {
+  font-size: 1rem;
+}
 `;
 
 const appScss = `
-h1 {
-  color: red;
-  span {
-    color: blue;
+.app {
+  h1 {
+    color: red;
+    span { color: blue; }
   }
+  h2 {
+    font-size: 9rem;
+    margin-bottom: 0px;
+  }
+  button { font-size: 1rem; }
 }
 `;
 
 module.exports = {
   dependencies,
+  dependenciesRedux,
   devDependencies,
   devDependenciesSass,
   devDependenciesLint,
   devDependenciesTest,
+  devDependenciesTestRedux,
   editorconfig,
   eslintrc,
   package: packageJson,
@@ -293,9 +450,14 @@ module.exports = {
   jestConfig,
   webpackConfig,
   indexJs,
+  indexJsReact,
+  appStateJs,
+  storeJs,
+  appJsReact,
   indexHtml,
   appJs,
   appJsSpec,
+  appJsSpecRedux,
   appCss,
   appScss
 };

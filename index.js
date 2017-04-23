@@ -22,19 +22,33 @@ config((projectName, projectDesc, projectAuthor, projectPort, dir, args) => {
     .replace('{{PORT}}', (args.port || projectPort));
 
   const dependencies = tmpl.dependencies;
+
   const devDependencies = tmpl.devDependencies;
   args.lint && devDependencies.push(...tmpl.devDependenciesLint);
   args.sass && devDependencies.push(...tmpl.devDependenciesSass);
   args.test && devDependencies.push(...tmpl.devDependenciesTest);
 
-  const styleExt = args.sass ? 'scss' : 'css';
-  const styleTmpl = args.sass ? tmpl.appScss : tmpl.appCss;
-  tmpl.appJs = args.sass ? tmpl.appJs.replace('App.css', 'App.scss') : tmpl.appJs;
+  let styleExt = 'css';
+
+  if (args.redux) {
+    devDependencies.push(...tmpl.devDependenciesTestRedux);
+    dependencies.push(...tmpl.dependenciesRedux);
+    args.test && devDependencies.push(...tmpl.devDependenciesTestRedux);
+    tmpl.indexJs = tmpl.indexJsReact;
+    tmpl.appJs = tmpl.appJsReact;
+    tmpl.appJsSpec = tmpl.appJsSpecRedux;
+  }
+
+  if (args.sass) {
+    tmpl.appJs = tmpl.appJs.replace('style.css', 'style.scss');
+    tmpl.appCss = tmpl.appScss;
+    styleExt = 'scss';
+  }
 
   sequence([
     [init, args],
-    [start, 'new files and folders'],
-    [paths, './' + dir + '/src/components'],
+    [start, 'boilerplate files'],
+    [paths, './' + dir + '/src/components/app'],
     [write, './' + dir + '/package.json', render(tmpl.package)],
     [write, './' + dir + '/.babelrc', tmpl.babelrc],
     [write, './' + dir + '/.editorconfig', tmpl.editorconfig],
@@ -43,9 +57,11 @@ config((projectName, projectDesc, projectAuthor, projectPort, dir, args) => {
     [write, './' + dir + '/webpack.config.js', render(tmpl.webpackConfig)],
     [write, './' + dir + '/src/index.js', tmpl.indexJs],
     [write, './' + dir + '/src/index.html', render(tmpl.indexHtml)],
-    [write, './' + dir + '/src/components/App.js', tmpl.appJs],
-    [write, './' + dir + '/src/components/App.spec.js', tmpl.appJsSpec],
-    [write, './' + dir + '/src/components/App.' + styleExt, styleTmpl],
+    [write, './' + dir + '/src/store.js', tmpl.storeJs],
+    [write, './' + dir + '/src/components/app/App.js', tmpl.appJs],
+    [write, './' + dir + '/src/components/app/style.' + styleExt, tmpl.appCss],
+    [write, './' + dir + '/src/components/app/state.js', tmpl.appStateJs],
+    [write, './' + dir + '/src/components/app/spec.js', tmpl.appJsSpec],
     [chdir, './' + dir],
     [log, ''],
     [exec, 'yarn add ' + dependencies.join(' ')],
