@@ -64,7 +64,7 @@ $ freshpack --version
 ## Generating project
 Using freshpack will scaffold out a project and generate additional files.
 
-Create minimal project (react, css)
+Create minimal project (React, CSS, configuration files and dependencies)
 ```bash
 $ freshpack <project-directory>
 ```
@@ -74,7 +74,7 @@ Disable verbose logging [--quiet, -q]
 $ freshpack <project-directory> --quiet
 ```
 
-Add redux files, configuration and dependencies [--redux, -r]
+Add Redux files, configuration and dependencies [--redux, -r]
 ```bash
 $ freshpack <project-directory> --redux
 ```
@@ -84,12 +84,12 @@ Add sass files, configuration and dependencies [--sass, -s]
 $ freshpack <project-directory> --sass
 ```
 
-Add lint files, configuration and dependencies [--lint, -l]
+Adds ESLint files, configuration and dependencies [--lint, -l]
 ```bash
 $ freshpack <project-directory> --lint
 ```
 
-Add jest/enzyme files, configuration and dependencies [--test, -t]
+Add Jest and Enzyme files, configuration and dependencies [--test, -t]
 ```bash
 $ freshpack <project-directory> --test
 ```
@@ -102,24 +102,24 @@ $ freshpack <project-directory> --redux --sass --lint --test
 
 ```
 
-## Project scripts
+## Available yarn scripts
 
 Change to build dir
 ```bash
 $ cd <project-directory>
 ```
 
-Test your app
+Test app
 ```bash
 $ yarn test
 ```
 
-Lint your app
+Lint app
 ```bash
 $ yarn lint
 ```
 
-Run your app in dev mode
+Run app in dev mode
 ```bash
 $ yarn start
 ```

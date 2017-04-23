@@ -197,7 +197,7 @@ const exit = (dir) => {
     logUpdate(spacer + finishedMsg + ' \n');
   }
 
-  log('available Scripts');
+  log('available scripts');
 
   if (cmdLineArgs.lint) {
     log(colors.white('cd ' + dir + ' && yarn lint'));
@@ -208,7 +208,7 @@ const exit = (dir) => {
   }
 
   log(colors.white('cd ' + dir + ' && yarn start'));
-  log(colors.white('open http://localhost:' + port + '/'));
+  // log(colors.white('open http://localhost:' + port + '/'));
   log('');
 
   clearInterval(ivalMain);
