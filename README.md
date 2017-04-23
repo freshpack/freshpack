@@ -7,8 +7,8 @@ Installs _automatically_ all required dependencies in _latest versions_ with 'ya
 
 **Note**: 'yarn' must be installed! See [yarn installation guide](https://yarnpkg.com/lang/en/docs/install/)
 
-Table of Contents
------------------
+## Table of Contents
+
 * [**Features**](#features)
 * [**Installation**](#installation)
 * [**Generating project**](#generating-project)
