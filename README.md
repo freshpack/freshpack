@@ -138,7 +138,7 @@ $ yarn start
 
 ### Minimal
 ```bash
-freshpack <project-directory>
+$ freshpack <project-directory>
 
 ├── .babelrc
 ├── .editorconfig
@@ -156,7 +156,7 @@ freshpack <project-directory>
 
 ### Complete
 ```bash
-freshpack <project-directory> -a
+$ freshpack <project-directory> -a
 
 ├── .babelrc
 ├── .editorconfig
