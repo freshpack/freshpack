@@ -1,7 +1,19 @@
 /**
+ * - Yarn scripts
  * - Dependencies
  * - File templates
 */
+
+// Yarn scripts
+
+const testScripts = {
+  test: 'jest --config=.jestrc',
+  'test:coverage': 'jest --config=.jestrc --coverage'
+};
+
+const testAllScripts = {
+  'test:all': 'yarn lint && yarn test:coverage'
+};
 
 // Dependencies
 
@@ -57,7 +69,9 @@ describe('<App />', () => {
 `;
 
 module.exports = {
+  appJsSpec,
   devDependenciesTest,
   jestConfig,
-  appJsSpec
+  testAllScripts,
+  testScripts
 };

@@ -1,8 +1,14 @@
 /**
- * CONFIGURATION
+ * - Yarn scripts
  * - Dependencies
  * - File templates
 */
+
+// Yarn scripts
+
+const lintScripts = {
+  lint: 'eslint index.js ./src -f table || true'
+};
 
 // Dependencies
 
@@ -59,4 +65,5 @@ rules:
 module.exports = {
   devDependenciesLint,
   eslintrc,
+  lintScripts
 };

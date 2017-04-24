@@ -1,7 +1,10 @@
 /**
+ * - Yarn scripts
  * - Dependencies
  * - File templates
 */
+
+// Yarn scripts
 
 // Dependencies
 

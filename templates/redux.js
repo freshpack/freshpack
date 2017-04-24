@@ -1,7 +1,10 @@
 /**
+ * - Yarn scripts
  * - Dependencies
  * - File templates
 */
+
+// Yarn scripts
 
 // Dependencies
 
@@ -23,6 +26,11 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import App from './components/app/App';
+
+// // subscribe() returns a function for unregistering the listener
+// let unsubscribe = store.subscribe(() => (
+//   console.log(JSON.stringify(store.getState())
+// )
 
 ReactDOM.render(
   <Provider store={store}>
@@ -46,7 +54,12 @@ export const decrease = () => ({ type: DECREMENT });
 export const double = () => ({ type: DUPLICATION });
 
 // REDUCERS
+/** State Shape
+ * { counter: { value: INTEGER } }
+*/
+
 const initialState = { value: 0 };
+
 export const counter = (state = initialState, action) => {
   switch (action.type) {
     case INCREMENT: return { ...state, value: state.value + 1 };
@@ -73,7 +86,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { increase, decrease, double } from './state';
-import './style.scss';
+import './style.css';
 
 export class App extends Component {
   render() {
@@ -102,7 +115,6 @@ export default connect(
 `;
 
 const appJsSpecRedux = `
-
 import React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';

@@ -1,7 +1,14 @@
 /**
+ * - Yarn scripts
  * - Dependencies
  * - File templates
 */
+
+// Yarn scripts
+
+const baseScripts = {
+  start: 'webpack-dev-server --hot --inline --host 0.0.0.0 --port {{PORT}}'
+};
 
 // Dependencies
 
@@ -36,15 +43,10 @@ const packageJson = `{
   "name": "{{PROJEKT-NAME}}",
   "description": "{{PROJEKT-DESCRIPTION}}",
   "author": "{{PROJEKT-AUTHOR}}",
-  "version": "1.0.0",
+  "version": "{{PROJEKT-VERSION}}",
+  "license": "{{PROJEKT-LICENCE}}",
   "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "start": "webpack-dev-server --hot --inline --host 0.0.0.0 --port {{PORT}}",
-    "lint": "eslint index.js ./src -f table || true",
-    "test": "jest --config=jest.config.json",
-    "test:coverage": "jest --config=jest.config.json --coverage"
-  }
+  "scripts": {{PACKAGE-SCRIPTS}}
 }
 `;
 
@@ -80,7 +82,6 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 module.exports = {
   entry: [
     'webpack-dev-server/client?http://0.0.0.0:{{PORT}}',
-    'webpack/hot/only-dev-server',
     './src/index.js',
   ],
   output: {
@@ -118,14 +119,14 @@ module.exports = {
   devServer: {
     stats: {
       assets: true,
+      timings: true,
+      warnings: true,
       children: false,
       chunks: false,
       hash: false,
       modules: false,
       publicPath: false,
-      timings: true,
-      version: false,
-      warnings: true
+      version: false
     }
   }
 };
@@ -182,6 +183,7 @@ button {
 `;
 
 module.exports = {
+  baseScripts,
   dependencies,
   devDependencies,
   editorconfig,
