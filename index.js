@@ -21,36 +21,58 @@ const chdir = main.chdir;
 const exec = main.exec;
 const exit = main.exit;
 
-config((projectName, projectDesc, projectAuthor, projectPort, dir, args) => {
+config((project, args) => {
+  const dir = project.name;
+  let scripts = tmpl.baseScripts;
+
   const render = template => template
-    .replace('{{PROJEKT-NAME}}', dir)
-    .replace('{{PROJEKT-DESCRIPTION}}', projectDesc)
-    .replace('{{PROJEKT-AUTHOR}}', projectAuthor)
-    .replace('{{PORT}}', (args.port || projectPort));
+    .replace('{{PROJEKT-NAME}}', project.name)
+    .replace('{{PROJEKT-DESCRIPTION}}', project.desc)
+    .replace('{{PROJEKT-LICENCE}}', project.license)
+    .replace('{{PROJEKT-VERSION}}', project.version)
+    .replace('{{PROJEKT-AUTHOR}}', project.author)
+    .replace('{{PORT}}', (args.port || project.port))
+    .replace('{{PACKAGE-SCRIPTS}}', scripts);
 
   const dependencies = tmpl.dependencies;
-
   const devDependencies = tmpl.devDependencies;
-  args.lint && devDependencies.push(...tmpl.devDependenciesLint);
-  args.sass && devDependencies.push(...tmpl.devDependenciesSass);
-  args.test && devDependencies.push(...tmpl.devDependenciesTest);
 
   let styleExt = 'css';
 
   if (args.redux) {
     devDependencies.push(...tmpl.devDependenciesTestRedux);
     dependencies.push(...tmpl.dependenciesRedux);
-    args.test && devDependencies.push(...tmpl.devDependenciesTestRedux);
     tmpl.indexJs = tmpl.indexJsRedux;
     tmpl.appJs = tmpl.appJsRedux;
     tmpl.appJsSpec = tmpl.appJsSpecRedux;
   }
 
   if (args.sass) {
+    devDependencies.push(...tmpl.devDependenciesSass);
     tmpl.appJs = tmpl.appJs.replace('style.css', 'style.scss');
     tmpl.appCss = tmpl.appScss;
     styleExt = 'scss';
   }
+
+  if (args.lint) {
+    devDependencies.push(...tmpl.devDependenciesLint);
+    scripts = Object.assign(scripts, tmpl.lintScripts);
+  }
+
+  if (args.test) {
+    devDependencies.push(...tmpl.devDependenciesTest);
+    scripts = Object.assign(scripts, tmpl.testScripts);
+  }
+
+  if (args.test && args.redux) {
+    devDependencies.push(...tmpl.devDependenciesTestRedux);
+  }
+
+  if (args.lint && args.test) {
+    scripts = Object.assign(scripts, tmpl.testAllScripts);
+  }
+
+  scripts = render(JSON.stringify(scripts));
 
   sequence([
     [init, args, dir],
@@ -59,8 +81,8 @@ config((projectName, projectDesc, projectAuthor, projectPort, dir, args) => {
     [folders, 'src/components/app'],
     [write, '.babelrc', tmpl.babelrc],
     [write, '.editorconfig', tmpl.editorconfig],
-    [write, '.eslintrc.yaml', tmpl.eslintrc],
-    [write, 'jest.config.json', tmpl.jestConfig],
+    [write, '.eslintrc', tmpl.eslintrc],
+    [write, '.jestrc', tmpl.jestConfig],
     [write, 'package.json', render(tmpl.package)],
     [write, 'webpack.config.js', render(tmpl.webpackConfig)],
     [write, 'src/index.js', tmpl.indexJs],
