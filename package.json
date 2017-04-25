@@ -28,16 +28,18 @@
   "keywords": [
     "scaffolding",
     "boilerplate",
+    "create",
+    "app",
     "react",
     "redux",
     "sass",
     "eslint",
     "test",
+    "jest",
+    "lint",
     "webpack",
     "babel",
-    "hot-reloading",
-    "create",
-    "app"
+    "hot-reloading"
   ],
   "dependencies": {
     "colors": "^1.1.2",
