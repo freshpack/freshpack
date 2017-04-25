@@ -39,9 +39,8 @@ Creates dynamically boilerplates and installs _automatically_ all required depen
 * Installs all required 'eslint' dependencies
 * Installs 'airbnb code style' configuration
 
-### Option 'test'.jestrc
+### Option 'test'
 * Generates example 'App.spec.js' file
-* Generates 'eslint' configuration (.eslintrc.yaml)
 * Generates 'jest' configuration (.jestrc)
 * Adds test script ('yarn test')
 * Installs all required 'jest' and 'enzyme' dependencies
