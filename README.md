@@ -18,7 +18,7 @@ Creates dynamically boilerplates and installs _automatically_ all required depen
 ## Features
 
 ### Basic
-* Generates a minimal React app skeleton
+* Generates a minimal React app skeleton ('Hello World')
 * Generates minimal webpack configuration file (webpack.config.js)
 * Generates babel configuration file (.babelrc)
 * Generates editor configuration file (.editorConfig)
@@ -46,7 +46,7 @@ Creates dynamically boilerplates and installs _automatically_ all required depen
 * Installs all required 'jest' and 'enzyme' dependencies
 
 ### Option 'redux' **[NEW]**
-* Generates skeleton with redux example
+* Generates skeleton with redux example ('Counter')
 * Installs all required 'redux' dependencies
 * Adds redux tests
 
