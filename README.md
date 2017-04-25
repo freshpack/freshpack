@@ -142,7 +142,7 @@ $ yarn start
 
 ## Generated file structure
 
-### Minimal
+### Minimal (react, css)
 ```bash
 $ freshpack <project-directory>
 
@@ -160,7 +160,7 @@ $ freshpack <project-directory>
 └── yarn.lock
 ```
 
-### Complete
+### Complete (react, redux, sass, lint, test)
 ```bash
 $ freshpack <project-directory> -a
 
