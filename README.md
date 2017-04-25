@@ -34,14 +34,15 @@ Creates dynamically boilerplates and installs _automatically_ all required depen
 * Adds 'sass-loader' to webpack configuration
 
 ### Option 'lint'
-* Generates 'eslint' configuration (.jestrc)
+* Generates 'eslint' configuration (.eslintrc.yaml)
 * Adds lint script ('yarn lint')
 * Installs all required 'eslint' dependencies
 * Installs 'airbnb code style' configuration
 
-### Option 'test'
+### Option 'test'.jestrc
 * Generates example 'App.spec.js' file
-* Generates jest configuration
+* Generates 'eslint' configuration (.eslintrc.yaml)
+* Generates 'jest' configuration (.jestrc)
 * Adds test script ('yarn test')
 * Installs all required 'jest' and 'enzyme' dependencies
 
@@ -160,8 +161,8 @@ $ freshpack <project-directory> -a
 
 ├── .babelrc
 ├── .editorconfig
+├── .eslintrc.yaml
 ├── .jestrc
-├── jest.config.json
 ├── package.json
 ├── src
 │   ├── components

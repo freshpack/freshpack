@@ -7,7 +7,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js --sass --lint --test",
-    "lint": "eslint index.js ./src -f table || true",
+    "lint": "eslint index.js ./lib -f table || true",
     "test": "node test/test.js"
   },
   "engines": {
