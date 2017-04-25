@@ -117,16 +117,22 @@ Note: Do not forget to change the directory
 $ cd <project-directory>
 ```
 
-### Test app
-Note: Only usable after previous use of option --test
-```bash
-$ yarn test
-```
-
 ### Lint app
 Note: Only usable after previous use of option --lint
 ```bash
 $ yarn lint
+```
+
+### Test app
+Note: Only usable after previous use of option --test
+```bash
+$ yarn test
+$ yarn test:coverage
+```
+
+Note: Only usable after previous use of option --test and --lint or --all
+```bash
+$ yarn test:all
 ```
 
 ### Run app in dev mode
