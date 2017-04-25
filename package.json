@@ -35,7 +35,9 @@
     "test",
     "webpack",
     "babel",
-    "hot-reloading"
+    "hot-reloading",
+    "create",
+    "app"
   ],
   "dependencies": {
     "colors": "^1.1.2",
