@@ -58,7 +58,7 @@ Creates dynamically boilerplates and installs _automatically_ all required depen
 
 
 ## Installation
-(you'll need at least node v6)
+(node v6 required)
 
 ```bash
 $ yarn global add freshpack
