@@ -40,7 +40,9 @@
     "enzyme",
     "webpack",
     "babel",
-    "hot-reloading"
+    "hot-reloading",
+    "flow",
+    "type-check"
   ],
   "dependencies": {
     "colors": "^1.1.2",
