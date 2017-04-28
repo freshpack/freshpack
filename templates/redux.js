@@ -91,7 +91,7 @@ import './style.css';
 export class App extends Component {
   render() {
     return (
-      <div className="app" style={{ textAlign: 'center' }}>
+      <div className="app">
         <h2>{ this.props.counter.value }</h2>
         <button onClick={this.props.increase}>+</button>{' '}
         <button onClick={this.props.decrease}>-</button>{' '}

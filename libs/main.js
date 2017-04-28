@@ -91,6 +91,13 @@ const createFolder = (parts, i) => {
 };
 
 const createFolders = (dirPath) => {
+  if (
+    (dirPath.includes('vscode') && !cmdLineArgs.flow) ||
+    (dirPath.includes('flow-typed') && !cmdLineArgs.flow)
+  ) {
+    next();
+    return;
+  }
   dirPath = './' + projectDirName + '/' + dirPath;
   const parts = dirPath.split(path.sep);
   currentPath = '.';
@@ -109,7 +116,10 @@ const writeFile = (filePath, content) => {
     (filePath.includes('jest') && !cmdLineArgs.test) ||
     (filePath.includes('spec') && !cmdLineArgs.test) ||
     (filePath.includes('state') && !cmdLineArgs.redux) ||
-    (filePath.includes('store') && !cmdLineArgs.redux)
+    (filePath.includes('store') && !cmdLineArgs.redux) ||
+    (filePath.includes('vscode') && !cmdLineArgs.flow) ||
+    (filePath.includes('flowConfig') && !cmdLineArgs.flow) ||
+    (filePath.includes('flowType') && !cmdLineArgs.flow)
   ) {
     next();
     return;

@@ -28,6 +28,7 @@ Usage: freshpack <project-directory> [options]
     -p, --port      set port (default is 8084)
     -d, --dir       set <project-directory> via option
 
+    -f, --flow      add flowtype example files and configuration
     -s, --sass      add sass example files and configuration
     -r, --redux     add redux example files and configuration
     -t, --test      add jest example files and configuration
@@ -41,6 +42,7 @@ const optionDefinitions = [
   { name: 'port', alias: 'p', type: String },
   { name: 'help', alias: 'h', type: Boolean },
   { name: 'lint', alias: 'l', type: Boolean },
+  { name: 'flow', alias: 'f', type: Boolean },
   { name: 'test', alias: 't', type: Boolean },
   { name: 'redux', alias: 'r', type: Boolean },
   { name: 'sass', alias: 's', type: Boolean },
@@ -105,6 +107,7 @@ module.exports = (callback) => {
       args.lint = true;
       args.test = true;
       args.redux = true;
+      args.flow = true;
     }
 
     project = {

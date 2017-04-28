@@ -58,7 +58,7 @@ describe('<App />', () => {
 
   it('contains an "H1" element', () => {
     expect(shallow(<App />).contains(
-      <h1>Hello <span>World</span><span>!</span></h1>
+      <h1><span>Hello World</span><span>!</span></h1>
     )).toBe(true);
   });
 

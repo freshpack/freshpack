@@ -1,14 +1,26 @@
 #!/usr/bin/env node
 
-const config = require('./lib/config');
-const main = require('./lib/main');
+const config = require('./libs/config');
+const main = require('./libs/main');
+const base = require('./templates/base');
+const sass = require('./templates/sass');
+const lint = require('./templates/lint');
+const test = require('./templates/test');
+const redux = require('./templates/redux');
+const flow = require('./templates/flow');
+
+const mergeBabelrcs = (a, b) => {
+  a.presets && b.presets && b.presets.forEach((preset) => {
+    a.presets.push(preset);
+  });
+  a.plugins && b.plugins && a.plugins.forEach((plugin) => {
+    b.plugins.push(plugin);
+  });
+  return a;
+};
 
 const tmpl = Object.assign(
-  require('./templates/base'),
-  require('./templates/sass'),
-  require('./templates/lint'),
-  require('./templates/test'),
-  require('./templates/redux')
+  base, sass, lint, test, redux, flow
 );
 
 const init = main.init;
@@ -38,6 +50,17 @@ config((project, args) => {
   const devDependencies = tmpl.devDependencies;
 
   let styleExt = 'css';
+
+  if (args.flow) {
+    devDependencies.push(...tmpl.devDependenciesFlow);
+    tmpl.appJs = tmpl.appJsFlow;
+    tmpl.eslintrc += tmpl.eslintrcFlow;
+    tmpl.babelrc = JSON.stringify(mergeBabelrcs(
+      JSON.parse(tmpl.babelrc),
+      JSON.parse(tmpl.babelrcFlow)
+    ), null, 2);
+    scripts = Object.assign(scripts, tmpl.flowScripts);
+  }
 
   if (args.redux) {
     devDependencies.push(...tmpl.devDependenciesTestRedux);
@@ -72,6 +95,15 @@ config((project, args) => {
     scripts = Object.assign(scripts, tmpl.testAllScripts);
   }
 
+  if (args.lint && args.flow) {
+    devDependencies.push(...tmpl.devDependenciesLintFlow);
+  }
+
+  if (args.redux && args.flow) {
+    tmpl.appJs = tmpl.appJsReduxFlow;
+    tmpl.appStateJs = tmpl.appStateJsFlow;
+  }
+
   scripts = render(JSON.stringify(scripts));
 
   sequence([
@@ -79,10 +111,13 @@ config((project, args) => {
     [exec, 'npm view freshpack version', { version: true }],
     [start, 'boilerplate files'],
     [folders, 'src/components/app'],
+    [folders, 'flow-typed'],
+    [folders, '.vscode'],
     [write, '.babelrc', tmpl.babelrc],
     [write, '.editorconfig', tmpl.editorconfig],
-    [write, '.eslintrc', tmpl.eslintrc],
     [write, '.jestrc', tmpl.jestConfig],
+    [write, '.flowConfig', tmpl.flowConfig],
+    [write, '.eslintrc.yml', tmpl.eslintrc],
     [write, 'package.json', render(tmpl.package)],
     [write, 'webpack.config.js', render(tmpl.webpackConfig)],
     [write, 'src/index.js', tmpl.indexJs],
@@ -92,6 +127,10 @@ config((project, args) => {
     [write, 'src/components/app/style.' + styleExt, tmpl.appCss],
     [write, 'src/components/app/state.js', tmpl.appStateJs],
     [write, 'src/components/app/spec.js', tmpl.appJsSpec],
+    [write, 'flow-typed/redux.js', tmpl.flowTypeRedux],
+    [write, 'flow-typed/react-redux.js', tmpl.flowTypePropTypes],
+    [write, 'flow-typed/prop-types.js', tmpl.flowTypeReactRedux],
+    [write, '.vscode/settings.json', tmpl.settingsVSCode],
     [chdir, './' + dir],
     [log, ''],
     [exec, 'yarn add ' + dependencies.join(' ')],

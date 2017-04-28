@@ -1,6 +1,6 @@
 {
   "name": "freshpack",
-  "version": "0.5.2",
+  "version": "0.5.1",
   "description": "Command line scaffolding tool for react apps",
   "author": "Uli Preuss",
   "license": "MIT",
@@ -33,10 +33,11 @@
     "react",
     "redux",
     "sass",
+    "lint",
     "eslint",
     "test",
     "jest",
-    "lint",
+    "enzyme",
     "webpack",
     "babel",
     "hot-reloading"

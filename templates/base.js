@@ -26,7 +26,7 @@ const devDependencies = [
   'babel-plugin-transform-runtime',
   'babel-preset-es2015',
   'babel-preset-react',
-  'babel-preset-stage-0',
+  'babel-preset-stage-1',
   'cross-env',
   'extract-text-webpack-plugin',
   'file-loader',
@@ -63,8 +63,11 @@ insert_final_newline = true
 `;
 
 const babelrc = `{
-  "presets": ["es2015", "react"],
-  "plugins": ["transform-object-rest-spread"]
+  "presets": ["es2015", "stage-1", "react"],
+  "plugins": [
+    "transform-class-properties",
+    "transform-object-rest-spread"
+  ]
 }
 `;
 
@@ -158,10 +161,19 @@ import React from 'react';
 import './style.css';
 
 export default class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { name: 'Hello World' };
+  }
+
   render() {
-    return (
-      <div className="app" style={{ textAlign: 'center' }}>
-        <h1>Hello <span>World</span><span>!</span></h1>
+     return (
+      <div className="app" style={{ opacity: this.props.opacity || 1 }}>
+        <h1>
+          <span>{this.state.name}</span>
+          <span>!</span>
+        </h1>
       </div>
     );
   }
@@ -169,8 +181,15 @@ export default class App extends React.Component {
 `;
 
 const appCss = `
-h1 { color: red }
-h1 span { color: blue }
+.app {
+  text-align: center;
+  position: relative;
+  margin-top: 25%;
+  top: -25%;
+}
+
+h1 span:first-child { color: black }
+h1 span:last-child { color: blue }
 
 h2 {
   font-size: 9rem;
