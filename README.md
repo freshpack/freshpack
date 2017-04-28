@@ -45,10 +45,16 @@ Creates dynamically boilerplates and installs _automatically_ all required depen
 * Adds test script ('yarn test')
 * Installs all required 'jest' and 'enzyme' dependencies
 
-### Option 'redux' **[NEW]**
+### Option 'redux'
 * Generates skeleton with redux example ('Counter')
 * Installs all required 'redux' dependencies
 * Adds redux tests
+
+### Option 'flow' **[NEW]**
+* Generates skeleton with flow example(s)
+* Installs all required 'flow' dependencies
+* Adds 'flow-typed' files
+* Adds Visual Studio Code settings file
 
 
 ## Installation
@@ -102,11 +108,16 @@ Add Jest and Enzyme files, configuration and dependencies [--test, -t]
 $ freshpack <project-directory> --test
 ```
 
+Add Flow-type files, configuration and dependencies [--flow, -f]
+```bash
+$ freshpack <project-directory> --flow
+```
+
 Combine options [--all, -a]
 ```bash
 $ freshpack <project-directory> -all
 # .. shorthand for
-$ freshpack <project-directory> --redux --sass --lint --test
+$ freshpack <project-directory> --redux --sass --lint --test --flow
 
 ```
 
@@ -135,6 +146,12 @@ Note: Only usable after previous use of option --test and --lint or --all
 $ yarn test:all
 ```
 
+### Run flow status
+Note: Only usable after previous use of option --flow
+```bash
+$ yarn flow
+```
+
 ### Run app in dev mode
 ```bash
 $ yarn start
@@ -160,14 +177,21 @@ $ freshpack <project-directory>
 └── yarn.lock
 ```
 
-### Complete (react, redux, sass, lint, test)
+### Complete (react, redux, sass, lint, test, flow)
 ```bash
 $ freshpack <project-directory> -a
 
 ├── .babelrc
 ├── .editorconfig
-├── .eslintrc.yaml
+├── .eslintrc.yml
+├── .flowConfig
 ├── .jestrc
+├── .vscode
+│   └── settings.json
+├── flow-typed
+│   ├── prop-types.js
+│   ├── react-redux.js
+│   └── redux.js
 ├── package.json
 ├── src
 │   ├── components
