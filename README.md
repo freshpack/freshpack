@@ -9,53 +9,10 @@ Creates dynamically boilerplates and installs _automatically_ all required depen
 
 ## Table of Contents
 
-* [**Features**](#features)
 * [**Installation**](#installation)
-* [**Generating project**](#generating-project)
-* [**Available yarn scripts**](#available-yarn-scripts)
-* [**Generated file structure**](#generated-file-structure)
-
-## Features
-
-### Basic
-* Generates a minimal React app skeleton ('Hello World')
-* Generates minimal webpack configuration file (webpack.config.js)
-* Generates babel configuration file (.babelrc)
-* Generates editor configuration file (.editorConfig)
-* Generates package.json file
-* Adds start script for development ('yarn start')
-* Installs all required dependencies
-* Enables hot reloading
-* Displays info if new version of freshpack is available
-
-### Option 'sass'
-* Generates skeleton with example 'App.sass' file (instead of css)
-* Installs all required 'sass' dependencies
-* Adds 'sass-loader' to webpack configuration
-
-### Option 'lint'
-* Generates 'eslint' configuration (.eslintrc.yaml)
-* Adds lint script ('yarn lint')
-* Installs all required 'eslint' dependencies
-* Installs 'airbnb code style' configuration
-
-### Option 'test'
-* Generates example 'App.spec.js' file
-* Generates 'jest' configuration (.jestrc)
-* Adds test script ('yarn test')
-* Installs all required 'jest' and 'enzyme' dependencies
-
-### Option 'redux'
-* Generates skeleton with redux example ('Counter')
-* Installs all required 'redux' dependencies
-* Adds redux tests
-
-### Option 'flow' **[NEW]**
-* Generates skeleton with flow example(s)
-* Installs all required 'flow' dependencies
-* Adds 'flow-typed' files
-* Adds Visual Studio Code settings file
-
+* [**Generating projects**](#generating-projects)
+* [**Yarn scripts**](#available-yarn-scripts)
+* [**File structures**](#generated-file-structure)
 
 ## Installation
 (node v6 required)
@@ -63,6 +20,7 @@ Creates dynamically boilerplates and installs _automatically_ all required depen
 ```bash
 $ yarn global add freshpack
 ```
+
 ### Installation test
 Display help screen [--help, -h]
 ```bash
@@ -75,79 +33,101 @@ Display help screen [--version, -v]
 $ freshpack --version
 ```
 
-## Generating project
-Using freshpack will scaffold out a project and generate additional files.
+## Generating projects
 
-Create minimal project (React, CSS, configuration files and dependencies)
+### Basic
+* Generates a minimal React app skeleton ('Hello World')
+* Generates minimal webpack configuration file (webpack.config.js)
+* Generates babel configuration file (.babelrc)
+* Generates editor configuration file (.editorConfig)
+* Generates package.json file
+* Adds start script for development ('yarn start')
+* Installs all required dependencies
+* Enables hot reloading
+* Displays info if new version of freshpack is available
 ```bash
 $ freshpack <project-directory>
 ```
 
-Disable verbose logging [--quiet, -q]
+### Option 'redux'
+* Generates skeleton with redux example ('Counter')
+* Installs all required 'redux' dependencies
+* Adds redux tests
 ```bash
-$ freshpack <project-directory> --quiet
+$ freshpack <project-directory> [--redux, -r]
 ```
 
-Add Redux files, configuration and dependencies [--redux, -r]
+### Option 'sass'
+* Generates skeleton with example 'App.sass' file (instead of css)
+* Installs all required 'sass' dependencies
+* Adds 'sass-loader' to webpack configuration
 ```bash
-$ freshpack <project-directory> --redux
+$ freshpack <project-directory> [--sass, -s]
 ```
 
-Add sass files, configuration and dependencies [--sass, -s]
+### Option 'lint'
+* Generates 'eslint' configuration (.eslintrc.yaml)
+* Adds lint script ('yarn lint')
+* Installs all required 'eslint' dependencies
+* Installs 'airbnb code style' configuration
 ```bash
-$ freshpack <project-directory> --sass
+$ freshpack <project-directory> [--lint, -l]
 ```
 
-Adds ESLint files, configuration and dependencies [--lint, -l]
+### Option 'test'
+* Generates example 'App.spec.js' file
+* Generates 'jest' configuration (.jestrc)
+* Adds test script ('yarn test')
+* Installs all required 'jest' and 'enzyme' dependencies
 ```bash
-$ freshpack <project-directory> --lint
+$ freshpack <project-directory> [--test, -t]
 ```
 
-Add Jest and Enzyme files, configuration and dependencies [--test, -t]
+### Option 'flow' **[NEW]**
+* Generates skeleton with flow example(s)
+* Installs all required 'flow' dependencies
+* Adds 'flow-typed' files
+* Adds Visual Studio Code settings file
 ```bash
-$ freshpack <project-directory> --test
+$ freshpack <project-directory> [--flow, -f]
 ```
 
-Add Flow-type files, configuration and dependencies [--flow, -f]
+### Option 'quiet'
+* Disable verbose logging
 ```bash
-$ freshpack <project-directory> --flow
+$ freshpack <project-directory> [--quiet, -q]
 ```
 
-Combine options [--all, -a]
+### Option 'all'
+* Combine all options
 ```bash
-$ freshpack <project-directory> -all
+$ freshpack <project-directory> [--all, -a]
 # .. shorthand for
 $ freshpack <project-directory> --redux --sass --lint --test --flow
-
 ```
 
-## Available yarn scripts
+## Yarn scripts
 
-Note: Do not forget to change the directory
-```bash
-$ cd <project-directory>
-```
-
-### Lint app
-Note: Only usable after previous use of option --lint
+### Lint scripts
+Usable with option --lint
 ```bash
 $ yarn lint
 ```
 
-### Test app
-Note: Only usable after previous use of option --test
+### Test scripts
+Usable with option --test
 ```bash
 $ yarn test
 $ yarn test:coverage
 ```
 
-Note: Only usable after previous use of option --test and --lint or --all
+Usable with options --test and --lint (or --all)
 ```bash
 $ yarn test:all
 ```
 
-### Run flow status
-Note: Only usable after previous use of option --flow
+### Run flow
+Usable with option --flow
 ```bash
 $ yarn flow
 ```
@@ -157,7 +137,7 @@ $ yarn flow
 $ yarn start
 ```
 
-## Generated file structure
+## File structure
 
 ### Minimal (react, css)
 ```bash
@@ -179,7 +159,7 @@ $ freshpack <project-directory>
 
 ### Complete (react, redux, sass, lint, test, flow)
 ```bash
-$ freshpack <project-directory> -a
+$ freshpack <project-directory> --all
 
 ├── .babelrc
 ├── .editorconfig
