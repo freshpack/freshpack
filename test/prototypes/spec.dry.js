@@ -9,8 +9,8 @@ import App from './App';
 const mockStore = configureStore([]);
 const store = mockStore({ app: { counter: { value: 0 } } });
 
-describe('<App />', () => {
-  it('renders without crashing', () => {
+describe('App', () => {
+  it('renders correctly', () => {
     mount(<App store={store} />);
   });
   it('should contain one "H2" element', () => {

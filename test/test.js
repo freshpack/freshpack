@@ -10,45 +10,20 @@ const assembleAppSpecJS = require('../src/assemble/appSpecJS');
 
 test.createStream().pipe(tapSpec()).pipe(process.stdout);
 
-const fileToString = (file) => {
-  return requireText('./prototypes/' + file, require).trim();
-};
-
-const toHash = (string) => {
-  return hasha(string).trim();
-};
-
 const dryArgs = { flow: true, lint: true, test: true, redux: true, styled: true };
 
-test('index # assembled string and static file', (t) => {
-  t.plan(1);
-  t.equal(
-    toHash(assembleIndexJS(dryArgs)),
-    toHash(fileToString('index.dry.js'))
-  );
-});
+const addTest = (func, file, msg) => {
+  let hash1 = 'hash1';
+  let hash2 = 'hash2';
+  Promise.all([
+    (() => { hash1 = hasha(func(dryArgs)); })(),
+    (() => { hash2 = hasha(requireText('./prototypes/' + file, require)); })()
+  ]).then(() => {
+    test(msg, (t) => { t.plan(1); t.equal(hash1, hash2); });
+  }, err => console.log(err));
+};
 
-test('app/App # assembled string and static file', (t) => {
-  t.plan(1);
-  t.equal(
-    toHash(assembleAppJS(dryArgs)),
-    toHash(fileToString('app.dry.js'))
-  );
-});
-
-test('app/spec # assembled string and static file', (t) => {
-  t.plan(1);
-  t.equal(
-    toHash(assembleAppSpecJS(dryArgs)),
-    toHash(fileToString('spec.dry.js'))
-  );
-});
-
-test('app/state # assembled string and static file', (t) => {
-  t.plan(1);
-  t.equal(
-    toHash(assembleAppStateJS(dryArgs)),
-    toHash(fileToString('state.dry.js'))
-  );
-});
-
+addTest(assembleIndexJS, 'index.dry.js', 'index # assembled string and static file');
+addTest(assembleAppJS, 'app.dry.js', 'app/App # assembled string and static file');
+addTest(assembleAppSpecJS, 'spec.dry.js', 'app/spec # assembled string and static file');
+addTest(assembleAppStateJS, 'state.dry.js', 'app/state # assembled string and static file');
