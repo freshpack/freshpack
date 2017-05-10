@@ -119,7 +119,8 @@ const writeFile = (filePath, content) => {
     (filePath.includes('store') && !cmdLineArgs.redux) ||
     (filePath.includes('vscode') && !cmdLineArgs.flow) ||
     (filePath.includes('flowConfig') && !cmdLineArgs.flow) ||
-    (filePath.includes('flowType') && !cmdLineArgs.flow)
+    (filePath.includes('flow-typed') && !cmdLineArgs.flow) ||
+    (filePath.includes('app/style') && cmdLineArgs.styled)
   ) {
     next();
     return;
@@ -207,14 +208,32 @@ const displayAvailableScripts = () => {
   });
 };
 
+const countAllNodeModules = () => {
+  const dir = path.join(workingDir, '/', projectDirName, '/node_modules/');
+  const files = fs.readdirSync(dir);
+  let counter = 0;
+
+  files.forEach((file) => {
+    if (fs.statSync(dir + file).isDirectory()) {
+      if (file.charAt(0) !== '.') {
+        counter += 1;
+      }
+    }
+  });
+  return counter;
+};
+
 const exit = () => {
   const pkgApp = require(path.join(workingDir, '/', projectDirName, '/package.json'));
   const port = pkgApp.scripts.start.split('--port ')[1];
   const finishedMsg = listitem2 + colors.green('finished in ~' + Math.round(getTimer(start) / 1000) + ' s');
+  const numModules = countAllNodeModules();
 
   if (!cmdLineArgs.quiet) {
     logUpdate(spacer + 'installed packages'.bold);
     displayDependencies();
+    log('');
+    log(colors.dim(spacer + '(' + numModules + ' node modules)'));
     log('');
     log(colors.bold(finishedMsg));
     log('');

@@ -41,6 +41,7 @@ const devDependencies = [
 
 const packageJson = `{
   "name": "{{PROJEKT-NAME}}",
+  "private": true,
   "description": "{{PROJEKT-DESCRIPTION}}",
   "author": "{{PROJEKT-AUTHOR}}",
   "version": "{{PROJEKT-VERSION}}",
@@ -135,14 +136,6 @@ module.exports = {
 };
 `;
 
-const indexJs = `
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/app/App.js';
-
-ReactDOM.render(<App />, document.getElementById('root'));
-`;
-
 const indexHtml = `
 <!DOCTYPE html>
 <html>
@@ -154,30 +147,6 @@ const indexHtml = `
   <div id="root"></div>
 </body>
 </html>
-`;
-
-const appJs = `
-import React from 'react';
-import './style.css';
-
-export default class App extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = { name: 'Hello World' };
-  }
-
-  render() {
-     return (
-      <div className="app" style={{ opacity: this.props.opacity || 1 }}>
-        <h1>
-          <span>{this.state.name}</span>
-          <span>!</span>
-        </h1>
-      </div>
-    );
-  }
-}
 `;
 
 const appCss = `
@@ -209,8 +178,6 @@ module.exports = {
   package: packageJson,
   babelrc,
   webpackConfig,
-  indexJs,
   indexHtml,
-  appJs,
   appCss
 };

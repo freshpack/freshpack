@@ -51,6 +51,7 @@ rules:
   no-console: 0
   no-param-reassign: 0
   linebreak-style: 0
+  jsx-a11y/img-has-alt: 0
   import/no-extraneous-dependencies: 0
   import/no-named-as-default: 0
   import/no-unresolved: 0
