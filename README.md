@@ -101,12 +101,12 @@ $ freshpack <project-directory> [--styled, -y]
 $ freshpack <project-directory> [--quiet, -q]
 ```
 
-### Option 'all'
-* Combine all options
+### Option 'dev'
+* Combine all dev options
 ```bash
-$ freshpack <project-directory> [--all, -a]
+$ freshpack <project-directory> [--dev, -d]
 # .. shorthand for
-$ freshpack <project-directory> --redux --sass --lint --test --flow
+$ freshpack <project-directory> --flow --lint --test
 ```
 
 ## Available run scripts
@@ -160,9 +160,9 @@ $ freshpack <project-directory>
 └── yarn.lock
 ```
 
-### Complete (react, redux, sass, lint, test, flow)
+### Complete (react, redux, styled, lint, test, flow)
 ```bash
-$ freshpack <project-directory> --all
+$ freshpack <project-directory> --dry
 
 ├── .babelrc
 ├── .editorconfig
