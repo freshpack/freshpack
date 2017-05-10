@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 const config = require('./config');
-const main = require('./lib');
+const lib = require('./lib');
 
 const assembleIndexJS = require('./assemble/indexJS');
 const assembleAppJS = require('./assemble/appJS');
-const assembleAppStateJS = require('./assemble/stateJS');
+const assembleAppStateJS = require('./assemble/appStateJS');
 const assembleAppSpecJS = require('./assemble/appSpecJS');
 
 const base = require('./templates/base');
@@ -15,6 +15,16 @@ const lint = require('./templates/lint');
 const test = require('./templates/test');
 const redux = require('./templates/redux');
 const flow = require('./templates/flow');
+
+const init = lib.init;
+const sequence = lib.sequence;
+const log = lib.log;
+const start = lib.starting;
+const folders = lib.createFolders;
+const write = lib.writeFile;
+const chdir = lib.chdir;
+const exec = lib.exec;
+const exit = lib.exit;
 
 const tmpl = Object.assign(
   base, sass, lint, test, redux, flow, styled
@@ -29,16 +39,6 @@ const mergeBabelrcs = (a, b) => {
   });
   return a;
 };
-
-const init = main.init;
-const sequence = main.sequence;
-const log = main.log;
-const start = main.starting;
-const folders = main.createFolders;
-const write = main.writeFile;
-const chdir = main.chdir;
-const exec = main.exec;
-const exit = main.exit;
 
 config((project, args) => {
   const dir = project.name;
