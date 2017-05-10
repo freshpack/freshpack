@@ -22,22 +22,23 @@ Usage: freshpack <project-directory> [options]
   Options:
     -h, --help     usage information
     -v, --version  version number
+
     -q, --quiet    disable verbose logging
-    -c, --conf     show prompt for configuration
+    -c, --conf     prompt for configuration (not completed yet!)
+    -p, --port     port (default is 8084)
 
-    -p, --port     set port (default is 8084)
-    -d, --dir      set <project-directory> via option
-
-    -r, --redux    add redux example files and configuration
-
-    -f, --flow     add flowtype example files and configuration
-    -t, --test     add jest example files and configuration
-    -l, --lint     add eslint example files and configuration
-
-    -s, --sass     add sass example files and configuration
-    -y, --styled   add styled-components example files and configuration
-
+    -f, --flow     include 'flow' static type checker
+    -l, --lint     include 'eslint' pattern identifying and reporting
+    -t, --test     include 'jest' testing toolset
     -d, --dev      alias for '--flow --lint --test'
+
+    -r, --redux    include 'redux' predictable state container
+    -u, --router   include 'redux-router' simple routing (coming soon!)
+    -s, --saga     include 'redux-saga' managing side effects (coming soon!)
+
+    -a, --sass     sass components
+    -o, --postcss  postcss components
+    -y, --styled   styled-components components
 `;
 
 const optionDefinitions = [
@@ -49,7 +50,7 @@ const optionDefinitions = [
   { name: 'flow', alias: 'f', type: Boolean },
   { name: 'test', alias: 't', type: Boolean },
   { name: 'redux', alias: 'r', type: Boolean },
-  { name: 'sass', alias: 's', type: Boolean },
+  { name: 'sass', alias: 'a', type: Boolean },
   { name: 'styled', alias: 'y', type: Boolean },
   { name: 'quiet', alias: 'q', type: Boolean },
   { name: 'conf', alias: 'c', type: Boolean },
