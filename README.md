@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/freshpack.svg)](https://www.npmjs.com/package/freshpack) [![Build Status](https://travis-ci.org/freshpack/freshpack.svg?branch=master)](https://travis-ci.org/freshpack/freshpack) ![devDependencies](https://img.shields.io/david/freshpack/freshpack.svg) ![dependencies](https://img.shields.io/david/dev/freshpack/freshpack.svg) ![issues](https://img.shields.io/github/issues-raw/freshpack/freshpack.svg) ![downloads](https://img.shields.io/npm/dt/freshpack.svg) ![MIT Licensed](https://img.shields.io/npm/l/freshpack.svg)
 
-**Wire Things up the Automatic Way**
+### _Wire Things up the Automatic Way_*
 
 Command line tool for a quick development start of React apps.
 Creates minimal boilerplates and installs all required dependencies in _latest versions_ with 'yarn'.
@@ -17,7 +17,7 @@ Creates minimal boilerplates and installs all required dependencies in _latest v
 * [**File structure**](#file-structure)
 
 ## Motivation
-[_Create-react-app_](https://github.com/facebookincubator/create-react-app) is a great way to get started on a new React project. But unfortunately, standard tools such as Lint, Sass, Flow or Jest have to be installed later manually.
+[Create-react-app](https://github.com/facebookincubator/create-react-app) is an awesome way to get started on a new React project. But unfortunately, standard tools such as Lint, Sass, Flow or Jest have to be installed later manually.
 
 This created the idea of a command line tool that provides options for support of commonly used tools - including all required dependencies, configuration files, minimal sample applications and real commands in the scripts section of package.json (instead of _react-scripts_).
 
@@ -57,7 +57,7 @@ $ freshpack <project-directory> [--redux, -r]
 * Installs all required 'sass' dependencies
 * Adds 'sass-loader' to webpack configuration
 ```bash
-$ freshpack <project-directory> [--sass, -s]
+$ freshpack <project-directory> [--sass, -a]
 ```
 
 ### Option 'lint'
@@ -124,7 +124,7 @@ $ yarn test
 $ yarn test:coverage
 ```
 
-Available after usage with options --test and --lint (or --all)
+Available after usage with options --test and --lint (or --dev)
 ```bash
 $ yarn test:all
 ```
@@ -196,3 +196,5 @@ MIT
 
 ## Copyright
 &copy; 2017 Uli Preuss
+
+\* Header shamelessly stolen from [Justin Deal](https://zapier.com/engineering/how-to-build-redux/).
