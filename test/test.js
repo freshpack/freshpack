@@ -11,7 +11,11 @@ const assembleAppSpecJS = require('../src/assemble/appSpecJS');
 test.createStream().pipe(tapSpec()).pipe(process.stdout);
 
 const fileToString = (file) => {
-  return requireText('./prototypes/' + file, require);
+  return requireText('./prototypes/' + file, require).trim();
+};
+
+const toHash = (string) => {
+  return hasha(string).trim();
 };
 
 const dryArgs = { flow: true, lint: true, test: true, redux: true, styled: true };
@@ -19,32 +23,32 @@ const dryArgs = { flow: true, lint: true, test: true, redux: true, styled: true 
 test('index # assembled string and static file', (t) => {
   t.plan(1);
   t.equal(
-    hasha(assembleIndexJS(dryArgs)),
-    hasha(fileToString('index.dry.js'))
+    toHash(assembleIndexJS(dryArgs)),
+    toHash(fileToString('index.dry.js'))
   );
 });
 
 test('app/App # assembled string and static file', (t) => {
   t.plan(1);
   t.equal(
-    hasha(assembleAppJS(dryArgs)),
-    hasha(fileToString('app.dry.js'))
+    toHash(assembleAppJS(dryArgs)),
+    toHash(fileToString('app.dry.js'))
   );
 });
 
 test('app/spec # assembled string and static file', (t) => {
   t.plan(1);
   t.equal(
-    hasha(assembleAppSpecJS(dryArgs)),
-    hasha(fileToString('spec.dry.js'))
+    toHash(assembleAppSpecJS(dryArgs)),
+    toHash(fileToString('spec.dry.js'))
   );
 });
 
 test('app/state # assembled string and static file', (t) => {
   t.plan(1);
   t.equal(
-    hasha(assembleAppStateJS(dryArgs)),
-    hasha(fileToString('state.dry.js'))
+    toHash(assembleAppStateJS(dryArgs)),
+    toHash(fileToString('state.dry.js'))
   );
 });
 
