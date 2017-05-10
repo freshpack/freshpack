@@ -2,17 +2,24 @@
 
 [![npm](https://img.shields.io/npm/v/freshpack.svg)](https://www.npmjs.com/package/freshpack) [![Build Status](https://travis-ci.org/freshpack/freshpack.svg?branch=master)](https://travis-ci.org/freshpack/freshpack) ![devDependencies](https://img.shields.io/david/freshpack/freshpack.svg) ![dependencies](https://img.shields.io/david/dev/freshpack/freshpack.svg) ![issues](https://img.shields.io/github/issues-raw/freshpack/freshpack.svg) ![downloads](https://img.shields.io/npm/dt/freshpack.svg) ![MIT Licensed](https://img.shields.io/npm/l/freshpack.svg)
 
+**Wire Things up the Automatic Way**
+
 Command line tool for a quick development start of React apps.
-Creates dynamically boilerplates and installs _automatically_ all required dependencies in _latest versions_ with 'yarn'.
+Creates minimal boilerplates and installs all required dependencies in _latest versions_ with 'yarn'.
 
 **Note**: 'yarn' must be installed! See [yarn installation guide](https://yarnpkg.com/lang/en/docs/install/)
 
 ## Table of Contents
-
+* [**Motivation**](#motivation)
 * [**Installation**](#installation)
 * [**Generating projects**](#generating-projects)
-* [**Yarn scripts**](#available-yarn-scripts)
-* [**File structures**](#generated-file-structure)
+* [**Available run scripts**](#available-run-scripts)
+* [**File structure**](#file-structure)
+
+## Motivation
+[_Create-react-app_](https://github.com/facebookincubator/create-react-app) is a great way to get started on a new React project. But unfortunately, standard tools such as Lint, Sass, Flow or Jest have to be installed later manually.
+
+This created the idea of a command line tool that provides options for support of commonly used tools - including all required dependencies, configuration files, minimal sample applications and real commands in the scripts section of package.json (instead of _react-scripts_).
 
 ## Installation
 (node v6 required)
@@ -21,21 +28,9 @@ Creates dynamically boilerplates and installs _automatically_ all required depen
 $ yarn global add freshpack
 ```
 
-### Installation test
-Display help screen [--help, -h]
-```bash
-$ freshpack --help
-```
+## Generating project skeletons
 
-### Version info
-Display help screen [--version, -v]
-```bash
-$ freshpack --version
-```
-
-## Generating projects
-
-### Basic
+### Basic features
 * Generates a minimal React app skeleton ('Hello World')
 * Generates minimal webpack configuration file (webpack.config.js)
 * Generates babel configuration file (.babelrc)
@@ -106,28 +101,28 @@ $ freshpack <project-directory> [--all, -a]
 $ freshpack <project-directory> --redux --sass --lint --test --flow
 ```
 
-## Yarn scripts
+## Available run scripts
 
-### Lint scripts
-Usable with option --lint
+### Lint
+Available after usage with option --lint
 ```bash
 $ yarn lint
 ```
 
-### Test scripts
-Usable with option --test
+### Test
+Available after usage with option --test
 ```bash
 $ yarn test
 $ yarn test:coverage
 ```
 
-Usable with options --test and --lint (or --all)
+Available after usage with options --test and --lint (or --all)
 ```bash
 $ yarn test:all
 ```
 
-### Run flow
-Usable with option --flow
+### Run flow status
+Available after usage with option --flow
 ```bash
 $ yarn flow
 ```
