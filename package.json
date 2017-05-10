@@ -4,10 +4,10 @@
   "description": "Command line scaffolding tool for react apps",
   "author": "Uli Preuss",
   "license": "MIT",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js --all",
-    "lint": "eslint index.js ./lib -f table || true",
+    "start": "node src/index.js --all",
+    "lint": "eslint src/index.js lib -f table || true",
     "test": "node test/test.js"
   },
   "engines": {
@@ -15,7 +15,7 @@
     "npm": ">=3"
   },
   "bin": {
-    "freshpack": "./index.js"
+    "freshpack": "./src/index.js"
   },
   "repository": {
     "type": "git",
@@ -47,19 +47,19 @@
   ],
   "dependencies": {
     "colors": "^1.1.2",
-    "command-line-args": "^4.0.2",
+    "command-line-args": "^4.0.4",
     "elegant-spinner": "^1.0.1",
     "log-update": "^2.0.0",
     "object.entries": "^1.0.4",
     "prompt": "^1.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.2",
+    "babel-eslint": "^7.2.3",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-jsx-a11y": "^5.0.0",
+    "eslint-plugin-react": "^7.0.0",
     "tape": "^4.6.3"
   }
 }
