@@ -78,13 +78,21 @@ $ freshpack <project-directory> [--lint, -l]
 $ freshpack <project-directory> [--test, -t]
 ```
 
-### Option 'flow' **[NEW]**
-* Generates skeleton with flow example(s)
+### Option 'flow'
+* Generates skeleton with 'flow' example(s)
 * Installs all required 'flow' dependencies
 * Adds 'flow-typed' files
 * Adds Visual Studio Code settings file
 ```bash
 $ freshpack <project-directory> [--flow, -f]
+```
+
+### Option 'styled' **[NEW]**
+* Generates skeleton with 'styled-components' example(s)
+* Installs required 'styled-components' dependency
+* Adds 'styled-components' files
+```bash
+$ freshpack <project-directory> [--styled, -y]
 ```
 
 ### Option 'quiet'
