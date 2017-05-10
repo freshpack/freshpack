@@ -34,6 +34,7 @@ rules:
   import/no-extraneous-dependencies: 0
   import/no-unresolved: 0
   import/extensions: 0
+  jsx-a11y/img-has-alt: 0
   react/jsx-filename-extension: 0
   react/prop-types: [1, { ignore: [] }]
   react/prefer-stateless-function: 0
