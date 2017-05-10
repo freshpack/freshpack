@@ -174,7 +174,8 @@ $ freshpack <project-directory> --dry
 ├── flow-typed
 │   ├── prop-types.js
 │   ├── react-redux.js
-│   └── redux.js
+│   ├── redux.js
+│   └── styled-components.js
 ├── package.json
 ├── src
 │   ├── components
