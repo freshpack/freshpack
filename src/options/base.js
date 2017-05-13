@@ -48,6 +48,7 @@ const packageJson = `{
   "license": "{{PROJEKT-LICENCE}}",
   "main": "index.js",
   "scripts": {{PACKAGE-SCRIPTS}}
+  {{JEST-CONFIG}}
 }
 `;
 
