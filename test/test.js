@@ -18,20 +18,20 @@ const devReduxStyledArgs = Object.assign({}, devReduxArgs, { styled: true });
 const devReduxSassArgs = Object.assign({}, devReduxArgs, { sass: true });
 
 const assembleTest = (msg, func, file, args) => {
-  let hash1 = '-';
-  let hash2 = '+';
+  let actual = '-';
+  let expected = '+';
   Promise.all([
     (() => {
-      hash1 = func(args).trim();
+      actual = func(args).trim();
     })(),
     (() => {
-      hash2 = requireText('./templates/' + file, require).trim();
+      expected = requireText('./templates/' + file, require).trim();
       if (file.split('.').pop() === 'txt') {
-        hash2 = hash2.replace(/\s+/g, ' ')
+        expected = expected.replace(/\s+/g, ' ')
       }
     })()
   ]).then(() => {
-    test(msg, (t) => { t.plan(1); t.equal(hash1, hash2); });
+    test(msg, (t) => { t.plan(1); t.equal(actual, expected); });
   }, err => console.log(err));
 };
 
