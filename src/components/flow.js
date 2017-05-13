@@ -80,13 +80,13 @@ declare module 'react-redux' {
 `;
 
 module.exports = {
-  flowConfig,
-  settingsVSCode,
-  flowScripts,
   babelrcFlow,
   devDependenciesFlow,
   devDependenciesLintFlow,
   eslintrcFlow,
+  settingsVSCode,
+  flowConfig,
+  flowScripts,
   flowTypeRedux,
   flowTypePropTypes,
   flowTypeReactRedux,

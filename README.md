@@ -87,7 +87,7 @@ $ freshpack <project-directory> [--test, -t]
 $ freshpack <project-directory> [--flow, -f]
 ```
 
-### Option 'styled' **[NEW]**
+### Option 'styled'
 * Generates skeleton with 'styled-components' example(s)
 * Installs required 'styled-components' dependency
 * Adds 'styled-components' files

@@ -34,6 +34,6 @@ const appScss = `
 `;
 
 module.exports = {
-  devDependenciesSass,
-  appScss
+  appScss,
+  devDependenciesSass
 };

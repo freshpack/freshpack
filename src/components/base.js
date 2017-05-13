@@ -172,13 +172,13 @@ button {
 `;
 
 module.exports = {
+  appCss,
+  babelrc,
   baseScripts,
   dependencies,
   devDependencies,
   editorconfig,
-  package: packageJson,
-  babelrc,
-  webpackConfig,
   indexHtml,
-  appCss
+  package: packageJson,
+  webpackConfig
 };
