@@ -130,10 +130,10 @@ $ yarn test:all
 Available after usage with options --test and --lint (or --dev)
 
 ### Run flow status
-Available after usage with option --flow
 ```bash
 $ yarn flow
 ```
+Available after usage with option --flow
 
 ### Run app in dev mode
 ```bash
