@@ -24,7 +24,7 @@ const jestConfig = `,
   "testRegex": "spec.js$",
   "transformIgnorePatterns": ["/node_modules/"],
   "moduleNameMapper": {
-    "\\\\.(css|scss|jpg|png)$": "<rootDir>/__mocks__/empty-module.js"
+    "\\\\.(css|scss|jpg|png)$": "<rootDir>/.mocks/empty-module.js"
   }
 }
 `;

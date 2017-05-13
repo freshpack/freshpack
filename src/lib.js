@@ -8,7 +8,8 @@ const colors = require('colors');
 const pkg = require('../package.json');
 
 const spacer = ''.hidden;
-const listitem = '▪︎'.yellow + '▪︎'.yellow.dim;
+const listitem = '';
+const listitem1 = '▪︎'.yellow + '▪︎'.yellow.dim;
 const listitem2 = '';  /* '✨  ◼︎◻︎';*/
 const spinner = elegantSpinner();
 const workingDir = process.cwd();
@@ -94,7 +95,8 @@ const createFolders = (dirPath) => {
   if (
     (dirPath.includes('vscode') && !cmdLineArgs.flow) ||
     (dirPath.includes('flow-typed') && !cmdLineArgs.flow) ||
-    (dirPath.includes('__mocks__') && !cmdLineArgs.test)
+    (dirPath.includes('mocks') && !cmdLineArgs.test) ||
+    (dirPath.includes('mocks') && cmdLineArgs.styled)
   ) {
     next();
     return;
@@ -116,7 +118,8 @@ const writeFile = (filePath, content) => {
     (filePath.includes('eslint') && !cmdLineArgs.lint) ||
     (filePath.includes('jest') && !cmdLineArgs.test) ||
     (filePath.includes('spec') && !cmdLineArgs.test) ||
-    (filePath.includes('__mocks__') && !cmdLineArgs.test) ||
+    (filePath.includes('mocks') && !cmdLineArgs.test) ||
+    (filePath.includes('mocks') && cmdLineArgs.styled) ||
     (filePath.includes('state') && !cmdLineArgs.redux) ||
     (filePath.includes('store') && !cmdLineArgs.redux) ||
     (filePath.includes('vscode') && !cmdLineArgs.flow) ||
