@@ -3,14 +3,14 @@
 const config = require('./config');
 const lib = require('./lib');
 
-const assembleIndex = require('./assemble/index');
-const assembleApp = require('./assemble/app');
-const assembleAppState = require('./assemble/appState');
-const assembleAppSpec = require('./assemble/appSpec');
-const assembleDependencies = require('./assemble/dependencies');
-const assembleDevDependencies = require('./assemble/devDependencies');
-const assembleNpmScripts = require('./assemble/npmScripts');
-const tmpl = require('./assemble/tmpl');
+const assembleIndex = require('./assembler/index');
+const assembleApp = require('./assembler/app');
+const assembleAppState = require('./assembler/appState');
+const assembleAppSpec = require('./assembler/appSpec');
+const assembleDependencies = require('./assembler/dependencies');
+const assembleDevDependencies = require('./assembler/devDependencies');
+const assembleNpmScripts = require('./assembler/npmScripts');
+const tmpl = require('./assembler/tmpl');
 
 const init = lib.init;
 const sequence = lib.sequence;

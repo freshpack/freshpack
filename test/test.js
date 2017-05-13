@@ -3,13 +3,13 @@ const tapDifflet = require('tap-difflet');
 const requireText = require('require-text');
 // const hasha = require('hasha');
 
-const assembleIndex = require('../src/assemble/index');
-const assembleApp = require('../src/assemble/app');
-const assembleAppState = require('../src/assemble/appState');
-const assembleAppSpec = require('../src/assemble/appSpec');
-const assembleDependencies = require('../src/assemble/dependencies');
-const assembleDevDependencies = require('../src/assemble/devDependencies');
-const assembleNpmScripts = require('../src/assemble/npmScripts');
+const assembleIndex = require('../src/assembler/index');
+const assembleApp = require('../src/assembler/app');
+const assembleAppState = require('../src/assembler/appState');
+const assembleAppSpec = require('../src/assembler/appSpec');
+const assembleDependencies = require('../src/assembler/dependencies');
+const assembleDevDependencies = require('../src/assembler/devDependencies');
+const assembleNpmScripts = require('../src/assembler/npmScripts');
 
 test.createStream().pipe(tapDifflet()).pipe(process.stdout);
 
