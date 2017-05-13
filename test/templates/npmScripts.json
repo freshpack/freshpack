@@ -1,0 +1,8 @@
+{
+  "start": "webpack-dev-server --hot --inline --host 0.0.0.0 --port {{PORT}}",
+  "flow": "flow status",
+  "lint": "eslint index.js ./src -f table || true",
+  "test": "jest --config=.jestrc",
+  "test:coverage": "jest --config=.jestrc --coverage",
+  "test:all": "yarn lint && yarn test:coverage"
+}

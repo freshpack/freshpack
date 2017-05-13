@@ -1,0 +1,7 @@
+prop-types
+react
+react-dom
+react-redux
+redux
+redux-thunk
+styled-components
