@@ -31,6 +31,9 @@ $ yarn global add freshpack
 ## Generating project skeletons
 
 ### Basic features
+```bash
+$ freshpack <project-directory>
+```
 * Generates a minimal React app skeleton ('Hello World')
 * Generates minimal webpack configuration file (webpack.config.js)
 * Generates babel configuration file (.babelrc)
@@ -40,94 +43,91 @@ $ yarn global add freshpack
 * Installs all required dependencies
 * Enables hot reloading
 * Displays info if new version of freshpack is available
-```bash
-$ freshpack <project-directory>
-```
 
 ### Option 'redux'
-* Generates skeleton with redux example ('Counter')
-* Installs all required 'redux' dependencies
-* Adds redux tests
 ```bash
 $ freshpack <project-directory> [--redux, -r]
 ```
+* Generates skeleton with redux example ('Counter')
+* Installs all required 'redux' dependencies
+* Adds redux tests
 
 ### Option 'sass'
-* Generates skeleton with example 'App.sass' file (instead of css)
-* Installs all required 'sass' dependencies
-* Adds 'sass-loader' to webpack configuration
 ```bash
 $ freshpack <project-directory> [--sass, -a]
 ```
+* Generates skeleton with example 'App.sass' file (instead of css)
+* Installs all required 'sass' dependencies
+* Adds 'sass-loader' to webpack configuration
 
 ### Option 'lint'
+```bash
+$ freshpack <project-directory> [--lint, -l]
+```
 * Generates 'eslint' configuration (.eslintrc.yaml)
 * Adds lint script ('yarn lint')
 * Installs all required 'eslint' dependencies
 * Installs 'airbnb code style' configuration
-```bash
-$ freshpack <project-directory> [--lint, -l]
-```
 
 ### Option 'test'
+```bash
+$ freshpack <project-directory> [--test, -t]
+```
 * Generates example 'App.spec.js' file
 * Generates 'jest' configuration (.jestrc)
 * Adds test script ('yarn test')
 * Installs all required 'jest' and 'enzyme' dependencies
-```bash
-$ freshpack <project-directory> [--test, -t]
-```
 
 ### Option 'flow'
+```bash
+$ freshpack <project-directory> [--flow, -f]
+```
 * Generates skeleton with 'flow' example(s)
 * Installs all required 'flow' dependencies
 * Adds 'flow-typed' files
 * Adds Visual Studio Code settings file
-```bash
-$ freshpack <project-directory> [--flow, -f]
-```
 
 ### Option 'styled'
-* Generates skeleton with 'styled-components' example(s)
-* Installs required 'styled-components' dependency
-* Adds 'styled-components' files
 ```bash
 $ freshpack <project-directory> [--styled, -y]
 ```
+* Generates skeleton with 'styled-components' example(s)
+* Installs required 'styled-components' dependency
+* Adds 'styled-components' files
 
 ### Option 'quiet'
-* Disable verbose logging
 ```bash
 $ freshpack <project-directory> [--quiet, -q]
 ```
+* Disable verbose logging
 
 ### Option 'dev'
-* Combine all dev options
 ```bash
 $ freshpack <project-directory> [--dev, -d]
 # .. shorthand for
 $ freshpack <project-directory> --flow --lint --test
 ```
+* Combine all dev options
 
 ## Available run scripts
 
 ### Lint
-Available after usage with option --lint
 ```bash
 $ yarn lint
 ```
+Available after usage with option --lint
 
 ### Test
-Available after usage with option --test
 ```bash
 $ yarn test
 $ yarn test:coverage
 ```
+Available after usage with option --test
 
-Available after usage with options --test and --lint (or --dev)
 ```bash
 $ yarn test:all
 ```
+Available after usage with options --test and --lint (or --dev)
 
 ### Run flow status
 Available after usage with option --flow
