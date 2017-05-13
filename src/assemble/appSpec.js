@@ -7,7 +7,7 @@ import React from 'react';
 `;
 
 const imports_enzyme_base = `
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 `;
 
 const imports_enzyme_redux = `

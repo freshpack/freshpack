@@ -22,7 +22,7 @@ const import_base_stylesheet = `
 import './style.css';`;
 
 const import_sass_file = `
-import './style.sass';
+import './style.scss';
 `;
 
 const styled_components_styles = `

@@ -93,7 +93,8 @@ const createFolder = (parts, i) => {
 const createFolders = (dirPath) => {
   if (
     (dirPath.includes('vscode') && !cmdLineArgs.flow) ||
-    (dirPath.includes('flow-typed') && !cmdLineArgs.flow)
+    (dirPath.includes('flow-typed') && !cmdLineArgs.flow) ||
+    (dirPath.includes('__mocks__') && !cmdLineArgs.test)
   ) {
     next();
     return;
@@ -115,12 +116,14 @@ const writeFile = (filePath, content) => {
     (filePath.includes('eslint') && !cmdLineArgs.lint) ||
     (filePath.includes('jest') && !cmdLineArgs.test) ||
     (filePath.includes('spec') && !cmdLineArgs.test) ||
+    (filePath.includes('__mocks__') && !cmdLineArgs.test) ||
     (filePath.includes('state') && !cmdLineArgs.redux) ||
     (filePath.includes('store') && !cmdLineArgs.redux) ||
     (filePath.includes('vscode') && !cmdLineArgs.flow) ||
     (filePath.includes('flowConfig') && !cmdLineArgs.flow) ||
     (filePath.includes('flow-typed') && !cmdLineArgs.flow) ||
-    (filePath.includes('app/style') && cmdLineArgs.styled)
+    (filePath.includes('app/style') && cmdLineArgs.styled) ||
+    (filePath.includes('flow-typed/styled-components') && cmdLineArgs.sass)
   ) {
     next();
     return;

@@ -3,18 +3,14 @@
 const config = require('./config');
 const lib = require('./lib');
 
-const assembleIndexJS = require('./assemble/indexJS');
-const assembleAppJS = require('./assemble/appJS');
-const assembleAppStateJS = require('./assemble/appStateJS');
-const assembleAppSpecJS = require('./assemble/appSpecJS');
-
-const base = require('./templates/base');
-const sass = require('./templates/sass');
-const styled = require('./templates/styled');
-const lint = require('./templates/lint');
-const test = require('./templates/test');
-const redux = require('./templates/redux');
-const flow = require('./templates/flow');
+const assembleIndex = require('./assemble/index');
+const assembleApp = require('./assemble/app');
+const assembleAppState = require('./assemble/appState');
+const assembleAppSpec = require('./assemble/appSpec');
+const assembleDependencies = require('./assemble/dependencies');
+const assembleDevDependencies = require('./assemble/devDependencies');
+const assembleNpmScripts = require('./assemble/npmScripts');
+const tmpl = require('./assemble/tmpl');
 
 const init = lib.init;
 const sequence = lib.sequence;
@@ -25,10 +21,6 @@ const write = lib.writeFile;
 const chdir = lib.chdir;
 const exec = lib.exec;
 const exit = lib.exit;
-
-const tmpl = Object.assign(
-  base, sass, lint, test, redux, flow, styled
-);
 
 const mergeBabelrcs = (a, b) => {
   a.presets && b.presets && b.presets.forEach((preset) => {
@@ -42,21 +34,14 @@ const mergeBabelrcs = (a, b) => {
 
 config((project, args) => {
   const dir = project.name;
-  const dependencies = tmpl.dependencies;
-  const devDependencies = tmpl.devDependencies;
-  let scripts = tmpl.baseScripts;
-
-  const addDependencies = (newDependencies) => {
-    dependencies.push(...newDependencies);
-  };
-
-  const addDevDependencies = (newDevDependencies) => {
-    devDependencies.push(...newDevDependencies);
-  };
-
-  const addScripts = (newScript) => {
-    scripts = Object.assign(scripts, newScript);
-  };
+  const dependencies = assembleDependencies(args);
+  const devDependencies = assembleDevDependencies(args);
+  const index = assembleIndex(args);
+  const app = assembleApp(args);
+  const appState = assembleAppState(args);
+  const appSpec = assembleAppSpec(args);
+  let npmScripts = {};
+  let jestConfig = '';
 
   const render = template => template
     .replace('{{PROJEKT-NAME}}', project.name)
@@ -65,8 +50,10 @@ config((project, args) => {
     .replace('{{PROJEKT-VERSION}}', project.version)
     .replace('{{PROJEKT-AUTHOR}}', project.author)
     .replace('{{PORT}}', (args.port || project.port))
-    .replace('{{PACKAGE-SCRIPTS}}', scripts);
+    .replace('{{PACKAGE-SCRIPTS}}', npmScripts)
+    .replace('{{JEST-CONFIG}}', jestConfig);
 
+  npmScripts = render(assembleNpmScripts(args));
   let appStylesheetExt = 'css';
   tmpl.appStylesheet = tmpl.appCss;
 
@@ -78,31 +65,14 @@ config((project, args) => {
     ), null, 2);
   }
 
+  if (args.test) {
+    jestConfig = tmpl.jestConfig;
+  }
+
   if (args.sass) {
     tmpl.appStylesheet = tmpl.appScss;
     appStylesheetExt = 'scss';
   }
-
-  args.sass && addDevDependencies(tmpl.devDependenciesSass);
-  args.redux && addDependencies(tmpl.dependenciesRedux);
-  args.test && addDevDependencies(tmpl.devDependenciesTest);
-  args.test && args.redux && addDevDependencies(tmpl.devDependenciesTestRedux);
-  args.styled && addDependencies(tmpl.dependenciesStyled);
-  args.lint && addDevDependencies(tmpl.devDependenciesLint);
-  args.flow && addDevDependencies(tmpl.devDependenciesFlow);
-  args.lint && args.flow && addDevDependencies(tmpl.devDependenciesLintFlow);
-
-  tmpl.indexJs = assembleIndexJS(args);
-  tmpl.appJs = assembleAppJS(args);
-  tmpl.appStateJs = assembleAppStateJS(args);
-  tmpl.appJsSpec = assembleAppSpecJS(args);
-
-  args.flow && addScripts(tmpl.flowScripts);
-  args.lint && addScripts(tmpl.lintScripts);
-  args.test && addScripts(tmpl.testScripts);
-  args.lint && args.test && addScripts(tmpl.testAllScripts);
-
-  scripts = render(JSON.stringify(scripts));
 
   sequence([
     [init, args, dir],
@@ -111,29 +81,30 @@ config((project, args) => {
     [folders, 'src/components/app'],
     [folders, 'flow-typed'],
     [folders, '.vscode'],
+    [folders, '__mocks__'],
     [write, '.babelrc', tmpl.babelrc],
     [write, '.editorconfig', tmpl.editorconfig],
     [write, '.eslintrc.yml', tmpl.eslintrc],
     [write, '.flowConfig', tmpl.flowConfig],
-    [write, '.jestrc', tmpl.jestConfig],
     [write, 'package.json', render(tmpl.package)],
     [write, 'webpack.config.js', render(tmpl.webpackConfig)],
-    [write, 'src/index.js', tmpl.indexJs],
+    [write, 'src/index.js', index],
     [write, 'src/index.html', render(tmpl.indexHtml)],
     [write, 'src/store.js', tmpl.storeJs],
-    [write, 'src/components/app/App.js', tmpl.appJs],
+    [write, 'src/components/app/App.js', app],
     [write, 'src/components/app/style.' + appStylesheetExt, tmpl.appStylesheet],
-    [write, 'src/components/app/state.js', tmpl.appStateJs],
-    [write, 'src/components/app/spec.js', tmpl.appJsSpec],
+    [write, 'src/components/app/state.js', appState],
+    [write, 'src/components/app/spec.js', appSpec],
     [write, 'flow-typed/redux.js', tmpl.flowTypeRedux],
     [write, 'flow-typed/react-redux.js', tmpl.flowTypePropTypes],
     [write, 'flow-typed/prop-types.js', tmpl.flowTypeReactRedux],
     [write, 'flow-typed/styled-components.js', tmpl.flowTypeStyled],
+    [write, '__mocks__/empty-module.js', tmpl.emptyModule],
     [write, '.vscode/settings.json', tmpl.settingsVSCode],
     [chdir, './' + dir],
     [log, ''],
-    [exec, 'yarn add ' + dependencies.join(' ')],
-    [exec, 'yarn add -D ' + devDependencies.join(' ')],
+    [exec, 'yarn add ' + dependencies],
+    [exec, 'yarn add -D ' + devDependencies],
     [chdir, '../'],
     [exit]
   ]);
