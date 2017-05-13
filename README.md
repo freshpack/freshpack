@@ -142,7 +142,7 @@ $ yarn start
 
 ## File structure
 
-### Minimal (react, css)
+### base:
 ```bash
 $ freshpack <project-directory>
 
@@ -160,15 +160,44 @@ $ freshpack <project-directory>
 └── yarn.lock
 ```
 
-### Complete (react, redux, styled, lint, test, flow)
+### base + dev + redux + sass:
 ```bash
-$ freshpack <project-directory> --dry
+$ freshpack <project-directory> -dra
 
 ├── .babelrc
 ├── .editorconfig
 ├── .eslintrc.yml
 ├── .flowConfig
-├── .jestrc
+├── .mocks
+│   └── empty-module.js
+├── .vscode
+│   └── settings.json
+├── flow-typed
+│   ├── prop-types.js
+│   ├── react-redux.js
+│   └── redux.js
+├── package.json
+├── src
+│   ├── components
+│   │   └── app
+│   │       ├── App.js
+│   │       ├── spec.js
+│   │       ├── state.js
+│   │       └── style.scss
+│   ├── index.html
+│   ├── index.js
+│   └── store.js
+├── webpack.config.js
+└── yarn.lock
+```
+### base + dev + redux + styled:
+```bash
+$ freshpack <project-directory> -dry
+
+├── .babelrc
+├── .editorconfig
+├── .eslintrc.yml
+├── .flowConfig
 ├── .vscode
 │   └── settings.json
 ├── flow-typed
@@ -182,8 +211,7 @@ $ freshpack <project-directory> --dry
 │   │   └── app
 │   │       ├── App.js
 │   │       ├── spec.js
-│   │       ├── state.js
-│   │       └── style.scss
+│   │       └── state.js
 │   ├── index.html
 │   ├── index.js
 │   └── store.js
