@@ -27,7 +27,7 @@ const assembleTest = (msg, func, file, args) => {
     (() => {
       expected = requireText('./templates/' + file, require).trim();
       if (file.split('.').pop() === 'txt') {
-        expected = expected.replace(/\s+/g, ' ')
+        expected = expected.replace(/\s+/g, ' ');
       }
     })()
   ]).then(() => {
@@ -35,38 +35,38 @@ const assembleTest = (msg, func, file, args) => {
   }, err => console.log(err));
 };
 
-assembleTest('[dev, redux] === index template',
+assembleTest('[dev, redux] === index.js',
   assembleIndex, 'index.js', devReduxArgs
 );
 
-assembleTest('[dev, redux, styled] === App.styled template',
-  assembleApp, 'app.styled.js', devReduxStyledArgs
-);
-
-assembleTest('[dev, redux, sass] === App.sass template',
-  assembleApp, 'app.sass.js', devReduxSassArgs
-);
-
-assembleTest('[dev, redux] === spec template',
+assembleTest('[dev, redux] === spec.js',
   assembleAppSpec, 'spec.js', devReduxArgs
 );
 
-assembleTest('[dev, redux] === state template',
+assembleTest('[dev, redux] === state.js',
   assembleAppState, 'state.js', devReduxArgs
 );
 
-assembleTest('[dev, redux, styled] === dependencies.styled template',
-  args => assembleDependencies(args), 'dependencies.styled.txt', devReduxStyledArgs
+assembleTest('[dev, redux] === npmScripts.json',
+  assembleNpmScripts, 'npmScripts.json', devReduxArgs
 );
 
-assembleTest('[dev, redux, styled] === devDependencies.styled template',
-  args => assembleDevDependencies(args), 'devDependencies.styled.txt', devReduxStyledArgs
+assembleTest('[dev, redux, sass] === App.sass.js',
+  assembleApp, 'app.sass.js', devReduxSassArgs
 );
 
-assembleTest('[dev, redux, sass] === devDependencies.sass template',
+assembleTest('[dev, redux, styled] === App.styled.js',
+  assembleApp, 'app.styled.js', devReduxStyledArgs
+);
+
+assembleTest('[dev, redux, sass] === devDependencies.sass.txt',
   args => assembleDevDependencies(args), 'devDependencies.sass.txt', devReduxSassArgs
 );
 
-assembleTest('[dev, redux] === npmScripts template',
-  assembleNpmScripts, 'npmScripts.json', devReduxArgs
+assembleTest('[dev, redux, styled] === dependencies.styled.txt',
+  args => assembleDependencies(args), 'dependencies.styled.txt', devReduxStyledArgs
+);
+
+assembleTest('[dev, redux, styled] === devDependencies.styled.txt',
+  args => assembleDevDependencies(args), 'devDependencies.styled.txt', devReduxStyledArgs
 );

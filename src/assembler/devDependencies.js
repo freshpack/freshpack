@@ -2,7 +2,8 @@ const tmpl = require('./tmpl');
 const unique = require('../unique');
 
 module.exports = (args) => {
-  const devDependencies = tmpl.devDependencies;
+  const devDependencies = [];
+  devDependencies.push(...tmpl.devDependencies);
   args.sass && devDependencies.push(...tmpl.devDependenciesSass);
   args.test && devDependencies.push(...tmpl.devDependenciesTest);
   args.test && args.redux && devDependencies.push(...tmpl.devDependenciesTestRedux);

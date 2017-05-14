@@ -1,11 +1,13 @@
 const tmpl = require('./tmpl');
 
-let scripts = tmpl.baseScripts;
+let scripts;
 
 const addScripts = (newScript) => {
   scripts = Object.assign(scripts, newScript);
 };
 module.exports = (args) => {
+  scripts = {};
+  addScripts(tmpl.baseScripts);
   args.flow && addScripts(tmpl.flowScripts);
   args.lint && addScripts(tmpl.lintScripts);
   args.test && addScripts(tmpl.testScripts);
