@@ -1,9 +1,9 @@
 {
   "name": "freshpack",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Command line scaffolding tool for react apps",
   "author": "Uli Preuss",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js --all",
@@ -39,11 +39,12 @@
     "test",
     "jest",
     "enzyme",
+    "flow",
+    "type-check",
+    "styled-components",
     "webpack",
     "babel",
-    "hot-reloading",
-    "flow",
-    "type-check"
+    "hot-reloading"
   ],
   "dependencies": {
     "colors": "^1.1.2",

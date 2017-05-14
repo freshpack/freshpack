@@ -112,28 +112,31 @@ $ freshpack <project-directory> --flow --lint --test
 ## Available run scripts
 
 ### Lint
+Available after usage with option --lint
 ```bash
 $ yarn lint
 ```
-Available after usage with option --lint
 
 ### Test
+Available after usage with option --test
 ```bash
 $ yarn test
+$ yarn test:watch
+$ yarn test:watch:all
 $ yarn test:coverage
 ```
-Available after usage with option --test
+
+Available after usage with options --test and --lint (or --dev)
 
 ```bash
 $ yarn test:all
 ```
-Available after usage with options --test and --lint (or --dev)
 
 ### Run flow status
+Available after usage with option --flow
 ```bash
 $ yarn flow
 ```
-Available after usage with option --flow
 
 ### Run app in dev mode
 ```bash
@@ -220,7 +223,7 @@ $ freshpack <project-directory> -dry
 ```
 
 ## License
-MIT
+BSD-3-Clause
 
 ## Copyright
 &copy; 2017 Uli Preuss
