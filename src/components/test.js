@@ -7,8 +7,10 @@
 // Yarn scripts
 
 const testScripts = {
-  test: 'jest --config=.jestrc',
-  'test:coverage': 'jest --config=.jestrc --coverage'
+  test: 'jest',
+  'test:watch': 'jest --watch',
+  'test:watch:all': 'jest --watchAll',
+  'test:coverage': 'jest --coverage'
 };
 
 const testAllScripts = {
