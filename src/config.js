@@ -20,12 +20,13 @@ Usage: freshpack <project-directory> [options]
    or: freshpack --conf
 
   Options:
-    -h, --help     usage information
-    -v, --version  version number
+    -h, --help      usage information
+    -v, --version   version number
 
     -q, --quiet    disable verbose logging
     -c, --conf     prompt for configuration (not completed yet!)
     -p, --port     port (default is 8084)
+    -i, --install  install dependencies
 
     -f, --flow     include 'flow' static type checker
     -l, --lint     include 'eslint' pattern identifying and reporting
@@ -37,7 +38,7 @@ Usage: freshpack <project-directory> [options]
     -s, --saga     include 'redux-saga' managing side effects (coming soon!)
 
     -a, --sass     sass components
-    -o, --postcss  postcss components
+    -o, --postcss  postcss components (coming soon!)
     -y, --styled   styled-components components
 `;
 
@@ -46,6 +47,7 @@ const optionDefinitions = [
   { name: 'port', alias: 'p', type: String },
   { name: 'version', alias: 'v', type: String },
   { name: 'help', alias: 'h', type: Boolean },
+  { name: 'install', alias: 'i', type: Boolean },
   { name: 'lint', alias: 'l', type: Boolean },
   { name: 'flow', alias: 'f', type: Boolean },
   { name: 'test', alias: 't', type: Boolean },

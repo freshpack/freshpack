@@ -21,6 +21,7 @@ const write = lib.writeFile;
 const chdir = lib.chdir;
 const exec = lib.exec;
 const exit = lib.exit;
+const versions = lib.versions;
 
 const mergeBabelrcs = (a, b) => {
   a.presets && b.presets && b.presets.forEach((preset) => {
@@ -103,8 +104,9 @@ config((project, args) => {
     [write, '.vscode/settings.json', tmpl.settingsVSCode],
     [chdir, './' + dir],
     [log, ''],
-    [exec, 'yarn add ' + dependencies],
-    [exec, 'yarn add -D ' + devDependencies],
+    [versions, dependencies, devDependencies],
+    [exec, 'yarn add ' + dependencies, { dependencies: true }],
+    [exec, 'yarn add -D ' + devDependencies, { dependencies: true }],
     [chdir, '../'],
     [exit]
   ]);

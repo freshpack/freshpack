@@ -95,6 +95,12 @@ $ freshpack <project-directory> [--styled, -y]
 * Installs required 'styled-components' dependency
 * Adds 'styled-components' files
 
+### Option 'install'
+```bash
+$ freshpack <project-directory> [--install, -i]
+```
+* Install dependencies
+
 ### Option 'quiet'
 ```bash
 $ freshpack <project-directory> [--quiet, -q]

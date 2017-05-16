@@ -31,14 +31,16 @@ const trimLeft = str => str.replace(/^\s+/, '');
 const getTimestamp = () => Date.now();
 const getTimer = startx => Date.now() - startx;
 
-const startSpinner = () => {
+const getPackage = () => require(path.join(workingDir, '/', projectDirName, '/package.json'));
+
+const startSpinner = (msg) => {
   clearInterval(ivalSpinner);
 
   let text = '';
+  msg = msg || 'installing packages';
   if (!cmdLineArgs.quiet) {
-    text = colors.bold('installing packages ');
+    text = colors.bold(msg + ' ');
   } else {
-    // text = colors.white('generating "' + cmdLineArgs.dir + '" boilerplate ');
     text = colors.white('please wait during installation ');
   }
 
@@ -47,12 +49,7 @@ const startSpinner = () => {
     if (!cmdLineArgs.quiet) {
       counterText = colors.dim(' (' + getTimer(start) + ' ms)');
     }
-    logUpdate(
-      spacer +
-      text +
-      colors.yellow(spinner()) +
-      counterText
-    );
+    logUpdate(spacer + text + colors.yellow(spinner()) + counterText);
   }, 50);
 };
 
@@ -67,7 +64,6 @@ const logVersionWarning = (str) => {
   const latestPackageVersion = str.trim();
   if (latestPackageVersion && latestPackageVersion !== pkg.version) {
     console.log(spacer + colors.magenta('v' + latestPackageVersion + ' is available!'));
-    // console.log(spacer + colors.white('$ yarn global add freshpack'));
   }
   next();
 };
@@ -84,7 +80,6 @@ const chdir = (dir) => {
 const createFolder = (parts, i) => {
   if (typeof parts[i] !== 'undefined') {
     currentPath += '/' + parts[i];
-    // log(colors.white(currentPath));
     next();
   }
   const dir = path.join.apply(null, parts.slice(0, i));
@@ -134,7 +129,7 @@ const writeFile = (filePath, content) => {
 
   content = trimLeft(content);
 
-  fs.writeFile('./' + projectDirName + '/' + filePath, content, (err) => {
+  fs.writeFile(path.join(workingDir, '/', projectDirName, '/', filePath), content, (err) => {
     if (err) return log(err);
     let fileName = filePath.substring(filePath.lastIndexOf('/') + 1);
     fileName = colors.yellow(fileName);
@@ -147,28 +142,75 @@ const writeFile = (filePath, content) => {
 };
 
 const execCommand = (cmdString, options = {}) => {
-  !options.version && startSpinner();
+  if (options.dependencies && !cmdLineArgs.install) {
+    setTimeout(next, 0);
+    return;
+  }
+  !options.version && !options.callback && startSpinner();
 
   const cmd = cmdString.split(' ').slice(0, 1)[0];
   const args = cmdString.split(' ').slice(1);
   const prc = spawn(cmd, args);
+  let result = '';
 
   prc.stdout.setEncoding('utf8');
   prc.stdout.on('data', (data) => {
     const str = data.toString();
     if (options.version) {
       logVersionWarning(str);
+    } else if (options.callback) {
+      result = str.trim();
     }
-    const lines = str.split(/(\r?\n)/g);
-    lines.forEach((line) => {
-      if (line.trim() !== '') {
-        // console.log(line);
-      }
-    });
   });
   prc.stdout.on('end', () => {
-    setTimeout(next, 0);
+    if (options.callback) {
+      options.callback(result);
+    } else {
+      setTimeout(next, 0);
+    }
   });
+};
+
+const getVersions = (dependencies, devDependencies) => {
+  if (cmdLineArgs.install) {
+    setTimeout(next, 0);
+    return;
+  }
+  dependencies = dependencies.trim().split(' ');
+  devDependencies = devDependencies.trim().split(' ');
+
+  let dependenciesCounter = dependencies.length + devDependencies.length;
+  const dependenciesObject = {};
+  const devDependenciesObject = {};
+
+  const get = (deps, obj) => {
+    const depsObject = {};
+    deps.forEach((dep) => {
+      execCommand('npm view ' + dep + ' dist-tags.latest', {
+        callback: (version) => {
+          obj[dep] = '^' + version;
+          dependenciesCounter -= 1;
+        }
+      });
+    });
+  };
+
+  get(dependencies, dependenciesObject);
+  get(devDependencies, devDependenciesObject);
+
+  const ival = setInterval(() => {
+    startSpinner('get latest version numbers');
+    if (dependenciesCounter === 0) {
+      clearInterval(ivalSpinner);
+      clearInterval(ival);
+      setTimeout(() => {
+        const pkgApp = getPackage();
+        pkgApp.dependencies = dependenciesObject;
+        pkgApp.devDependencies = devDependenciesObject;
+        writeFile('package.json', JSON.stringify(pkgApp, null, 2));
+      }, 0);
+    }
+  }, 50);
 };
 
 const sequence = (actions) => {
@@ -192,7 +234,7 @@ const sequence = (actions) => {
 };
 
 const displayDependencies = () => {
-  const pkgApp = require(path.join(workingDir, '/', projectDirName, '/package.json'));
+  const pkgApp = getPackage();
   const dependencies = entries(Object.assign(pkgApp.dependencies, pkgApp.devDependencies));
   dependencies.sort();
   dependencies.forEach((dependency) => {
@@ -205,7 +247,7 @@ const displayDependencies = () => {
 };
 
 const displayAvailableScripts = () => {
-  const pkgApp = require(path.join(workingDir, '/', projectDirName, '/package.json'));
+  const pkgApp = getPackage();
   const port = pkgApp.scripts.start.split('--port ')[1];
   const scripts = entries(Object.assign({}, pkgApp.scripts));
   scripts.forEach((script) => {
@@ -215,32 +257,44 @@ const displayAvailableScripts = () => {
 };
 
 const countAllNodeModules = () => {
-  const dir = path.join(workingDir, '/', projectDirName, '/node_modules/');
-  const files = fs.readdirSync(dir);
   let counter = 0;
-
-  files.forEach((file) => {
-    if (fs.statSync(dir + file).isDirectory()) {
-      if (file.charAt(0) !== '.') {
-        counter += 1;
+  if (cmdLineArgs.install) {
+    const dir = path.join(workingDir, '/', projectDirName, '/node_modules/');
+    const files = fs.readdirSync(dir);
+    files.forEach((file) => {
+      if (fs.statSync(dir + file).isDirectory()) {
+        if (file.charAt(0) !== '.') {
+          counter += 1;
+        }
       }
-    }
-  });
+    });
+  }
   return counter;
 };
 
 const exit = () => {
-  const pkgApp = require(path.join(workingDir, '/', projectDirName, '/package.json'));
+  const pkgApp = getPackage();
   const port = pkgApp.scripts.start.split('--port ')[1];
-  const finishedMsg = listitem2 + colors.green('finished in ~' + Math.round(getTimer(start) / 1000) + ' s');
+  const secs = getTimer(start) / 1000;
+  const finishedMsg = listitem2 + colors.green('Done in ' + secs.toFixed(2) + 's.');
   const numModules = countAllNodeModules();
+  let listMsg;
 
   if (!cmdLineArgs.quiet) {
-    logUpdate(spacer + 'installed packages'.bold);
+    if (cmdLineArgs.install) {
+      listMsg = 'installed packages';
+    } else {
+      listMsg = 'latest versions';
+    }
+    logUpdate(spacer + listMsg.bold);
     displayDependencies();
     log('');
-    log(colors.dim(spacer + '(' + numModules + ' node modules)'));
-    log('');
+
+    if (numModules > 0) {
+      log(colors.dim(spacer + '(' + numModules + ' node modules)'));
+      log('');
+    }
+
     log(colors.bold(finishedMsg));
     log('');
   } else {
@@ -249,6 +303,9 @@ const exit = () => {
 
   log('usage'.bold);
   log(colors.white('cd ' + projectDirName));
+  if (!cmdLineArgs.install) {
+    log(colors.white('yarn install'));
+  }
   displayAvailableScripts();
   log('');
 
@@ -288,5 +345,6 @@ module.exports = {
   sequence,
   sleep,
   starting,
+  versions: getVersions,
   writeFile
 };
