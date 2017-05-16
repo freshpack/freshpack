@@ -5,11 +5,11 @@ const lib = require('./lib');
 
 const assembleIndex = require('./assembler/index');
 const assembleApp = require('./assembler/app');
-const assembleAppState = require('./assembler/appState');
-const assembleAppSpec = require('./assembler/appSpec');
+const assembleAppState = require('./assembler/app-state');
+const assembleAppSpec = require('./assembler/app-spec');
 const assembleDependencies = require('./assembler/dependencies');
-const assembleDevDependencies = require('./assembler/devDependencies');
-const assembleNpmScripts = require('./assembler/npmScripts');
+const assembleDevDependencies = require('./assembler/dev-dependencies');
+const assembleNpmScripts = require('./assembler/npm-scripts');
 const tmpl = require('./assembler/tmpl');
 
 const init = lib.init;

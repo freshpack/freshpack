@@ -5,11 +5,11 @@ const requireText = require('require-text');
 
 const assembleIndex = require('../src/assembler/index');
 const assembleApp = require('../src/assembler/app');
-const assembleAppState = require('../src/assembler/appState');
-const assembleAppSpec = require('../src/assembler/appSpec');
+const assembleAppState = require('../src/assembler/app-state');
+const assembleAppSpec = require('../src/assembler/app-spec');
 const assembleDependencies = require('../src/assembler/dependencies');
-const assembleDevDependencies = require('../src/assembler/devDependencies');
-const assembleNpmScripts = require('../src/assembler/npmScripts');
+const assembleDevDependencies = require('../src/assembler/dev-dependencies');
+const assembleNpmScripts = require('../src/assembler/npm-scripts');
 
 test.createStream().pipe(tapDifflet()).pipe(process.stdout);
 
@@ -47,26 +47,26 @@ assembleTest('[dev, redux] === state.js',
   assembleAppState, 'state.js', devReduxArgs
 );
 
-assembleTest('[dev, redux] === npmScripts.json',
-  assembleNpmScripts, 'npmScripts.json', devReduxArgs
+assembleTest('[dev, redux] === npm-scripts.json',
+  assembleNpmScripts, 'npm-scripts.json', devReduxArgs
 );
 
-assembleTest('[dev, redux, sass] === App.sass.js',
+assembleTest('[dev, redux, sass] === app.sass.js',
   assembleApp, 'app.sass.js', devReduxSassArgs
 );
 
-assembleTest('[dev, redux, styled] === App.styled.js',
+assembleTest('[dev, redux, styled] === app.styled.js',
   assembleApp, 'app.styled.js', devReduxStyledArgs
 );
 
-assembleTest('[dev, redux, sass] === devDependencies.sass.txt',
-  args => assembleDevDependencies(args), 'devDependencies.sass.txt', devReduxSassArgs
+assembleTest('[dev, redux, sass] === dev-dependencies.sass.txt',
+  args => assembleDevDependencies(args), 'dev-dependencies.sass.txt', devReduxSassArgs
 );
 
 assembleTest('[dev, redux, styled] === dependencies.styled.txt',
   args => assembleDependencies(args), 'dependencies.styled.txt', devReduxStyledArgs
 );
 
-assembleTest('[dev, redux, styled] === devDependencies.styled.txt',
-  args => assembleDevDependencies(args), 'devDependencies.styled.txt', devReduxStyledArgs
+assembleTest('[dev, redux, styled] === dev-dependencies.styled.txt',
+  args => assembleDevDependencies(args), 'dev-dependencies.styled.txt', devReduxStyledArgs
 );
