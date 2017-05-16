@@ -234,4 +234,4 @@ BSD-3-Clause
 ## Copyright
 &copy; 2017 Uli Preuss
 
-\* Header shamelessly stolen from [Justin Deal](https://zapier.com/engineering/how-to-build-redux/).
+\* Header from '[Build Yourself a Redux](https://zapier.com/engineering/how-to-build-redux/)' by Justin Deal.
