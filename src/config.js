@@ -28,18 +28,16 @@ Usage: freshpack <project-directory> [options]
     -p, --port     port (default is 8084)
     -i, --install  install dependencies
 
-    -f, --flow     include 'flow' static type checker
-    -l, --lint     include 'eslint' pattern identifying and reporting
-    -t, --test     include 'jest' testing toolset
+    -f, --flow     include 'flow' - static type checker
+    -l, --lint     include 'eslint' - pattern identifying and reporting
+    -t, --test     include 'jest' and 'enzyme' - testing toolset
     -d, --dev      alias for '--flow --lint --test'
 
-    -r, --redux    include 'redux' predictable state container
-    -u, --router   include 'redux-router' simple routing (coming soon!)
-    -s, --saga     include 'redux-saga' managing side effects (coming soon!)
+    -m, --mobx     include 'mobx' - simple, scalable state management
+    -r, --redux    include 'redux' - predictable state container
 
-    -a, --sass     sass components
-    -o, --postcss  postcss components (coming soon!)
-    -y, --styled   styled-components components
+    -a, --sass     sass
+    -y, --styled   styled-components
 `;
 
 const optionDefinitions = [
@@ -51,6 +49,7 @@ const optionDefinitions = [
   { name: 'lint', alias: 'l', type: Boolean },
   { name: 'flow', alias: 'f', type: Boolean },
   { name: 'test', alias: 't', type: Boolean },
+  { name: 'mobx', alias: 'm', type: Boolean },
   { name: 'redux', alias: 'r', type: Boolean },
   { name: 'sass', alias: 'a', type: Boolean },
   { name: 'styled', alias: 'y', type: Boolean },

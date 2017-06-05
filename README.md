@@ -52,6 +52,16 @@ $ freshpack <project-directory> [--redux, -r]
 * Installs all required 'redux' dependencies
 * Adds redux tests
 
+### Option 'mobx' [!! BETA !!]
+```bash
+$ freshpack <project-directory> [--mobx, -m]
+```
+* Generates skeleton with mobx example ('Counter')
+* Installs all required 'mobx' dependencies
+* TODO: flow types example
+* TODO: styled and sass examples
+* TODO: tests
+
 ### Option 'sass'
 ```bash
 $ freshpack <project-directory> [--sass, -a]

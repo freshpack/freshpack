@@ -8,7 +8,11 @@ const imports_redux = `
 import { combineReducers } from 'redux';
 `;
 
-const flow_types = `
+const imports_modx = `
+import { observable } from 'mobx';
+`;
+
+const flow_types_redux = `
 // FLOW TYPES
 type CounterState = { value: number };
 type CounterAction = { type: string };
@@ -20,7 +24,11 @@ export type CounterProps = {
 };
 `;
 
-const rest = `
+const flow_types_modx = `
+// FLOW TYPES
+`;
+
+const rest_redux = `
 // ACTION TYPES
 const INCREMENT = 'INCREMENT';
 const DECREMENT = 'DECREMENT';
@@ -50,6 +58,24 @@ export const counter = (state: CounterState = initialState, action: CounterActio
 export const reducers = combineReducers({ counter });
 `;
 
+const rest_mobx = `
+export class Counter {
+  @observable value = 0;
+
+  increase() {
+    this.value += 1;
+  }
+
+  decrease() {
+    this.value -= 1;
+  }
+
+  double() {
+    this.value = this.value * 2;
+  }
+}
+`;
+
 module.exports = (args) => {
   let fileString = '';
 
@@ -67,20 +93,31 @@ module.exports = (args) => {
     add(comment_flow);
   }
 
-  // 2 redux dependencies
+  // 2 dependencies
   if (args.redux) {
     add(imports_redux);
+    newline();
+  } else if (args.mobx) {
+    add(imports_modx);
     newline();
   }
 
   // 3 flow types
   if (args.flow) {
-    add(flow_types);
+    if (args.redux) {
+      add(flow_types_redux);
+    } else if (args.mobx) {
+      add(flow_types_modx);
+    }
     newline();
   }
 
   // 4 rest
-  add(rest);
+  if (args.redux) {
+    add(rest_redux);
+  } else if (args.mobx) {
+    add(rest_mobx);
+  }
 
   return fileString;
 };

@@ -3,6 +3,7 @@ babel-eslint
 babel-jest
 babel-loader
 babel-plugin-transform-class-properties
+babel-plugin-transform-decorators-legacy
 babel-plugin-transform-object-rest-spread
 babel-plugin-transform-runtime
 babel-preset-es2015

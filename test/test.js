@@ -35,20 +35,32 @@ const assembleTest = (msg, func, file, args) => {
   }, err => console.log(err));
 };
 
-assembleTest('[dev, redux] === index.js',
-  assembleIndex, 'index.js', devReduxArgs
+assembleTest('[mobx] === index.mobx.js',
+  assembleIndex, 'index.mobx.js', { mobx: true }
+);
+
+assembleTest('[dev, redux] === index.redux.js',
+  assembleIndex, 'index.redux.js', devReduxArgs
 );
 
 assembleTest('[dev, redux] === spec.js',
   assembleAppSpec, 'spec.js', devReduxArgs
 );
 
-assembleTest('[dev, redux] === state.js',
-  assembleAppState, 'state.js', devReduxArgs
+assembleTest('[mobx] === state.mobx.js',
+  assembleAppState, 'state.mobx.js', { mobx: true }
+);
+
+assembleTest('[dev, redux] === state.redux.js',
+  assembleAppState, 'state.redux.js', devReduxArgs
 );
 
 assembleTest('[dev, redux] === npm-scripts.json',
   assembleNpmScripts, 'npm-scripts.json', devReduxArgs
+);
+
+assembleTest('[mobx] === app.mobx.js',
+  assembleApp, 'app.mobx.js', { mobx: true }
 );
 
 assembleTest('[dev, redux, sass] === app.sass.js',

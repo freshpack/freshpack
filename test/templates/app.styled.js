@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { increase, decrease, double } from './state';
 
@@ -20,7 +20,6 @@ const Headline = styled.h2`
 const Button = styled.button`
   font-size: 1rem;
 `;
-
 
 export class App extends React.Component {
   render() {

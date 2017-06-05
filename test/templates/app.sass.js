@@ -6,7 +6,6 @@ import { increase, decrease, double } from './state';
 
 import './style.scss';
 
-
 export class App extends React.Component {
   render() {
     return (

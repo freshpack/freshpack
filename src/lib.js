@@ -115,7 +115,7 @@ const writeFile = (filePath, content) => {
     (filePath.includes('spec') && !cmdLineArgs.test) ||
     (filePath.includes('mocks') && !cmdLineArgs.test) ||
     (filePath.includes('mocks') && cmdLineArgs.styled) ||
-    (filePath.includes('state') && !cmdLineArgs.redux) ||
+    (filePath.includes('state') && !cmdLineArgs.redux && !cmdLineArgs.mobx) ||
     (filePath.includes('store') && !cmdLineArgs.redux) ||
     (filePath.includes('vscode') && !cmdLineArgs.flow) ||
     (filePath.includes('flowConfig') && !cmdLineArgs.flow) ||
@@ -154,6 +154,7 @@ const execCommand = (cmdString, options = {}) => {
   let result = '';
 
   prc.stdout.setEncoding('utf8');
+
   prc.stdout.on('data', (data) => {
     const str = data.toString();
     if (options.version) {
@@ -162,6 +163,7 @@ const execCommand = (cmdString, options = {}) => {
       result = str.trim();
     }
   });
+
   prc.stdout.on('end', () => {
     if (options.callback) {
       options.callback(result);

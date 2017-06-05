@@ -27,8 +27,8 @@ const mergeBabelrcs = (a, b) => {
   a.presets && b.presets && b.presets.forEach((preset) => {
     a.presets.push(preset);
   });
-  a.plugins && b.plugins && a.plugins.forEach((plugin) => {
-    b.plugins.push(plugin);
+  a.plugins && b.plugins && b.plugins.forEach((plugin) => {
+    a.plugins.push(plugin);
   });
   return a;
 };

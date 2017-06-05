@@ -22,6 +22,7 @@ const devDependencies = [
   'babel-core',
   'babel-loader',
   'babel-plugin-transform-class-properties',
+  'babel-plugin-transform-decorators-legacy',
   'babel-plugin-transform-object-rest-spread',
   'babel-plugin-transform-runtime',
   'babel-preset-es2015',
@@ -67,6 +68,7 @@ insert_final_newline = true
 const babelrc = `{
   "presets": ["es2015", "stage-1", "react"],
   "plugins": [
+    "transform-decorators-legacy",
     "transform-class-properties",
     "transform-object-rest-spread"
   ]
@@ -154,7 +156,7 @@ const appCss = `
 .app {
   text-align: center;
   position: relative;
-  margin-top: 25%;
+  margin-top: 15%;
   top: -25%;
 }
 

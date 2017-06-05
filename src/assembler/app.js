@@ -6,6 +6,7 @@ const comment_flow = `// @flow`;
 
 const react_dependencies = `
 import React from 'react';
+import PropTypes from 'prop-types';
 `;
 
 const styled_components_dependencies = `
@@ -13,9 +14,13 @@ import styled from 'styled-components';
 `;
 
 const redux_dependencies = `
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { increase, decrease, double } from './state';
+`;
+
+const mobx_dependencies = `
+import { observer } from 'mobx-react';
+import DevTools from 'mobx-react-devtools';
 `;
 
 const import_base_stylesheet = `
@@ -58,6 +63,23 @@ export class App extends React.Component {
         <button onClick={this.props.increase}>+</button>{' '}
         <button onClick={this.props.decrease}>-</button>{' '}
         <button onClick={this.props.double}>double</button>
+      </div>
+    );
+  }
+}
+`;
+
+const component_mobx = `
+@observer
+class App extends React.Component {
+  render() {
+    return (
+      <div className="app">
+        <h2>{ this.props.counter.value }</h2>
+        <button onClick={ () => this.props.counter.increase() }>+</button>{' '}
+        <button onClick={ () => this.props.counter.decrease() }>-</button>{' '}
+        <button onClick={ () => this.props.counter.double() }>double</button>
+        <DevTools />
       </div>
     );
   }
@@ -194,7 +216,7 @@ export default class App extends React.Component {
 }
 `;
 
-const prop_types = `
+const prop_types_redux = `
 App.propTypes = {
   counter: PropTypes.object,
   increase: PropTypes.func,
@@ -203,11 +225,21 @@ App.propTypes = {
 };
 `;
 
-const export_component_state = `
+const prop_types_mobx = `
+App.propTypes = {
+  counter: PropTypes.object
+};
+`;
+
+const export_component_redux = `
 export default connect(
   state => ({ counter: state.app.counter }),
   { increase, decrease, double }
 )(App);
+`;
+
+const export_component_mobx = `
+export default App;
 `;
 
 module.exports = (args) => {
@@ -234,8 +266,11 @@ module.exports = (args) => {
   if (args.styled) {
     add(styled_components_dependencies);
   }
+
   if (args.redux) {
     add(redux_dependencies);
+  } else if (args.mobx) {
+    add(mobx_dependencies);
   }
 
   newline();
@@ -254,9 +289,8 @@ module.exports = (args) => {
   // 5 flow-types
   if (args.flow && !args.redux) {
     add(base_flow_types);
+    newline();
   }
-
-  newline();
 
   // 6 component
   if (args.redux && args.styled) {
@@ -267,6 +301,8 @@ module.exports = (args) => {
     add(component_styled_flow);
   } else if (args.redux) {
     add(component_redux);
+  } else if (args.mobx) {
+    add(component_mobx);
   } else if (args.styled) {
     add(component_base_styled);
   } else if (args.flow) {
@@ -279,14 +315,18 @@ module.exports = (args) => {
 
   // 7 prop-types
   if (args.redux) {
-    add(prop_types);
+    add(prop_types_redux);
+  } else if (args.mobx) {
+    add(prop_types_mobx);
   }
 
   newline();
 
-  // 8 export component with state
+  // 8 default export
   if (args.redux) {
-    add(export_component_state);
+    add(export_component_redux);
+  } else if (args.mobx) {
+    add(export_component_mobx);
   }
 
   return fileString;

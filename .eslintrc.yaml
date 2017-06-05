@@ -17,7 +17,8 @@ ecmaFeatures:
   arrowFunctions: true
 
 env:
-  browser: true
+  browser: true,
+  jasmine: true
 
 rules:
   global-require: 0

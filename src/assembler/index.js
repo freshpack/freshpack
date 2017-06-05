@@ -16,7 +16,13 @@ const import_component = `
 import App from './components/app/App.js';
 `;
 
-const comment_subscribe = `
+const import_state_mobx = `
+import { Counter } from './components/app/state.js';
+
+const counter = new Counter();
+`;
+
+const comment_subscribe_redux = `
 // // subscribe() returns a function for unregistering the listener
 // let unsubscribe = store.subscribe(() => (
 //   console.log(JSON.stringify(store.getState())
@@ -35,6 +41,13 @@ ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
+  document.getElementById('root')
+);
+`;
+
+const render_mobx = `
+ReactDOM.render(
+  <App counter={ counter } />,
   document.getElementById('root')
 );
 `;
@@ -62,17 +75,24 @@ module.exports = (args) => {
   // 3 import component
   add(import_component);
 
+  // 4 import mobx state
+  if (args.mobx) {
+    add(import_state_mobx);
+  }
+
   newline();
 
-  // 4 comment subscribe
+  // 5 comment subscribe
   if (args.redux) {
-    add(comment_subscribe);
+    add(comment_subscribe_redux);
     newline();
   }
 
-  // 5 render component
+  // 6 render component
   if (args.redux) {
     add(render_redux);
+  } else if (args.mobx) {
+    add(render_mobx);
   } else {
     add(render_base);
   }
