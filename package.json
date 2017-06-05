@@ -33,6 +33,7 @@
     "app",
     "react",
     "redux",
+    "mobx",
     "sass",
     "lint",
     "eslint",
