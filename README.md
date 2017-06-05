@@ -5,7 +5,7 @@
 ### Wire Things up the Automatic Way*
 
 Command line tool for a quick development start of React apps.
-Creates minimal boilerplates and installs all required dependencies in _latest versions_ with 'yarn'.
+Creates minimal boilerplates and installs the latest versions of all required dependencies.
 
 **Note**: 'yarn' must be installed! See [yarn installation guide](https://yarnpkg.com/lang/en/docs/install/)
 
@@ -17,9 +17,9 @@ Creates minimal boilerplates and installs all required dependencies in _latest v
 * [**File structure**](#file-structure)
 
 ## Motivation
-[Create-react-app](https://github.com/facebookincubator/create-react-app) is an awesome way to get started on a new React project. But unfortunately, standard tools such as Lint, Sass, Flow or Jest have to be installed later manually.
+[Create-react-app](https://github.com/facebookincubator/create-react-app) is a comfortable way to get started on a new React project. But unfortunately, standard tools are not selectable and have to be installed (or removed) later.
 
-This created the idea of a command line tool that provides options for support of commonly used tools - including all required dependencies, configuration files, minimal sample applications and real commands in the scripts section of package.json (instead of _react-scripts_).
+In contrast, **Freshpack** works _à-la-carte_ and provides options for support of commonly used tools (Lint, Flow, Jest, Sass, Styled Components, Redux and Mobx) - including all required dependencies, configuration files, minimal sample applications and tool commands in the scripts section of package.json (instead of _react-scripts_).
 
 ## Installation
 (node v6 required)
