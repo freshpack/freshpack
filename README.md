@@ -58,8 +58,8 @@ $ freshpack <project-directory> [--mobx, -m]
 ```
 * Generates skeleton with mobx example ('Counter')
 * Installs all required 'mobx' dependencies
-* TODO: flow types example
-* TODO: styled and sass examples
+* Adds mobx dev tools
+* TODO: flow types, styled and sass integrations
 * TODO: tests
 
 ### Option 'sass'
