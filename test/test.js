@@ -13,6 +13,7 @@ const assembleNpmScripts = require('../src/assembler/npm-scripts');
 
 test.createStream().pipe(tapDifflet()).pipe(process.stdout);
 
+const devMobxArgs = { flow: true, lint: true, test: true, mobx: true };
 const devReduxArgs = { flow: true, lint: true, test: true, redux: true };
 const devReduxStyledArgs = Object.assign({}, devReduxArgs, { styled: true });
 const devReduxSassArgs = Object.assign({}, devReduxArgs, { sass: true });
@@ -35,32 +36,36 @@ const assembleTest = (msg, func, file, args) => {
   }, err => console.log(err));
 };
 
-assembleTest('[mobx] === index.mobx.js',
-  assembleIndex, 'index.mobx.js', { mobx: true }
-);
-
 assembleTest('[dev, redux] === index.redux.js',
   assembleIndex, 'index.redux.js', devReduxArgs
 );
 
-assembleTest('[dev, redux] === spec.js',
-  assembleAppSpec, 'spec.js', devReduxArgs
+assembleTest('[dev, mobx] === index.mobx.js',
+  assembleIndex, 'index.mobx.js', devMobxArgs
 );
 
-assembleTest('[mobx] === state.mobx.js',
-  assembleAppState, 'state.mobx.js', { mobx: true }
+assembleTest('[dev, redux] === spec.redux.js',
+  assembleAppSpec, 'spec.redux.js', devReduxArgs
+);
+
+assembleTest('[dev, mobx] === spec.mobx.js',
+  assembleAppSpec, 'spec.mobx.js', devMobxArgs
 );
 
 assembleTest('[dev, redux] === state.redux.js',
   assembleAppState, 'state.redux.js', devReduxArgs
 );
 
+assembleTest('[dev, mobx] === state.mobx.js',
+  assembleAppState, 'state.mobx.js', devMobxArgs
+);
+
 assembleTest('[dev, redux] === npm-scripts.json',
   assembleNpmScripts, 'npm-scripts.json', devReduxArgs
 );
 
-assembleTest('[mobx] === app.mobx.js',
-  assembleApp, 'app.mobx.js', { mobx: true }
+assembleTest('[dev, mobx] === app.mobx.js',
+  assembleApp, 'app.mobx.js', devMobxArgs
 );
 
 assembleTest('[dev, redux, sass] === app.sass.js',

@@ -23,6 +23,10 @@ import { observer } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 `;
 
+const mobx_flow_dependencies = `
+import type { CounterType } from './types';
+`;
+
 const import_base_stylesheet = `
 import './style.css';`;
 
@@ -54,6 +58,12 @@ type Props = { opacity: number };
 type State = { name: string };
 `;
 
+const mobx_flow_types = `
+type Props = {
+  counter: CounterType
+};
+`;
+
 const component_redux = `
 export class App extends React.Component {
   render() {
@@ -72,6 +82,25 @@ export class App extends React.Component {
 const component_mobx = `
 @observer
 class App extends React.Component {
+  render() {
+    return (
+      <div className="app">
+        <h2>{ this.props.counter.value }</h2>
+        <button onClick={ () => this.props.counter.increase() }>+</button>{' '}
+        <button onClick={ () => this.props.counter.decrease() }>-</button>{' '}
+        <button onClick={ () => this.props.counter.double() }>double</button>
+        <DevTools />
+      </div>
+    );
+  }
+}
+`;
+
+const component_mobx_flow = `
+@observer
+class App extends React.Component {
+  props: Props;
+
   render() {
     return (
       <div className="app">
@@ -272,6 +301,10 @@ module.exports = (args) => {
   } else if (args.mobx) {
     add(mobx_dependencies);
   }
+  if (args.mobx && args.flow) {
+    add(mobx_flow_dependencies
+    );
+  }
 
   newline();
 
@@ -287,7 +320,10 @@ module.exports = (args) => {
   newline();
 
   // 5 flow-types
-  if (args.flow && !args.redux) {
+  if (args.flow && args.mobx) {
+    add(mobx_flow_types);
+    newline();
+  } else if (args.flow && !args.redux) {
     add(base_flow_types);
     newline();
   }
@@ -297,6 +333,8 @@ module.exports = (args) => {
     add(component_redux_styled);
   } else if (args.redux && args.flow) {
     add(component_redux_flow);
+  } else if (args.mobx && args.flow) {
+    add(component_mobx_flow);
   } else if (args.styled && args.flow) {
     add(component_styled_flow);
   } else if (args.redux) {

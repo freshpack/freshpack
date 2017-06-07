@@ -1,4 +1,7 @@
+// @flow
 import { observable } from 'mobx';
+
+// FLOW TYPES
 
 export class Counter {
   @observable value = 0;

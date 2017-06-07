@@ -20,6 +20,10 @@ import configureStore from 'redux-mock-store';
 import { increase, decrease, double, counter } from './state';
 `;
 
+const imports_mobx = `
+import { Counter } from './state.js';
+`;
+
 const import_component = `
 import App from './App';
 `;
@@ -88,6 +92,36 @@ describe('App', () => {
 });
 `;
 
+const mobx_tests = `
+describe('App', () => {
+  const counter = new Counter();
+
+  it('renders correctly', () => {
+    mount(<App counter={counter} />);
+  });
+  it('should contain one "H2" element', () => {
+    expect(mount(<App counter={counter} />).find('h2').length).toBe(1);
+  });
+  it('should contain three "button" elements', () => {
+    expect(shallow(<App counter={counter} />).find('button').length).toBe(3);
+  });
+  it('should increase counter', () => {
+    counter.increase();
+    counter.increase();
+    expect(counter.value).toEqual(2);
+  });
+  it('should double counter', () => {
+    counter.double();
+    expect(counter.value).toEqual(4);
+  });
+  it('should decrease counter', () => {
+    counter.decrease();
+    expect(counter.value).toEqual(3);
+  });
+});
+
+`;
+
 module.exports = (args) => {
   let fileString = '';
 
@@ -109,14 +143,17 @@ module.exports = (args) => {
     add(imports_enzyme_base);
   }
 
-  // 2 redux imports
+
+  // 2 state imports
   if (args.redux) {
     add(imports_redux);
+  } else if (args.mobx) {
+    add(imports_mobx);
   }
 
   newline();
 
-  // 3 import component
+  // 3 component import
   add(import_component);
 
   newline();
@@ -130,6 +167,8 @@ module.exports = (args) => {
   // 5 tests
   if (args.redux) {
     add(redux_tests);
+  } else if (args.mobx) {
+    add(mobx_tests);
   } else {
     add(base_tests);
   }

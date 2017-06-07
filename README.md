@@ -6,6 +6,7 @@
 
 Command line tool for a quick development start of React apps.
 Creates minimal boilerplates and installs the latest versions of all required dependencies.
+Still experimental.
 
 **Note**: 'yarn' must be installed! See [yarn installation guide](https://yarnpkg.com/lang/en/docs/install/)
 
@@ -59,8 +60,7 @@ $ freshpack <project-directory> [--mobx, -m]
 * Generates skeleton with mobx example ('Counter')
 * Installs all required 'mobx' dependencies
 * Adds mobx dev tools
-* TODO: flow types, styled and sass integrations
-* TODO: tests
+* TODO: styled and sass integration
 
 ### Option 'sass'
 ```bash

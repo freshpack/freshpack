@@ -37,6 +37,18 @@ module.file_ext=.css
 module.file_ext=.scss
 module.file_ext=.js
 module.file_ext=.json
+unsafe.enable_getters_and_setters=true
+esproposal.decorators=ignore
+`;
+
+const typesFileMobx = `
+// @flow
+export type CounterType = {
+  value: string;
+  increase: Function;
+  decrease: Function;
+  double: Function;
+}
 `;
 
 const settingsVSCode = `
@@ -79,6 +91,24 @@ declare module 'react-redux' {
 }
 `;
 
+const flowTypeMobx = `
+declare module 'mobx' {
+  declare module.exports: any;
+}
+`;
+
+const flowTypeMobxReact = `
+declare module 'mobx-react' {
+  declare module.exports: any;
+}
+`;
+
+const flowTypeMobxReactDevtools = `
+declare module 'mobx-react-devtools' {
+  declare module.exports: any;
+}
+`;
+
 module.exports = {
   babelrcFlow,
   devDependenciesFlow,
@@ -90,5 +120,9 @@ module.exports = {
   flowTypeRedux,
   flowTypePropTypes,
   flowTypeReactRedux,
-  flowTypeStyled
+  flowTypeStyled,
+  flowTypeMobx,
+  flowTypeMobxReact,
+  flowTypeMobxReactDevtools,
+  typesFileMobx
 };

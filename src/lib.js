@@ -118,9 +118,12 @@ const writeFile = (filePath, content) => {
     (filePath.includes('state') && !cmdLineArgs.redux && !cmdLineArgs.mobx) ||
     (filePath.includes('store') && !cmdLineArgs.redux) ||
     (filePath.includes('vscode') && !cmdLineArgs.flow) ||
+    (filePath.includes('app/types') && !cmdLineArgs.flow && !cmdLineArgs.mobx) ||
+    (filePath.includes('app/style') && cmdLineArgs.styled) ||
     (filePath.includes('flowConfig') && !cmdLineArgs.flow) ||
     (filePath.includes('flow-typed') && !cmdLineArgs.flow) ||
-    (filePath.includes('app/style') && cmdLineArgs.styled) ||
+    (filePath.includes('flow-typed') && filePath.includes('redux') && !cmdLineArgs.redux) ||
+    (filePath.includes('flow-typed/mobx') && !cmdLineArgs.mobx) ||
     (filePath.includes('flow-typed/styled-components') && cmdLineArgs.sass)
   ) {
     next();
