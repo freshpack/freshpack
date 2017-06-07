@@ -36,54 +36,58 @@ const assembleTest = (msg, func, file, args) => {
   }, err => console.log(err));
 };
 
-assembleTest('[dev, redux] === index.redux.js',
+assembleTest('[dev, redux] INDEX && index.redux template',
   assembleIndex, 'index.redux.js', devReduxArgs
 );
 
-assembleTest('[dev, mobx] === index.mobx.js',
+assembleTest('[dev, mobx] INDEX && index.mobx template',
   assembleIndex, 'index.mobx.js', devMobxArgs
 );
 
-assembleTest('[dev, redux] === spec.redux.js',
-  assembleAppSpec, 'spec.redux.js', devReduxArgs
-);
-
-assembleTest('[dev, mobx] === spec.mobx.js',
-  assembleAppSpec, 'spec.mobx.js', devMobxArgs
-);
-
-assembleTest('[dev, redux] === state.redux.js',
-  assembleAppState, 'state.redux.js', devReduxArgs
-);
-
-assembleTest('[dev, mobx] === state.mobx.js',
-  assembleAppState, 'state.mobx.js', devMobxArgs
-);
-
-assembleTest('[dev, redux] === npm-scripts.json',
-  assembleNpmScripts, 'npm-scripts.json', devReduxArgs
-);
-
-assembleTest('[dev, mobx] === app.mobx.js',
+assembleTest('[dev, mobx] APP && app.mobx template',
   assembleApp, 'app.mobx.js', devMobxArgs
 );
 
-assembleTest('[dev, redux, sass] === app.sass.js',
+assembleTest('[dev, redux, sass] APP && app.sass template',
   assembleApp, 'app.sass.js', devReduxSassArgs
 );
 
-assembleTest('[dev, redux, styled] === app.styled.js',
+assembleTest('[dev, redux, styled] APP && app.styled template',
   assembleApp, 'app.styled.js', devReduxStyledArgs
 );
 
-assembleTest('[dev, redux, sass] === dev-dependencies.sass.txt',
-  args => assembleDevDependencies(args), 'dev-dependencies.sass.txt', devReduxSassArgs
+assembleTest('[dev, redux] SPEC && spec.redux template',
+  assembleAppSpec, 'spec.redux.js', devReduxArgs
 );
 
-assembleTest('[dev, redux, styled] === dependencies.styled.txt',
+assembleTest('[dev, mobx] SPEC && spec.mobx template',
+  assembleAppSpec, 'spec.mobx.js', devMobxArgs
+);
+
+assembleTest('[dev, redux] STATE && state.redux template',
+  assembleAppState, 'state.redux.js', devReduxArgs
+);
+
+assembleTest('[dev, mobx] STATE && state.mobx template',
+  assembleAppState, 'state.mobx.js', devMobxArgs
+);
+
+assembleTest('[dev, redux, styled] DEPENDENCIES && dependencies.styled template',
   args => assembleDependencies(args), 'dependencies.styled.txt', devReduxStyledArgs
 );
 
-assembleTest('[dev, redux, styled] === dev-dependencies.styled.txt',
+assembleTest('[dev, redux, styled] DEV DEPENDENCIES && dev-dependencies.styled template',
   args => assembleDevDependencies(args), 'dev-dependencies.styled.txt', devReduxStyledArgs
+);
+
+assembleTest('[dev, redux, sass] DEV DEPENDENCIES && dev-dependencies.sass template',
+  args => assembleDevDependencies(args), 'dev-dependencies.sass.txt', devReduxSassArgs
+);
+
+assembleTest('[dev, redux] NPM SCRIPTS && npm-scripts template',
+  assembleNpmScripts, 'npm-scripts.json', devMobxArgs
+);
+
+assembleTest('[dev, modx] NPM SCRIPTS && npm-scripts template',
+  assembleNpmScripts, 'npm-scripts.json', devReduxArgs
 );
