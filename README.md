@@ -14,7 +14,7 @@ Still experimental.
 * [**Motivation**](#motivation)
 * [**Installation**](#installation)
 * [**Usage**](#usage)
-* [**Available run scripts**](#available-run-scripts)
+* [**Package scripts**](#package-scripts)
 * [**File structure**](#file-structure)
 
 ## Motivation
@@ -125,7 +125,7 @@ $ freshpack <project-directory> --flow --lint --test
 ```
 * Combine all dev options
 
-## Available run scripts
+## Package scripts
 
 ### Lint
 Available after usage with option --lint
@@ -160,6 +160,14 @@ $ yarn start
 ```
 
 ## File structure
+
+Here are some **examples** of the generated boilerplate file systems, which differ from each other according to selected options.
+
+The source folder is not sorted according to functionalities (folders for all components, containers, reducers, tests, etc.), but bundles all module-related files (scripts, styles, state, spec and types) in module folders.
+
+Redux components (actions, action creators and reducers) are stored in a "state" file in the module folder and also not in different folders or files.
+
+This allows a problem-free exchange of the components. But this is, of course, a question of taste and easy to change in the small generated boilerplate.
 
 ### base:
 ```bash
