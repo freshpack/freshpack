@@ -19,7 +19,7 @@ let started = 0;
 let finished = 0;
 let ivalMain = null;
 let ivalSpinner = null;
-let cmdLineArgs = {};
+let cmdArgs = {};
 let currentPath = ''; /* eslint no-unused-vars: 0 */
 let projectDirName = '';
 
@@ -38,7 +38,7 @@ const startSpinner = (msg) => {
 
   let text = '';
   msg = msg || 'installing packages';
-  if (!cmdLineArgs.quiet) {
+  if (!cmdArgs.quiet) {
     text = colors.bold(msg + ' ');
   } else {
     text = colors.white('please wait during installation ');
@@ -46,7 +46,7 @@ const startSpinner = (msg) => {
 
   ivalSpinner = setInterval(() => {
     let counterText = '';
-    if (!cmdLineArgs.quiet) {
+    if (!cmdArgs.quiet) {
       counterText = colors.dim(' (' + getTimer(start) + ' ms)');
     }
     logUpdate(spacer + text + colors.yellow(spinner()) + counterText);
@@ -54,7 +54,7 @@ const startSpinner = (msg) => {
 };
 
 const log = (msg) => {
-  if (!cmdLineArgs.quiet) {
+  if (!cmdArgs.quiet) {
     console.log(spacer + msg);
   }
   next();
@@ -87,11 +87,13 @@ const createFolder = (parts, i) => {
 };
 
 const createFolders = (dirPath) => {
+  const incl = str => dirPath.includes(str);
+
   if (
-    (dirPath.includes('vscode') && !cmdLineArgs.flow) ||
-    (dirPath.includes('flow-typed') && !cmdLineArgs.flow) ||
-    (dirPath.includes('mocks') && !cmdLineArgs.test) ||
-    (dirPath.includes('mocks') && cmdLineArgs.styled)
+    (incl('vscode') && !cmdArgs.flow) ||
+    (incl('flow-typed') && !cmdArgs.flow) ||
+    (incl('mocks') && !cmdArgs.test) ||
+    (incl('mocks') && cmdArgs.styled)
   ) {
     next();
     return;
@@ -109,22 +111,24 @@ const createFolders = (dirPath) => {
 };
 
 const writeFile = (filePath, content) => {
+  const incl = str => filePath.includes(str);
+
   if (
-    (filePath.includes('eslint') && !cmdLineArgs.lint) ||
-    (filePath.includes('jest') && !cmdLineArgs.test) ||
-    (filePath.includes('spec') && !cmdLineArgs.test) ||
-    (filePath.includes('mocks') && !cmdLineArgs.test) ||
-    (filePath.includes('mocks') && cmdLineArgs.styled) ||
-    (filePath.includes('state') && !cmdLineArgs.redux && !cmdLineArgs.mobx) ||
-    (filePath.includes('store') && !cmdLineArgs.redux) ||
-    (filePath.includes('vscode') && !cmdLineArgs.flow) ||
-    (filePath.includes('app/types') && !cmdLineArgs.flow && !cmdLineArgs.mobx) ||
-    (filePath.includes('app/style') && cmdLineArgs.styled) ||
-    (filePath.includes('flowConfig') && !cmdLineArgs.flow) ||
-    (filePath.includes('flow-typed') && !cmdLineArgs.flow) ||
-    (filePath.includes('flow-typed') && filePath.includes('redux') && !cmdLineArgs.redux) ||
-    (filePath.includes('flow-typed/mobx') && !cmdLineArgs.mobx) ||
-    (filePath.includes('flow-typed/styled-components') && cmdLineArgs.sass)
+    (incl('eslint') && !cmdArgs.lint) ||
+    (incl('jest') && !cmdArgs.test) ||
+    (incl('spec') && !cmdArgs.test) ||
+    (incl('mocks') && !cmdArgs.test) ||
+    (incl('mocks') && cmdArgs.styled) ||
+    (incl('state') && !cmdArgs.redux && !cmdArgs.mobx) ||
+    (incl('store') && !cmdArgs.redux) ||
+    (incl('vscode') && !cmdArgs.flow) ||
+    (incl('app/types') && !cmdArgs.flow && !cmdArgs.mobx) ||
+    (incl('app/style') && cmdArgs.styled) ||
+    (incl('flowConfig') && !cmdArgs.flow) ||
+    (incl('flow-typed') && !cmdArgs.flow) ||
+    (incl('flow-typed') && incl('redux') && !cmdArgs.redux) ||
+    (incl('flow-typed/mobx') && !cmdArgs.mobx) ||
+    (incl('flow-typed/styled-components') && cmdArgs.sass)
   ) {
     next();
     return;
@@ -145,7 +149,7 @@ const writeFile = (filePath, content) => {
 };
 
 const execCommand = (cmdString, options = {}) => {
-  if (options.dependencies && !cmdLineArgs.install) {
+  if (options.dependencies && !cmdArgs.install) {
     setTimeout(next, 0);
     return;
   }
@@ -177,7 +181,7 @@ const execCommand = (cmdString, options = {}) => {
 };
 
 const getVersions = (dependencies, devDependencies) => {
-  if (cmdLineArgs.install) {
+  if (cmdArgs.install) {
     setTimeout(next, 0);
     return;
   }
@@ -263,7 +267,7 @@ const displayAvailableScripts = () => {
 
 const countAllNodeModules = () => {
   let counter = 0;
-  if (cmdLineArgs.install) {
+  if (cmdArgs.install) {
     const dir = path.join(workingDir, '/', projectDirName, '/node_modules/');
     const files = fs.readdirSync(dir);
     files.forEach((file) => {
@@ -285,8 +289,8 @@ const exit = () => {
   const numModules = countAllNodeModules();
   let listMsg;
 
-  if (!cmdLineArgs.quiet) {
-    if (cmdLineArgs.install) {
+  if (!cmdArgs.quiet) {
+    if (cmdArgs.install) {
       listMsg = 'installed packages';
     } else {
       listMsg = 'latest versions';
@@ -308,7 +312,7 @@ const exit = () => {
 
   log('usage'.bold);
   log(colors.white('cd ' + projectDirName));
-  if (!cmdLineArgs.install) {
+  if (!cmdArgs.install) {
     log(colors.white('yarn install'));
   }
   displayAvailableScripts();
@@ -332,7 +336,7 @@ const starting = (headertext) => {
 };
 
 const init = (args, dir) => {
-  cmdLineArgs = args;
+  cmdArgs = args;
   projectDirName = dir;
   next();
 };
