@@ -13,7 +13,7 @@ Still experimental.
 ## Table of Contents
 * [**Motivation**](#motivation)
 * [**Installation**](#installation)
-* [**Generating projects**](#generating-projects)
+* [**Usage**](#usage)
 * [**Available run scripts**](#available-run-scripts)
 * [**File structure**](#file-structure)
 
@@ -29,21 +29,33 @@ In contrast, **Freshpack** works _à-la-carte_ and provides options for support 
 $ yarn global add freshpack
 ```
 
-## Generating project skeletons
+## Usage
 
 ### Basic features
 ```bash
 $ freshpack <project-directory>
 ```
 * Generates a minimal React app skeleton ('Hello World')
-* Generates minimal webpack configuration file (webpack.config.js)
-* Generates babel configuration file (.babelrc)
+* Generates webpack configuration file
+* Generates babel configuration file
 * Generates editor configuration file (.editorConfig)
 * Generates package.json file
 * Adds start script for development ('yarn start')
-* Installs all required dependencies
+* Retrieves the last version numbers of all necessary dependencies and saved them in package.json file.
 * Enables hot reloading
-* Displays info if new version of freshpack is available
+* Displays info when new freshpack version available
+
+### Option 'install'
+```bash
+$ freshpack <project-directory> [--install, -i]
+```
+* Installs dependencies automatically (yarn install)
+
+### Option 'quiet'
+```bash
+$ freshpack <project-directory> [--quiet, -q]
+```
+* Disable verbose logging
 
 ### Option 'redux'
 ```bash
@@ -104,18 +116,6 @@ $ freshpack <project-directory> [--styled, -y]
 * Generates skeleton with 'styled-components' example(s)
 * Installs required 'styled-components' dependency
 * Adds 'styled-components' files
-
-### Option 'install'
-```bash
-$ freshpack <project-directory> [--install, -i]
-```
-* Install dependencies
-
-### Option 'quiet'
-```bash
-$ freshpack <project-directory> [--quiet, -q]
-```
-* Disable verbose logging
 
 ### Option 'dev'
 ```bash
