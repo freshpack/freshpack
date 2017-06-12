@@ -20,11 +20,14 @@ import { increase, decrease, double } from './state';
 
 const mobx_dependencies = `
 import { observer } from 'mobx-react';
-import DevTools from 'mobx-react-devtools';
 `;
 
 const mobx_flow_dependencies = `
 import type { CounterType } from './types';
+`;
+
+const mobx_styled_dependencies = `
+import { Wrapper, Headline, Button } from './styled.js';
 `;
 
 const import_base_stylesheet = `
@@ -32,24 +35,6 @@ import './style.css';`;
 
 const import_sass_file = `
 import './style.scss';
-`;
-
-const styled_components_styles = `
-const Wrapper = styled.div\`
-  text-align: center;
-  position: relative;
-  margin-top: 15%;
-  top: -15%;
-\`;
-
-const Headline = styled.h2\`
-  font-size: 9rem;
-  margin-bottom: 0px;
-\`;
-
-const Button = styled.button\`
-  font-size: 1rem;
-\`;
 `;
 
 const base_flow_types = `
@@ -64,21 +49,6 @@ type Props = {
 };
 `;
 
-const component_redux = `
-export class App extends React.Component {
-  render() {
-    return (
-      <div className="app">
-        <h2>{ this.props.counter.value }</h2>
-        <button onClick={this.props.increase}>+</button>{' '}
-        <button onClick={this.props.decrease}>-</button>{' '}
-        <button onClick={this.props.double}>double</button>
-      </div>
-    );
-  }
-}
-`;
-
 const component_mobx = `
 @observer
 class App extends React.Component {
@@ -89,7 +59,6 @@ class App extends React.Component {
         <button onClick={ () => this.props.counter.increase() }>+</button>{' '}
         <button onClick={ () => this.props.counter.decrease() }>-</button>{' '}
         <button onClick={ () => this.props.counter.double() }>double</button>
-        <DevTools />
       </div>
     );
   }
@@ -108,7 +77,69 @@ class App extends React.Component {
         <button onClick={ () => this.props.counter.increase() }>+</button>{' '}
         <button onClick={ () => this.props.counter.decrease() }>-</button>{' '}
         <button onClick={ () => this.props.counter.double() }>double</button>
-        <DevTools />
+      </div>
+    );
+  }
+}
+`;
+
+const component_mobx_flow_styled = `
+@observer
+class App extends React.Component {
+  props: Props;
+
+  render() {
+    return (
+      <Wrapper>
+        <Headline>{ this.props.counter.value }</Headline>
+        <Button onClick={ () => this.props.counter.increase() }>+</Button>{' '}
+        <Button onClick={ () => this.props.counter.decrease() }>-</Button>{' '}
+        <Button onClick={ () => this.props.counter.double() }>double</Button>
+      </Wrapper>
+    );
+  }
+}
+`;
+
+const component_mobx_styled = `
+class App extends React.Component {
+  render() {
+    return (
+      <Wrapper>
+        <Headline>{ this.props.counter.value }</Headline>
+        <Button onClick={ () => this.props.counter.increase() }>+</Button>{' '}
+        <Button onClick={ () => this.props.counter.decrease() }>-</Button>{' '}
+        <Button onClick={ () => this.props.counter.double() }>double</Button>
+      </Wrapper>
+    );
+  }
+}
+`;
+
+const component_redux = `
+export class App extends React.Component {
+  render() {
+    return (
+      <div className="app">
+        <h2>{ this.props.counter.value }</h2>
+        <button onClick={this.props.increase}>+</button>{' '}
+        <button onClick={this.props.decrease}>-</button>{' '}
+        <button onClick={this.props.double}>double</button>
+      </div>
+    );
+  }
+}
+`;
+
+const component_redux_flow = `
+export class App extends React.Component {
+  render() {
+    return (
+      <div className="app">
+        <h2>{ this.props.counter.value }</h2>
+        <button onClick={this.props.increase}>+</button>{' '}
+        <button onClick={this.props.decrease}>-</button>{' '}
+        <button onClick={this.props.double}>double</button>
       </div>
     );
   }
@@ -117,6 +148,22 @@ class App extends React.Component {
 
 const component_redux_styled = `
 export class App extends React.Component {
+  render() {
+    return (
+      <Wrapper>
+        <Headline>{ this.props.counter.value }</Headline>
+        <Button onClick={this.props.increase}>+</Button>{' '}
+        <Button onClick={this.props.decrease}>-</Button>{' '}
+        <Button onClick={this.props.double}>double</Button>
+      </Wrapper>
+    );
+  }
+}
+`;
+
+const component_redux_flow_styled = `
+class App extends React.Component {
+  props: Props;
   render() {
     return (
       <Wrapper>
@@ -151,22 +198,7 @@ export default class App extends React.Component {
 }
 `;
 
-const component_redux_flow = `
-export class App extends React.Component {
-  render() {
-    return (
-      <div className="app">
-        <h2>{ this.props.counter.value }</h2>
-        <button onClick={this.props.increase}>+</button>{' '}
-        <button onClick={this.props.decrease}>-</button>{' '}
-        <button onClick={this.props.double}>double</button>
-      </div>
-    );
-  }
-}
-`;
-
-const component_styled_flow = `
+const component_base_flow_styled = `
 export default class App extends React.Component<DefaultProps, Props, State> {
   state: State;
   static defaultProps = {
@@ -302,18 +334,18 @@ module.exports = (args) => {
     add(mobx_dependencies);
   }
   if (args.mobx && args.flow) {
-    add(mobx_flow_dependencies
-    );
+    add(mobx_flow_dependencies);
+  }
+  if (args.mobx && args.styled) {
+    add(mobx_styled_dependencies);
   }
 
   newline();
 
   // 4 styles
-  if (args.styled) {
-    add(styled_components_styles);
-  } else if (args.sass) {
+  if (args.sass) {
     add(import_sass_file);
-  } else {
+  } else if (!args.styled){
     add(import_base_stylesheet);
   }
 
@@ -329,24 +361,36 @@ module.exports = (args) => {
   }
 
   // 6 component
-  if (args.redux && args.styled) {
-    add(component_redux_styled);
-  } else if (args.redux && args.flow) {
-    add(component_redux_flow);
-  } else if (args.mobx && args.flow) {
-    add(component_mobx_flow);
-  } else if (args.styled && args.flow) {
-    add(component_styled_flow);
+  if (args.mobx) {
+    if (args.flow && args.styled) {
+      add(component_mobx_flow_styled);
+    } else if (args.flow) {
+      add(component_mobx_flow);
+    } else if (args.styled) {
+      add(component_mobx_styled);
+    } else {
+      add(component_mobx);
+    }
   } else if (args.redux) {
-    add(component_redux);
-  } else if (args.mobx) {
-    add(component_mobx);
-  } else if (args.styled) {
-    add(component_base_styled);
-  } else if (args.flow) {
-    add(component_base_flow);
-  } else {
-    add(component_base);
+    if (args.flow && args.styled) {
+      add(component_redux_flow_styled);
+    } else if (args.flow) {
+      add(component_redux_flow);
+    } else if (args.styled) {
+      add(component_redux_styled);
+    } else {
+      add(component_redux);
+    }
+  } else if (!args.redux && !args.mobx) {
+    if (args.flow && args.styled) {
+      add(component_base_flow_styled);
+    } else if (args.flow) {
+      add(component_base_flow);
+    } else if (args.styled) {
+      add(component_base_styled);
+    } else {
+      add(component_base);
+    }
   }
 
   newline();

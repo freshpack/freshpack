@@ -72,7 +72,6 @@ $ freshpack <project-directory> [--mobx, -m]
 * Generates skeleton with mobx example ('Counter')
 * Installs all required 'mobx' dependencies
 * Adds mobx dev tools
-* TODO: styled and sass integration
 
 ### Option 'sass'
 ```bash
@@ -165,9 +164,9 @@ Here are some **examples** of the generated boilerplate file systems, which diff
 
 The source folder is not sorted according to functionalities (folders for all components, containers, reducers, tests, etc.), but bundles all module-related files (scripts, styles, state, spec and types) in module folders.
 
-Redux components (actions, action creators and reducers) are stored in a "state" file in the module folder and also not in different folders or files.
+Redux components (actions, action creators and reducers) are stored together in a single "state" file in the module folder and not in different folders or files.
 
-This allows a problem-free exchange of the components. But this is, of course, a question of taste and easy to change in the small generated boilerplate.
+This structure is, of course, a matter of taste as well as the application case and easy to change in the generated boilerplate.
 
 ### base:
 ```bash

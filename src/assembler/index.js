@@ -18,6 +18,7 @@ import App from './components/app/App.js';
 
 const import_state_mobx = `
 import { Counter } from './components/app/state.js';
+import DevTools from 'mobx-react-devtools';
 
 const counter = new Counter();
 `;
@@ -47,7 +48,10 @@ ReactDOM.render(
 
 const render_mobx = `
 ReactDOM.render(
-  <App counter={ counter } />,
+  <main>
+    <App counter={ counter } />
+    <DevTools />
+  </main>,
   document.getElementById('root')
 );
 `;

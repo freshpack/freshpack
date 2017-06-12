@@ -123,7 +123,8 @@ const writeFile = (filePath, content) => {
     (incl('store') && !cmdArgs.redux) ||
     (incl('vscode') && !cmdArgs.flow) ||
     (incl('app/types') && !cmdArgs.flow && !cmdArgs.mobx) ||
-    (incl('app/style') && cmdArgs.styled) ||
+    (incl('app/style.') && cmdArgs.styled) ||
+    (incl('app/styled.') && !cmdArgs.styled) ||
     (incl('flowConfig') && !cmdArgs.flow) ||
     (incl('flow-typed') && !cmdArgs.flow) ||
     (incl('flow-typed') && incl('redux') && !cmdArgs.redux) ||

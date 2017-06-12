@@ -95,15 +95,16 @@ describe('App', () => {
 const mobx_tests = `
 describe('App', () => {
   const counter = new Counter();
+  let component;
 
   it('renders correctly', () => {
-    mount(<App counter={counter} />);
+    component = mount(<App counter={counter} />);
   });
   it('should contain one "H2" element', () => {
-    expect(mount(<App counter={counter} />).find('h2').length).toBe(1);
+    expect(component.find('h2').length).toBe(1);
   });
   it('should contain three "button" elements', () => {
-    expect(shallow(<App counter={counter} />).find('button').length).toBe(3);
+    expect(component.find('button').length).toBe(3);
   });
   it('should increase counter', () => {
     counter.increase();
@@ -119,7 +120,6 @@ describe('App', () => {
     expect(counter.value).toEqual(3);
   });
 });
-
 `;
 
 module.exports = (args) => {

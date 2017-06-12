@@ -94,6 +94,7 @@ config((project, args) => {
     [write, 'src/store.js', tmpl.storeJs],
     [write, 'src/components/app/App.js', app],
     [write, 'src/components/app/style.' + appStylesheetExt, tmpl.appStylesheet],
+    [write, 'src/components/app/styled.js', tmpl.styledJs],
     [write, 'src/components/app/state.js', appState],
     [write, 'src/components/app/spec.js', appSpec],
     [write, 'src/components/app/types.js', tmpl.typesFileMobx],
