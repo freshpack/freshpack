@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { increase, decrease, double } from './state';
+import type { CounterType } from './types';
 
 import './style.scss';
 

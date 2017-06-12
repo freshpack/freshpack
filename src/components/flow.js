@@ -51,6 +51,19 @@ export type CounterType = {
 }
 `;
 
+const typesFileRedux = `
+// @flow
+export type CounterState = { value: number };
+export type CounterAction = { type: string };
+export type CounterType = {
+  counter: CounterState,
+  increase: Function,
+  decrease: Function,
+  double: Function
+};
+
+`;
+
 const settingsVSCode = `
 {
   "javascript.validate.enable": false
@@ -124,5 +137,6 @@ module.exports = {
   flowTypeMobx,
   flowTypeMobxReact,
   flowTypeMobxReactDevtools,
-  typesFileMobx
+  typesFileMobx,
+  typesFileRedux
 };

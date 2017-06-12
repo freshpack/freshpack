@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import DevTools from 'mobx-react-devtools';
 import type { CounterType } from './types';
 
 import './style.css';
@@ -22,7 +21,6 @@ class App extends React.Component {
         <button onClick={ () => this.props.counter.increase() }>+</button>{' '}
         <button onClick={ () => this.props.counter.decrease() }>-</button>{' '}
         <button onClick={ () => this.props.counter.double() }>double</button>
-        <DevTools />
       </div>
     );
   }

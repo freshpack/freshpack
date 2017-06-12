@@ -2,26 +2,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Wrapper, Headline, Button } from './styled.js';
 import { connect } from 'react-redux';
 import { increase, decrease, double } from './state';
+import type { CounterType } from './types';
 
-const Wrapper = styled.div`
-  text-align: center;
-  position: relative;
-  margin-top: 15%;
-  top: -15%;
-`;
 
-const Headline = styled.h2`
-  font-size: 9rem;
-  margin-bottom: 0px;
-`;
-
-const Button = styled.button`
-  font-size: 1rem;
-`;
-
-export class App extends React.Component {
+class App extends React.Component {
+  props: CounterType;
   render() {
     return (
       <Wrapper>

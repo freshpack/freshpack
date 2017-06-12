@@ -12,20 +12,8 @@ const imports_modx = `
 import { observable } from 'mobx';
 `;
 
-const flow_types_redux = `
-// FLOW TYPES
-type CounterState = { value: number };
-type CounterAction = { type: string };
-export type CounterProps = {
-  counter: CounterState,
-  increase: Function,
-  decrease: Function,
-  double: Function
-};
-`;
-
-const flow_types_modx = `
-// FLOW TYPES
+const import_flow_types_redux = `
+import type { CounterState, CounterAction } from './types';
 `;
 
 const rest_redux = `
@@ -101,18 +89,12 @@ module.exports = (args) => {
     add(imports_modx);
     newline();
   }
-
-  // 3 flow types
-  if (args.flow) {
-    if (args.redux) {
-      add(flow_types_redux);
-    } else if (args.mobx) {
-      add(flow_types_modx);
-    }
+  if (args.flow && args.redux) {
+    add(import_flow_types_redux);
     newline();
   }
 
-  // 4 rest
+  // 3 rest
   if (args.redux) {
     add(rest_redux);
   } else if (args.mobx) {

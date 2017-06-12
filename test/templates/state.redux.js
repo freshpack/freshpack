@@ -1,15 +1,7 @@
 // @flow
 import { combineReducers } from 'redux';
 
-// FLOW TYPES
-type CounterState = { value: number };
-type CounterAction = { type: string };
-export type CounterProps = {
-  counter: CounterState,
-  increase: Function,
-  decrease: Function,
-  double: Function
-};
+import type { CounterState, CounterAction } from './types';
 
 // ACTION TYPES
 const INCREMENT = 'INCREMENT';

@@ -58,6 +58,8 @@ config((project, args) => {
   let appStylesheetExt = 'css';
   tmpl.appStylesheet = tmpl.appCss;
 
+  let typesFileContent;
+
   if (args.flow) {
     tmpl.eslintrc += tmpl.eslintrcFlow;
     tmpl.babelrc = JSON.stringify(mergeBabelrcs(
@@ -73,6 +75,12 @@ config((project, args) => {
   if (args.sass) {
     tmpl.appStylesheet = tmpl.appScss;
     appStylesheetExt = 'scss';
+  }
+
+  if (args.mobx) {
+    typesFileContent = tmpl.typesFileMobx;
+  } else if (args.redux) {
+    typesFileContent = tmpl.typesFileRedux;
   }
 
   sequence([
@@ -97,7 +105,7 @@ config((project, args) => {
     [write, 'src/components/app/styled.js', tmpl.styledJs],
     [write, 'src/components/app/state.js', appState],
     [write, 'src/components/app/spec.js', appSpec],
-    [write, 'src/components/app/types.js', tmpl.typesFileMobx],
+    [write, 'src/components/app/types.js', typesFileContent],
     [write, 'flow-typed/redux.js', tmpl.flowTypeRedux],
     [write, 'flow-typed/prop-types.js', tmpl.flowTypePropTypes],
     [write, 'flow-typed/react-redux.js', tmpl.flowTypeReactRedux],

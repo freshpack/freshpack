@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 
 const styled_components_dependencies = `
 import styled from 'styled-components';
+import { Wrapper, Headline, Button } from './styled.js';
 `;
 
 const redux_dependencies = `
@@ -22,12 +23,8 @@ const mobx_dependencies = `
 import { observer } from 'mobx-react';
 `;
 
-const mobx_flow_dependencies = `
+const flow_dependencies = `
 import type { CounterType } from './types';
-`;
-
-const mobx_styled_dependencies = `
-import { Wrapper, Headline, Button } from './styled.js';
 `;
 
 const import_base_stylesheet = `
@@ -163,7 +160,7 @@ export class App extends React.Component {
 
 const component_redux_flow_styled = `
 class App extends React.Component {
-  props: Props;
+  props: CounterType;
   render() {
     return (
       <Wrapper>
@@ -333,11 +330,8 @@ module.exports = (args) => {
   } else if (args.mobx) {
     add(mobx_dependencies);
   }
-  if (args.mobx && args.flow) {
-    add(mobx_flow_dependencies);
-  }
-  if (args.mobx && args.styled) {
-    add(mobx_styled_dependencies);
+  if ((args.mobx || args.redux) && args.flow) {
+    add(flow_dependencies);
   }
 
   newline();

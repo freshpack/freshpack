@@ -52,8 +52,8 @@ assembleTest('[dev, redux, sass] APP && app.sass template',
   assembleApp, 'app.sass.js', devReduxSassArgs
 );
 
-assembleTest('[dev, redux, styled] APP && app.styled template',
-  assembleApp, 'app.styled.js', devReduxStyledArgs
+assembleTest('[dev, redux, styled] APP && app.redux.styled template',
+  assembleApp, 'app.redux.styled.js', devReduxStyledArgs
 );
 
 assembleTest('[dev, redux] SPEC && spec.redux template',
