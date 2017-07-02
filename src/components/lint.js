@@ -14,11 +14,11 @@ const lintScripts = {
 
 const devDependenciesLint = [
   'babel-eslint',
-  'eslint',
+  // 'eslint',
   'eslint-config-airbnb',
-  'eslint-plugin-import',
-  'eslint-plugin-jsx-a11y',
-  'eslint-plugin-react'
+  'eslint-plugin-import' // ,
+  // 'eslint-plugin-jsx-a11y',
+  // 'eslint-plugin-react'
 ];
 
 // File templates

@@ -28,7 +28,6 @@ jest-cli
 react-addons-test-utils
 react-test-renderer
 redux-mock-store
-regenerator-runtime
-style-loader
-webpack
+regenerator-runtime 
+style-loader webpack
 webpack-dev-server

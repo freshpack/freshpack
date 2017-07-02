@@ -181,6 +181,16 @@ const execCommand = (cmdString, options = {}) => {
   });
 };
 
+const sortObject = (obj) => {
+  const tempArray = [];
+  const tempObject = {};
+  Object.keys(obj).forEach(key => tempArray.push(key));
+  tempArray.sort().forEach((item) => {
+    tempObject[item] = obj[item];
+  });
+  return tempObject;
+};
+
 const getVersions = (dependencies, devDependencies) => {
   if (cmdArgs.install) {
     setTimeout(next, 0);
@@ -202,6 +212,21 @@ const getVersions = (dependencies, devDependencies) => {
           dependenciesCounter -= 1;
         }
       });
+
+      if (dep === 'eslint-config-airbnb') {
+        dependenciesCounter += 1;
+        execCommand('npm info eslint-config-airbnb@latest peerDependencies', {
+          callback: (res) => {
+            res = res.replace(/'/g, '"');
+            res = res.replace(/eslint:/g, '"eslint":');
+            const airbnbVersions = JSON.parse(res);
+            Object.keys(airbnbVersions).forEach((key) => {
+              obj[key] = airbnbVersions[key];
+            });
+            dependenciesCounter -= 1;
+          }
+        });
+      }
     });
   };
 
@@ -215,8 +240,8 @@ const getVersions = (dependencies, devDependencies) => {
       clearInterval(ival);
       setTimeout(() => {
         const pkgApp = getPackage();
-        pkgApp.dependencies = dependenciesObject;
-        pkgApp.devDependencies = devDependenciesObject;
+        pkgApp.dependencies = sortObject(dependenciesObject);
+        pkgApp.devDependencies = sortObject(devDependenciesObject);
         writeFile('package.json', JSON.stringify(pkgApp, null, 2));
       }, 0);
     }

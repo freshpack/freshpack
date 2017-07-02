@@ -6,9 +6,9 @@
 
 Command line tool for a quick development start of React apps.
 Creates minimal boilerplates and installs the latest versions of all required dependencies.
-Still experimental.
+**Still experimental**.
 
-**Note**: 'yarn' must be installed! See [yarn installation guide](https://yarnpkg.com/lang/en/docs/install/)
+Note: 'yarn' must be installed! See [yarn installation guide](https://yarnpkg.com/lang/en/docs/install/)
 
 ## Table of Contents
 * [**Motivation**](#motivation)
