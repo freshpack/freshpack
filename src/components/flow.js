@@ -41,6 +41,13 @@ unsafe.enable_getters_and_setters=true
 esproposal.decorators=ignore
 `;
 
+const typesFileBase = `
+// @flow
+export type DefaultProps = { opacity: number };
+export type Props = { opacity: number };
+export type State = { name: string };
+`;
+
 const typesFileMobx = `
 // @flow
 export type CounterType = {
@@ -98,6 +105,12 @@ declare module 'prop-types' {
 }
 `;
 
+const flowTypeReactRouterDom = `
+declare module 'react-router-dom' {
+  declare module.exports: any;
+}
+`;
+
 const flowTypeReactRedux = `
 declare module 'react-redux' {
   declare module.exports: any;
@@ -132,11 +145,13 @@ module.exports = {
   flowScripts,
   flowTypeRedux,
   flowTypePropTypes,
+  flowTypeReactRouterDom,
   flowTypeReactRedux,
   flowTypeStyled,
   flowTypeMobx,
   flowTypeMobxReact,
   flowTypeMobxReactDevtools,
+  typesFileBase,
   typesFileMobx,
   typesFileRedux
 };

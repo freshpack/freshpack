@@ -129,13 +129,16 @@ const writeFile = (filePath, content) => {
     (incl('flow-typed') && !cmdArgs.flow) ||
     (incl('flow-typed') && incl('redux') && !cmdArgs.redux) ||
     (incl('flow-typed/mobx') && !cmdArgs.mobx) ||
-    (incl('flow-typed/styled-components') && cmdArgs.sass)
+    (incl('flow-typed/react-router-dom') && !cmdArgs.router) ||
+    (incl('flow-typed/styled-components') && !cmdArgs.styled)
   ) {
     next();
     return;
   }
 
-  content = trimLeft(content);
+  if (content) {
+    content = trimLeft(content);
+  }
 
   fs.writeFile(path.join(workingDir, '/', projectDirName, '/', filePath), content, (err) => {
     if (err) return log(err);

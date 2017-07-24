@@ -1,16 +1,20 @@
 // @flow
+/* eslint 
+   no-unused-vars: 0 
+   react/no-multi-comp: 0
+*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { increase, decrease, double } from './state';
 import type { CounterType } from './types';
 
 import './style.scss';
+import { increase, decrease, double } from './state';
 
 export class App extends React.Component {
   render() {
     return (
-      <div className="app">
+      <div className="center-wrapper">
         <h2>{ this.props.counter.value }</h2>
         <button onClick={this.props.increase}>+</button>{' '}
         <button onClick={this.props.decrease}>-</button>{' '}

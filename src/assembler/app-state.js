@@ -4,6 +4,10 @@ const os = require('os');
 
 const comment_flow = `// @flow`;
 
+const comment_eslint = `/* eslint 
+   import/prefer-default-export: 0
+*/`;
+
 const imports_redux = `
 import { combineReducers } from 'redux';
 `;
@@ -79,6 +83,10 @@ module.exports = (args) => {
   // 1 comments
   if (args.flow) {
     add(comment_flow);
+  }
+
+  if (args.mobx) {
+    add(comment_eslint);
   }
 
   // 2 dependencies

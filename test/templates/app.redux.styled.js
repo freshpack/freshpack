@@ -1,12 +1,15 @@
 // @flow
+/* eslint 
+   no-unused-vars: 0 
+   react/no-multi-comp: 0
+*/
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { Wrapper, Headline, Button } from './styled.js';
 import { connect } from 'react-redux';
-import { increase, decrease, double } from './state';
 import type { CounterType } from './types';
 
+import { Wrapper, Headline, Button } from './styled.js';
+import { increase, decrease, double } from './state';
 
 class App extends React.Component {
   props: CounterType;

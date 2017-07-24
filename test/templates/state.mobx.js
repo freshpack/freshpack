@@ -1,4 +1,7 @@
 // @flow
+/* eslint 
+   import/prefer-default-export: 0
+*/
 import { observable } from 'mobx';
 
 export class Counter {

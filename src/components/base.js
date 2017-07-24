@@ -124,6 +124,8 @@ module.exports = {
     new webpack.NamedModulesPlugin()
   ],
   devServer: {
+    historyApiFallback: true,
+    contentBase: './',
     stats: {
       assets: true,
       timings: true,
@@ -153,20 +155,24 @@ const indexHtml = `
 `;
 
 const appCss = `
-.app {
+body {
+  margin: 0;
+}
+
+.center-wrapper {
   text-align: center;
   position: relative;
   margin-top: 15%;
   top: -25%;
 }
 
-h1 span:first-child { color: black }
-h1 span:last-child { color: blue }
-
 h2 {
   font-size: 9rem;
   margin-bottom: 0px;
 }
+
+h2 span:first-child { color: black }
+h2 span:last-child { color: blue }
 
 button {
   font-size: 1rem;

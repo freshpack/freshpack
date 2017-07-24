@@ -7,5 +7,6 @@ module.exports = (args) => {
   args.mobx && dependencies.push(...tmpl.dependenciesMobx);
   args.redux && dependencies.push(...tmpl.dependenciesRedux);
   args.styled && dependencies.push(...tmpl.dependenciesStyled);
+  args.router && dependencies.push(...tmpl.dependenciesRouter);
   return unique(dependencies.sort()).join(' ');
 };

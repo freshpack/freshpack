@@ -23,6 +23,12 @@ const devDependenciesLint = [
 
 // File templates
 
+const eslintignore = `
+/flow-typed/**
+types.js
+`;
+
+
 const eslintrc = `
 extends:
   eslint-config-airbnb
@@ -30,14 +36,15 @@ parser:
   babel-eslint
 settings:
   ecmascript: 6
-ecmaFeatures:
-  jsx: true
-  modules: true
-  destructuring: true
-  classes: true
-  forOf: true
-  blockBindings: true
-  arrowFunctions: true
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+    modules: true
+    destructuring: true
+    classes: true
+    forOf: true
+    blockBindings: true
+    arrowFunctions: true
 env:
   browser: true
   node: true
@@ -52,6 +59,7 @@ rules:
   no-param-reassign: 0
   linebreak-style: 0
   jsx-a11y/img-has-alt: 0
+  jsx-a11y/href-no-hash: 0
   import/no-extraneous-dependencies: 0
   import/no-named-as-default: 0
   import/no-unresolved: 0
@@ -66,5 +74,6 @@ rules:
 module.exports = {
   devDependenciesLint,
   eslintrc,
+  eslintignore,
   lintScripts
 };

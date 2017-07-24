@@ -2,6 +2,7 @@
 
 const config = require('./config');
 const lib = require('./lib');
+const EOL = require('os').EOL;
 
 const assembleIndex = require('./assembler/index');
 const assembleApp = require('./assembler/app');
@@ -58,7 +59,13 @@ config((project, args) => {
   let appStylesheetExt = 'css';
   tmpl.appStylesheet = tmpl.appCss;
 
+  let styledJs;;
+
   let typesFileContent;
+
+  if (args.router) {
+    tmpl.appStylesheet += EOL + tmpl.appCssRouter
+  }
 
   if (args.flow) {
     tmpl.eslintrc += tmpl.eslintrcFlow;
@@ -74,13 +81,30 @@ config((project, args) => {
 
   if (args.sass) {
     tmpl.appStylesheet = tmpl.appScss;
+    if (args.router) {
+      tmpl.appStylesheet += EOL + tmpl.appScssRooter;
+    }
     appStylesheetExt = 'scss';
   }
 
-  if (args.mobx) {
-    typesFileContent = tmpl.typesFileMobx;
-  } else if (args.redux) {
-    typesFileContent = tmpl.typesFileRedux;
+  if (args.styled) {
+    if (args.router) {
+      styledJs = tmpl.styledJsRouter;
+    } else {
+      styledJs = tmpl.styledJs;
+    }
+  }
+
+  if (args.flow) {
+    if (args.mobx) {
+      typesFileContent = tmpl.typesFileMobx;
+    } else if (args.redux) {
+      typesFileContent = tmpl.typesFileRedux;
+    } else if (args.router) {
+      typesFileContent = tmpl.typesFileBase; // todo: extend?
+    } else {
+      typesFileContent = tmpl.typesFileBase;
+    }
   }
 
   sequence([
@@ -93,7 +117,8 @@ config((project, args) => {
     [folders, '.mocks'],
     [write, '.babelrc', tmpl.babelrc],
     [write, '.editorconfig', tmpl.editorconfig],
-    [write, '.eslintrc.yml', tmpl.eslintrc],
+    [write, '.eslintrc', tmpl.eslintrc],
+    [write, '.eslintignore', tmpl.eslintignore],
     [write, '.flowConfig', tmpl.flowConfig],
     [write, 'package.json', render(tmpl.package)],
     [write, 'webpack.config.js', render(tmpl.webpackConfig)],
@@ -102,12 +127,13 @@ config((project, args) => {
     [write, 'src/store.js', tmpl.storeJs],
     [write, 'src/components/app/App.js', app],
     [write, 'src/components/app/style.' + appStylesheetExt, tmpl.appStylesheet],
-    [write, 'src/components/app/styled.js', tmpl.styledJs],
+    [write, 'src/components/app/styled.js', styledJs],
     [write, 'src/components/app/state.js', appState],
     [write, 'src/components/app/spec.js', appSpec],
     [write, 'src/components/app/types.js', typesFileContent],
     [write, 'flow-typed/redux.js', tmpl.flowTypeRedux],
     [write, 'flow-typed/prop-types.js', tmpl.flowTypePropTypes],
+    [write, 'flow-typed/react-router-dom.js', tmpl.flowTypeReactRouterDom],
     [write, 'flow-typed/react-redux.js', tmpl.flowTypeReactRedux],
     [write, 'flow-typed/mobx.js', tmpl.flowTypeMobx],
     [write, 'flow-typed/mobx-react.js', tmpl.flowTypeMobxReact],

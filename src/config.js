@@ -36,8 +36,10 @@ Usage: freshpack <project-directory> [options]
     -m, --mobx     include 'mobx' - simple, scalable state management
     -r, --redux    include 'redux' - predictable state container
 
-    -a, --sass     sass
-    -y, --styled   styled-components
+    -o, --router   include 'react-router' - declarative routing
+
+    -a, --sass     include 'sass'
+    -y, --styled   include 'styled-components'
 `;
 
 const optionDefinitions = [
@@ -51,6 +53,7 @@ const optionDefinitions = [
   { name: 'test', alias: 't', type: Boolean },
   { name: 'mobx', alias: 'm', type: Boolean },
   { name: 'redux', alias: 'r', type: Boolean },
+  { name: 'router', alias: 'o', type: Boolean },
   { name: 'sass', alias: 'a', type: Boolean },
   { name: 'styled', alias: 'y', type: Boolean },
   { name: 'quiet', alias: 'q', type: Boolean },
@@ -103,13 +106,13 @@ module.exports = (callback) => {
   } else if (args.version) {
     console.log('v' + pkg.version);
     return;
-  } else if (
-      (args.sass && args.styled) ||
-      (args.sass && args.cssmods) ||
-      (args.cssmods && args.styled)
-    ) {
+  } else if (args.sass && args.styled ) {
     console.log('Please use only ONE of the style options:');
     console.log('--sass OR --styled');
+    return;
+  } else if (args.mobx && args.redux ) {
+    console.log('Please use only ONE of the state management options:');
+    console.log('--mobx OR --redux');
     return;
   }
 

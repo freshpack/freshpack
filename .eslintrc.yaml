@@ -7,14 +7,15 @@ parser:
 settings:
   ecmascript: 6
 
-ecmaFeatures:
-  jsx: true
-  modules: true
-  destructuring: true
-  classes: true
-  forOf: true
-  blockBindings: true
-  arrowFunctions: true
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+    modules: true
+    destructuring: true
+    classes: true
+    forOf: true
+    blockBindings: true
+    arrowFunctions: true
 
 env:
   browser: true,
@@ -36,6 +37,7 @@ rules:
   import/no-unresolved: 0
   import/extensions: 0
   jsx-a11y/img-has-alt: 0
+  jsx-a11y/href-no-hash: 0
   react/jsx-filename-extension: 0
   react/prop-types: [1, { ignore: [] }]
   react/prefer-stateless-function: 0

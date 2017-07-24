@@ -65,6 +65,6 @@
     "eslint-plugin-react": "^7.1.0",
     "hasha": "^3.0.0",
     "tap-difflet": "^0.7.0",
-    "tape": "^4.6.3"
+    "tape": "^4.7.0"
   }
 }

@@ -16,10 +16,15 @@ const import_component = `
 import App from './components/app/App.js';
 `;
 
+const import_mobx_devtools = `
+import DevTools from 'mobx-react-devtools';
+`;
+
 const import_state_mobx = `
 import { Counter } from './components/app/state.js';
-import DevTools from 'mobx-react-devtools';
+`;
 
+const import_state_mobx_counter = `
 const counter = new Counter();
 `;
 
@@ -49,7 +54,7 @@ ReactDOM.render(
 const render_mobx = `
 ReactDOM.render(
   <main>
-    <App counter={ counter } />
+    <App counter={counter} />
     <DevTools />
   </main>,
   document.getElementById('root')
@@ -75,24 +80,36 @@ module.exports = (args) => {
   if (args.redux) {
     add(imports_redux);
   }
-
-  // 3 import component
-  add(import_component);
-
-  // 4 import mobx state
+  // 3 import mobx devtools
   if (args.mobx) {
-    add(import_state_mobx);
+    add(import_mobx_devtools);
   }
 
   newline();
 
-  // 5 comment subscribe
+   // 4 import mobx state
+  if (args.mobx) {
+    add(import_state_mobx);
+  }
+
+  // 5 import component
+  add(import_component);
+
+  newline();
+
+  // 6 import mobx state
+  if (args.mobx) {
+    add(import_state_mobx_counter);
+    newline();
+  }
+
+  // 7 comment subscribe
   if (args.redux) {
     add(comment_subscribe_redux);
     newline();
   }
 
-  // 6 render component
+  // 8 render component
   if (args.redux) {
     add(render_redux);
   } else if (args.mobx) {
