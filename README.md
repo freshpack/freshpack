@@ -57,6 +57,14 @@ $ freshpack <project-directory> [--quiet, -q]
 ```
 * Disable verbose logging
 
+### Option 'router'
+```bash
+$ freshpack <project-directory> [--router, -o]
+```
+* Generates skeleton with router example ('Navigation' + 'Counter')
+* Installs all required 'router' dependencies
+* Adds router tests
+
 ### Option 'redux'
 ```bash
 $ freshpack <project-directory> [--redux, -r]
