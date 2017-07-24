@@ -29,7 +29,8 @@ In contrast, **Freshpack** works _à-la-carte_ and provides options for support 
 - React Router
 - Redux
 - Mobx
-including all required dependencies, configuration files, minimal sample applications and tool commands in the scripts section of package.json (instead of _react-scripts_).
+
+All required dependencies, configuration files, minimal sample applications and tool commands in the scripts section of package.json (instead of _react-scripts_).
 
 ## Installation
 (node v6 required)
