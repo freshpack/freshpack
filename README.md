@@ -20,7 +20,16 @@ Note: 'yarn' must be installed! See [yarn installation guide](https://yarnpkg.co
 ## Motivation
 [Create-react-app](https://github.com/facebookincubator/create-react-app) is a comfortable way to get started on a new React project. But unfortunately, standard tools are not selectable and have to be installed (or removed) later.
 
-In contrast, **Freshpack** works _à-la-carte_ and provides options for support of commonly used tools (Lint, Flow, Jest, Sass, Styled Components, Redux and Mobx) - including all required dependencies, configuration files, minimal sample applications and tool commands in the scripts section of package.json (instead of _react-scripts_).
+In contrast, **Freshpack** works _à-la-carte_ and provides options for support of commonly used tools:
+- ESLint
+- Flow
+- Jest & Enzyme
+- Sass
+- Styled Components
+- React Router
+- Redux
+- Mobx
+including all required dependencies, configuration files, minimal sample applications and tool commands in the scripts section of package.json (instead of _react-scripts_).
 
 ## Installation
 (node v6 required)
