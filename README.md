@@ -61,7 +61,7 @@ $ freshpack <project-directory> [--quiet, -q]
 ```bash
 $ freshpack <project-directory> [--router, -o]
 ```
-* Generates skeleton with router example ('Navigation' + 'Counter')
+* Generates skeleton with router example ('Navigation')
 * Installs all required 'router' dependencies
 * Adds router tests
 
