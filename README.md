@@ -1,6 +1,6 @@
 # freshpack
 
-[![npm](https://img.shields.io/npm/v/freshpack.svg)](https://www.npmjs.com/package/freshpack) [![Build Status](https://travis-ci.org/freshpack/freshpack.svg?branch=master)](https://travis-ci.org/freshpack/freshpack) ![devDependencies](https://img.shields.io/david/freshpack/freshpack.svg) ![dependencies](https://img.shields.io/david/dev/freshpack/freshpack.svg) ![issues]
+[![npm](https://img.shields.io/npm/v/freshpack.svg)](https://www.npmjs.com/package/freshpack) [![Build Status](https://travis-ci.org/freshpack/freshpack.svg?branch=master)](https://travis-ci.org/freshpack/freshpack) ![devDependencies](https://img.shields.io/david/freshpack/freshpack.svg) ![dependencies (https://img.shields.io/david/dev/freshpack/freshpack.svg) ![issues]
 (https://img.shields.io/github/issues-raw/freshpack/freshpack.svg) ![BSD Licensed](https://img.shields.io/badge/license-BSD-blue.svg)
 
 <!---
