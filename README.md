@@ -11,13 +11,13 @@ Creates minimal boilerplates and installs the latest versions of all required de
 Note: 'yarn' must be installed! See [yarn installation guide](https://yarnpkg.com/lang/en/docs/install/)
 
 ## Table of Contents
-* [**Motivation**](#motivation)
+* [**Why Freshpack?**](#motivation)
 * [**Installation**](#installation)
 * [**Usage**](#usage)
 * [**Package scripts**](#package-scripts)
 * [**File structure**](#file-structure)
 
-## Motivation
+## Why Freshpack?
 [Create-react-app](https://github.com/facebookincubator/create-react-app) is a comfortable way to get started on a new React project. But unfortunately, standard tools are not selectable and have to be installed (or removed) later.
 
 In contrast, **Freshpack** works _à-la-carte_ and provides options for commonly used tools:
