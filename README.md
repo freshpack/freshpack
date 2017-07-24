@@ -5,7 +5,8 @@
 ### Wire Things up the Automatic Way*
 
 Command line tool for a quick development start of React apps.
-Creates minimal boilerplates and installs the latest versions of all required dependencies.
+
+Creates minimal boilerplates and installs **latest versions** of all required dependencies.
 
 **Still experimental**.
 
