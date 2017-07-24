@@ -30,7 +30,7 @@ In contrast, **Freshpack** works _à-la-carte_ and provides options for commonly
 - Redux
 - Mobx
 
-Generated Boilerplates with all required dependencies, configuration files, minimal sample applications and original tool commands in the scripts section of package.json (instead of _react-scripts_).
+Generates Boilerplates with all required dependencies, configuration files, minimal sample applications and original tool commands in the scripts section of package.json (instead of _react-scripts_).
 
 ## Installation
 (node v6 required)
