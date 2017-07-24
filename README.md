@@ -187,7 +187,7 @@ Redux components (actions, action creators and reducers) are stored together in 
 
 This structure is, of course, a matter of taste as well as the application case and easy to change in the generated boilerplate.
 
-### base:
+### Minimal React Skeleton
 ```bash
 $ freshpack <project-directory>
 
@@ -205,7 +205,7 @@ $ freshpack <project-directory>
 └── yarn.lock
 ```
 
-### base + dev + redux + sass:
+### React + Flow + ESLint + Test + Redux + Sass
 ```bash
 $ freshpack <project-directory> -dra
 
@@ -235,7 +235,8 @@ $ freshpack <project-directory> -dra
 ├── webpack.config.js
 └── yarn.lock
 ```
-### base + dev + redux + styled:
+### React + Flow + ESLint + Test + Redux + Styled Components
+
 ```bash
 $ freshpack <project-directory> -dry
 
