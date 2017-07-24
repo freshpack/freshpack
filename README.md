@@ -34,7 +34,7 @@ In contrast, **Freshpack** works _à-la-carte_ and provides options for commonly
 
 Includes all required dependencies, configuration files, minimal sample applications and original tool commands in the scripts section of package.json (instead of _react-scripts_).
 
-> No guarantee for a proper interaction of all necessary dependencies in the respective current versions.
+> **No guarantee** for a proper interaction of all necessary dependencies in the latest versions. In case of error messages, please install previous versions of the affected dependencies.
 
 
 ## Installation
