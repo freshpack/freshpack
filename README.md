@@ -23,6 +23,7 @@ Creates minimal boilerplates and installs **latest versions** of all required de
 [Create-react-app](https://github.com/facebookincubator/create-react-app) is a comfortable way to get started on a new React project. But unfortunately, standard tools are not selectable and have to be installed (or removed) later.
 
 In contrast, **Freshpack** works _à-la-carte_ and provides options for commonly used tools:
+
 * [ESLint](http://eslint.org/)
 * [Flow](https://flow.org/)
 * [Jest](https://facebook.github.io/jest/) & [Enzyme](http://airbnb.io/enzyme/)
