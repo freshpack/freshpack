@@ -16,8 +16,8 @@ Creates minimal boilerplates and installs **latest versions** of all required de
 * [**About**](#about)
 * [**Installation**](#installation)
 * [**Usage**](#usage)
-* [**Package scripts**](#package-scripts)
-* [**File structure**](#file-structure)
+* [**Commands**](#commands)
+* [**Structure**](#structure)
 
 ## About
 [Create-react-app](https://github.com/facebookincubator/create-react-app) is a comfortable way to get started on a new React project. But unfortunately, standard tools are not selectable and have to be installed (or removed) later.
@@ -158,7 +158,7 @@ $ freshpack <project-directory> --flow --lint --test
 ```
 * Combine all dev options
 
-## Package scripts
+## Commands
 
 ### Lint
 Available after usage with option --lint
@@ -192,7 +192,7 @@ $ yarn flow
 $ yarn start
 ```
 
-## File structure
+## Structure
 
 Here are some **examples** of the generated boilerplate file systems, which differ from each other according to selected options.
 
