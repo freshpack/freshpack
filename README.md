@@ -23,14 +23,14 @@ Creates minimal boilerplates and installs **latest versions** of all required de
 [Create-react-app](https://github.com/facebookincubator/create-react-app) is a comfortable way to get started on a new React project. But unfortunately, standard tools are not selectable and have to be installed (or removed) later.
 
 In contrast, **Freshpack** works _à-la-carte_ and provides options for commonly used tools:
--[ESLint](http://eslint.org/)
--[Flow](https://flow.org/)
--[Jest](https://facebook.github.io/jest/) & [Enzyme](http://airbnb.io/enzyme/)
--[Sass](http://sass-lang.com/)
--[Styled Components](https://www.styled-components.com/)
--[React Router](https://reacttraining.com/react-router/)
--[Redux](http://redux.js.org/)
--[Mobx](https://mobx.js.org/)
+* [ESLint](http://eslint.org/)
+* [Flow](https://flow.org/)
+* [Jest](https://facebook.github.io/jest/) & [Enzyme](http://airbnb.io/enzyme/)
+* [Sass](http://sass-lang.com/)
+* [Styled Components](https://www.styled-components.com/)
+* [React Router](https://reacttraining.com/react-router/)
+* [Redux](http://redux.js.org/)
+* [Mobx](https://mobx.js.org/)
 
 Includes all required dependencies, configuration files, minimal sample applications and original tool commands in the scripts section of package.json (instead of _react-scripts_).
 
