@@ -23,14 +23,14 @@ Creates minimal boilerplates and installs **latest versions** of all required de
 [Create-react-app](https://github.com/facebookincubator/create-react-app) is a comfortable way to get started on a new React project. But unfortunately, standard tools are not selectable and have to be installed (or removed) later.
 
 In contrast, **Freshpack** works _à-la-carte_ and provides options for commonly used tools:
-- ESLint
-- Flow
-- Jest & Enzyme
-- Sass
-- Styled Components
-- React Router
-- Redux
-- Mobx
+-[ESLint](http://eslint.org/)
+-[Flow](https://flow.org/)
+-[Jest](https://facebook.github.io/jest/) & [Enzyme](http://airbnb.io/enzyme/)
+-[Sass](http://sass-lang.com/)
+-[Styled Components](https://www.styled-components.com/)
+-[React Router](https://reacttraining.com/react-router/)
+-[Redux](http://redux.js.org/)
+-[Mobx](https://mobx.js.org/)
 
 Includes all required dependencies, configuration files, minimal sample applications and original tool commands in the scripts section of package.json (instead of _react-scripts_).
 
@@ -38,11 +38,21 @@ Includes all required dependencies, configuration files, minimal sample applicat
 
 
 ## Installation
-(node v6 required)
+Node v6 and Yarn are required
+
+Freshpack does not have its own package manager, it uses internally [Yarn](https://yarnpkg.com) (created by Facebook, Google and other).
 
 ```bash
 $ yarn global add freshpack
 ```
+
+One of the most important aspects of Yarn is determinism (predictability). The lock file ensures that the same dependencies will always be installed in the same way and order regardless of the machine for a given repository.
+
+Yarn efficiently queues up requests and avoids request waterfalls in order to maximize network utilization.
+
+If you've installed a package before, you can install it again without any internet connection.
+
+In the future we will optionally support Yarn, NPM and [PNPM](https://pnpm.js.org/).
 
 ## Usage
 
@@ -269,10 +279,7 @@ $ freshpack <project-directory> -dry
 └── yarn.lock
 ```
 
-## License
-BSD-3-Clause
-
-## Copyright
-&copy; 2017 Uli Preuss
+## Copyright & License
+&copy; 2017 Uli Preuss, BSD-3-Clause
 
 \* Header from '[Build Yourself a Redux](https://zapier.com/engineering/how-to-build-redux/)' by Justin Deal.
