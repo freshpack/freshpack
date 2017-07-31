@@ -272,7 +272,8 @@ $ freshpack <project-directory> -dry
 │   │   └── app
 │   │       ├── App.js
 │   │       ├── spec.js
-│   │       └── state.js
+│   │       ├── state.js
+│   │       └── styled.js
 │   ├── index.html
 │   ├── index.js
 │   └── store.js
