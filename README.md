@@ -26,7 +26,7 @@ In contrast, **Freshpack** works _à-la-carte_ and provides options for commonly
 
 * [ESLint](http://eslint.org/)
 * [Flow](https://flow.org/)
-* [Jest](https://facebook.github.io/jest/) & [Enzyme](http://airbnb.io/enzyme/)
+* [Jest](https://facebook.github.io/jest/) and [Enzyme](http://airbnb.io/enzyme/)
 * [Sass](http://sass-lang.com/)
 * [Styled Components](https://www.styled-components.com/)
 * [React Router](https://reacttraining.com/react-router/)
