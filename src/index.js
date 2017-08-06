@@ -59,12 +59,12 @@ config((project, args) => {
   let appStylesheetExt = 'css';
   tmpl.appStylesheet = tmpl.appCss;
 
-  let styledJs;;
+  let styledJs;
 
   let typesFileContent;
 
   if (args.router) {
-    tmpl.appStylesheet += EOL + tmpl.appCssRouter
+    tmpl.appStylesheet += EOL + tmpl.appCssRouter;
   }
 
   if (args.flow) {
