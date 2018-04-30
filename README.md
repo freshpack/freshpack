@@ -8,8 +8,6 @@ Command line tool for a quick development start of React apps.
 
 Creates minimal boilerplates and installs **latest versions** of all required dependencies.
 
-> Note: 'yarn' must be installed! 
-
 ## Table of Contents
 * [**About**](#about)
 * [**Installation**](#installation)
