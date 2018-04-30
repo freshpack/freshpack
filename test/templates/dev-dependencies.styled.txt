@@ -29,5 +29,7 @@ react-addons-test-utils
 react-test-renderer
 redux-mock-store
 regenerator-runtime 
-style-loader webpack
+style-loader
+webpack
+webpack-cli
 webpack-dev-server
