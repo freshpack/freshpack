@@ -1,6 +1,6 @@
 // @flow
-/* eslint 
-   no-unused-vars: 0 
+/* eslint
+   no-unused-vars: 0
    react/no-multi-comp: 0
 */
 import React from 'react';
