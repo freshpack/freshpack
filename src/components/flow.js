@@ -37,7 +37,7 @@ module.file_ext=.css
 module.file_ext=.scss
 module.file_ext=.js
 module.file_ext=.json
-unsafe.enable_getters_and_setters=true
+# unsafe.enable_getters_and_setters=true
 esproposal.decorators=ignore
 `;
 

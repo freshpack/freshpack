@@ -58,9 +58,7 @@ config((project, args) => {
   npmScripts = render(assembleNpmScripts(args));
   let appStylesheetExt = 'css';
   tmpl.appStylesheet = tmpl.appCss;
-
   let styledJs;
-
   let typesFileContent;
 
   if (args.router) {

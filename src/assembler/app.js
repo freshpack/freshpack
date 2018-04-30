@@ -4,8 +4,8 @@ const os = require('os');
 
 const comment_flow = `// @flow`;
 
-const comment_eslint = `/* eslint 
-   no-unused-vars: 0 
+const comment_eslint = `/* eslint
+   no-unused-vars: 0
    react/no-multi-comp: 0
 */`;
 

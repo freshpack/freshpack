@@ -35,6 +35,7 @@ const devDependencies = [
   'style-loader',
   'html-webpack-plugin',
   'webpack',
+  'webpack-cli',
   'webpack-dev-server'
 ];
 
@@ -87,6 +88,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 
 module.exports = {
+  mode: 'development',
   entry: [
     'webpack-dev-server/client?http://0.0.0.0:{{PORT}}',
     './src/index.js',
@@ -96,7 +98,7 @@ module.exports = {
     filename: 'index_bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\\.css$/,
         use: [
