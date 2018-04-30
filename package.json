@@ -1,6 +1,6 @@
 {
   "name": "freshpack",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "Command line scaffolding tool for react apps",
   "author": "Uli Preuss",
   "license": "BSD-3-Clause",
@@ -50,7 +50,7 @@
   ],
   "dependencies": {
     "colors": "^1.2.2",
-    "command-line-args": "^4.0.7",
+    "command-line-args": "^5.0.2",
     "elegant-spinner": "^1.0.1",
     "log-update": "^2.3.0",
     "object.entries": "^1.0.4",
@@ -58,11 +58,11 @@
     "require-text": "^0.0.1"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint": "3.19.0",
-    "eslint-config-airbnb": "^15.1.0",
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "hasha": "^3.0.0",
     "tap-difflet": "^0.7.1",
