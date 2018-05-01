@@ -4,9 +4,7 @@
 
 ### Wire Things up the Automatic Way*
 
-Command line tool for a quick development start of React apps.
-
-Creates minimal boilerplates and installs **latest versions** of all required dependencies.
+Command line tool for a quick development start of React apps. **Freshpack** creates minimal boilerplates and installs **latest versions** of all required dependencies.
 
 ## Table of Contents
 * [**About**](#about)
@@ -30,27 +28,21 @@ In contrast, **Freshpack** works _à-la-carte_ and provides options for commonly
 * [Redux](http://redux.js.org/)
 * [Mobx](https://mobx.js.org/)
 
-Includes all required dependencies, configuration files, minimal sample applications and original tool commands in the scripts section of package.json (instead of _react-scripts_).
+Includes all required dependencies, configuration files, minimal sample applications and original tool commands in the scripts section of package.json (instead of react-scripts).
 
-> **No guarantee** for a proper interaction of all necessary dependencies in the latest versions. In case of errors, please install previous versions of the affected dependencies.
+The tools of modern web development are constantly changing and expanding. This does not lastly affect configuration files and who does not know problems after webpack updates. Rollup and other tools affect the development of webpack (tree shaking, inlining, options instead of configuration files, ..) and so the wheel spins on and on.
+
+Of course, this is critical for **Freshpack**, which always loads the latest versions of various components and assembles them without the ability to test. So no guarantee for a proper interaction of all necessary dependencies in the latest versions.
+
+If you get an error after generating an react app with **Freshpack**, please report an issue on the github page!
 
 
 ## Installation
-Node v6 and Yarn are required
-
-Freshpack does not have its own package manager, it uses internally [Yarn](https://yarnpkg.com) (created by Facebook, Google and other).
+Node v6+ and Yarn are required
 
 ```bash
 $ yarn global add freshpack
 ```
-
-One of the most important aspects of Yarn is determinism (predictability). The lock file ensures that the same dependencies will always be installed in the same way and order regardless of the machine for a given repository.
-
-Yarn efficiently queues up requests and avoids request waterfalls in order to maximize network utilization.
-
-If you've installed a package before, you can install it again without any internet connection.
-
-In the future we will optionally support Yarn, NPM and [PNPM](https://pnpm.js.org/).
 
 ## Usage
 
@@ -68,19 +60,19 @@ $ freshpack <project-directory>
 * Enables hot reloading
 * Displays info when new freshpack version available
 
-### Option 'install'
+### Option `install`
 ```bash
 $ freshpack <project-directory> [--install, -i]
 ```
 * Installs dependencies automatically (yarn install)
 
-### Option 'quiet'
+### Option `quiet`
 ```bash
 $ freshpack <project-directory> [--quiet, -q]
 ```
 * Disable verbose logging
 
-### Option 'router'
+### Option `router`
 ```bash
 $ freshpack <project-directory> [--router, -o]
 ```
@@ -88,7 +80,7 @@ $ freshpack <project-directory> [--router, -o]
 * Installs all required 'router' dependencies
 * Adds router tests
 
-### Option 'redux'
+### Option `redux`
 ```bash
 $ freshpack <project-directory> [--redux, -r]
 ```
@@ -96,7 +88,7 @@ $ freshpack <project-directory> [--redux, -r]
 * Installs all required 'redux' dependencies
 * Adds redux tests
 
-### Option 'mobx'
+### Option `mobx`
 ```bash
 $ freshpack <project-directory> [--mobx, -m]
 ```
@@ -112,7 +104,7 @@ $ freshpack <project-directory> [--sass, -a]
 * Installs all required 'sass' dependencies
 * Adds 'sass-loader' to webpack configuration
 
-### Option 'lint'
+### Option `lint`
 ```bash
 $ freshpack <project-directory> [--lint, -l]
 ```
@@ -121,7 +113,7 @@ $ freshpack <project-directory> [--lint, -l]
 * Installs all required 'eslint' dependencies
 * Installs 'airbnb code style' configuration
 
-### Option 'test'
+### Option `test`
 ```bash
 $ freshpack <project-directory> [--test, -t]
 ```
@@ -130,7 +122,7 @@ $ freshpack <project-directory> [--test, -t]
 * Adds test script ('yarn test')
 * Installs all required 'jest' and 'enzyme' dependencies
 
-### Option 'flow'
+### Option `flow`
 ```bash
 $ freshpack <project-directory> [--flow, -f]
 ```
@@ -139,7 +131,7 @@ $ freshpack <project-directory> [--flow, -f]
 * Adds 'flow-typed' files
 * Adds Visual Studio Code settings file
 
-### Option 'styled'
+### Option `styled`
 ```bash
 $ freshpack <project-directory> [--styled, -y]
 ```
@@ -147,7 +139,7 @@ $ freshpack <project-directory> [--styled, -y]
 * Installs required 'styled-components' dependency
 * Adds 'styled-components' files
 
-### Option 'dev'
+### Option `dev`
 ```bash
 $ freshpack <project-directory> [--dev, -d]
 # .. shorthand for
