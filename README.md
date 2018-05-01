@@ -4,7 +4,7 @@
 
 ### Wire Things up the Automatic Way*
 
-Command line tool for a quick development start of React apps. **Freshpack** creates minimal boilerplates and installs **latest versions** of all required dependencies.
+Command line tool for a quick development start of React apps. freshpack creates minimal boilerplates and installs **latest versions** of all required dependencies.
 
 ## Table of Contents
 * [**About**](#about)
@@ -16,7 +16,7 @@ Command line tool for a quick development start of React apps. **Freshpack** cre
 ## About
 [Create-react-app](https://github.com/facebookincubator/create-react-app) is a comfortable way to get started on a new React project. But unfortunately, standard tools are not selectable and have to be installed (or removed) later.
 
-In contrast, **Freshpack** works _à-la-carte_ and provides options for commonly used tools:
+In contrast, freshpack works _à-la-carte_ and provides options for commonly used tools:
 
 * [ESLint](http://eslint.org/)
 * [Flow](https://flow.org/)
@@ -32,9 +32,9 @@ Includes all required dependencies, configuration files, minimal sample applicat
 
 The tools of modern web development are constantly changing and expanding. This does not lastly affect configuration files and who does not know problems after webpack updates. Rollup and other tools affect the development of webpack (tree shaking, inlining, options instead of configuration files, ..) and so the wheel spins on and on.
 
-Of course, this is critical for **Freshpack**, which always loads the latest versions of various components and assembles them without the ability to test. So no guarantee for a proper interaction of all necessary dependencies in the latest versions.
+Of course, this is critical for freshpack, which always loads the latest versions of various components and assembles them without the ability to test. So no guarantee for a proper interaction of all necessary dependencies in the latest versions.
 
-If you get an error after generating an react app with **Freshpack**, please report an issue on the github page!
+If you get an error after generating an react app with freshpack, please report an issue on the github page!
 
 
 ## Installation
@@ -96,7 +96,7 @@ $ freshpack <project-directory> [--mobx, -m]
 * Installs all required 'mobx' dependencies
 * Adds mobx dev tools to index file
 
-### Option 'sass'
+### Option `sass`
 ```bash
 $ freshpack <project-directory> [--sass, -a]
 ```
