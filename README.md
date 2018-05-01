@@ -30,7 +30,7 @@ In contrast, freshpack works _à-la-carte_ and provides options for commonly use
 
 Includes all required dependencies, configuration files, minimal sample applications and original tool commands in the scripts section of package.json (instead of react-scripts).
 
-The tools of modern web development are constantly changing and expanding. This does not lastly affect configuration files and who does not know problems after webpack updates. Rollup and other tools affect the development of webpack (tree shaking, inlining, options instead of configuration files, ..) and so the wheel spins on and on.
+The tools of modern web development are constantly changing and expanding. This does not lastly affect configuration files and who does not know problems after [webpack](https://webpack.js.org/) updates. [rollup](https://rollupjs.org/guide/en) and other tools affect the development of webpack (tree shaking, inlining, options instead of configuration files, ..) and so the wheel spins on and on.
 
 Of course, this is critical for freshpack, which always loads the latest versions of various components and assembles them without the ability to test. So no guarantee for a proper interaction of all necessary dependencies in the latest versions.
 
