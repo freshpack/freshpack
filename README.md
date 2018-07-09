@@ -40,6 +40,8 @@ If you get an error after generating an react app with freshpack, please report 
 ## Installation
 Node v6+ and Yarn are required
 
+**Note**: If you are using the  `--lint`  option, please update your Node version: the newest versions of eslint '5.x.x' needs a current Node release (Node v10+)
+
 ```bash
 $ yarn global add freshpack
 ```
