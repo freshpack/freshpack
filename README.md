@@ -273,6 +273,6 @@ $ freshpack <project-directory> -dry
 ```
 
 ## Copyright & License
-&copy; 2017 Uli Preuss, BSD-3-Clause
+&copy; 2017 - 2018 Uli Preuss, BSD-3-Clause
 
 \* Header from '[Build Yourself a Redux](https://zapier.com/engineering/how-to-build-redux/)' by Justin Deal.
