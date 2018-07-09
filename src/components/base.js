@@ -25,7 +25,7 @@ const devDependencies = [
   'babel-plugin-transform-decorators-legacy',
   'babel-plugin-transform-object-rest-spread',
   'babel-plugin-transform-runtime',
-  'babel-preset-es2015',
+  'babel-preset-env',
   'babel-preset-react',
   'babel-preset-stage-1',
   'cross-env',
@@ -67,7 +67,7 @@ insert_final_newline = true
 `;
 
 const babelrc = `{
-  "presets": ["es2015", "stage-1", "react"],
+  "presets": ["env", "stage-1", "react"],
   "plugins": [
     "transform-decorators-legacy",
     "transform-class-properties",
