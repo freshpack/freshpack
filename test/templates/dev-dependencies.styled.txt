@@ -1,5 +1,4 @@
 @babel/core
-babel-loader
 @babel/plugin-proposal-class-properties
 @babel/plugin-proposal-decorators
 @babel/plugin-proposal-object-rest-spread
@@ -9,6 +8,7 @@ babel-loader
 @babel/preset-react
 babel-eslint
 babel-jest
+babel-loader
 cross-env
 css-loader
 enzyme
