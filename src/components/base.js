@@ -19,15 +19,14 @@ const dependencies = [
 ];
 
 const devDependencies = [
-  'babel-core',
+  '@babel/core',
+  '@babel/plugin-proposal-class-properties',
+  '@babel/plugin-proposal-decorators',
+  '@babel/plugin-proposal-object-rest-spread',
+  '@babel/plugin-transform-runtime',
+  '@babel/preset-env',
+  '@babel/preset-react',
   'babel-loader',
-  'babel-plugin-transform-class-properties',
-  'babel-plugin-transform-decorators-legacy',
-  'babel-plugin-transform-object-rest-spread',
-  'babel-plugin-transform-runtime',
-  'babel-preset-env',
-  'babel-preset-react',
-  'babel-preset-stage-1',
   'cross-env',
   'extract-text-webpack-plugin',
   'file-loader',
@@ -67,11 +66,11 @@ insert_final_newline = true
 `;
 
 const babelrc = `{
-  "presets": ["env", "stage-1", "react"],
+  "presets": ["@babel/env", "@babel/react"],
   "plugins": [
-    "transform-decorators-legacy",
-    "transform-class-properties",
-    "transform-object-rest-spread"
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    ["@babel/plugin-proposal-object-rest-spread"]
   ]
 }
 `;

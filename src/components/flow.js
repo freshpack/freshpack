@@ -13,7 +13,7 @@ const flowScripts = {
 // Dependencies
 
 const devDependenciesFlow = [
-  'babel-preset-flow',
+  '@babel/preset-flow',
   'flow-bin'
 ];
 
