@@ -3,7 +3,7 @@
   "version": "1.2.5",
   "description": "Command line scaffolding tool for react apps",
   "author": "Uli Preuss",
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js --all",
