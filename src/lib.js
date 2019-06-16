@@ -60,6 +60,31 @@ const log = (msg) => {
   next();
 };
 
+const showArgsInfo = () => {
+  log('');
+  let shouldInstallDependencies = false;
+  let args2 = Object.keys(cmdArgs); // object to array
+  args2.shift(); // remove first array item (project dir)
+  args2 = args2.filter(function(value){
+    if (value === "install") {
+      shouldInstallDependencies = true;
+    }
+
+    return value !== "install";
+  });
+
+  console.log(
+    spacer + colors.bold("project name:"), cmdArgs.dir
+  );
+  console.log(
+    spacer + colors.bold("selected features:"), args2.join(", ")
+  );
+  console.log(
+    colors.bold("auto install: ") + shouldInstallDependencies
+  )
+  next();
+}
+
 const logVersionWarning = (str) => {
   const latestPackageVersion = str.trim();
   if (latestPackageVersion && latestPackageVersion !== pkg.version) {
@@ -170,6 +195,7 @@ const execCommand = (cmdString, options = {}) => {
     const str = data.toString();
     if (options.version) {
       logVersionWarning(str);
+      showArgsInfo();
     } else if (options.callback) {
       result = str.trim();
     }

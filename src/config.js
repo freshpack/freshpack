@@ -94,7 +94,7 @@ const startWithPromt = (callback) => {
         port: port !== '' ? port : projectDefaults.port
       };
 
-      callback(project, args);
+      callback(project, args, showArgsInfo);
     }
   );
 };

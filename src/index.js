@@ -34,7 +34,7 @@ const mergeBabelrcs = (a, b) => {
   return a;
 };
 
-config((project, args) => {
+config((project, args, showArgsInfo) => {
   const dir = project.name;
   const dependencies = assembleDependencies(args);
   const devDependencies = assembleDevDependencies(args);
