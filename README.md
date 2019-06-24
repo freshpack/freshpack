@@ -38,7 +38,7 @@ Of course, this is critical for freshpack, which always loads the latest version
 
 
 ## Installation
-Node v6+ and Yarn are required
+Node v10.16.0 or later and Yarn are required
 
 **Note**: If you are using the  `--lint`  option, please update your Node version: the newest versions of eslint '5.x.x' needs a current Node release (Node v10+)
 
